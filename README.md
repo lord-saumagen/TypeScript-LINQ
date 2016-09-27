@@ -39,7 +39,7 @@ The TS.js file is the combined javascript output of the complete solution. The T
 
 You will find a complete solution description n the "Overfiew.html" file in the "Docs" directory.
 
-See: [TS.js and TS.d.ts download.](./TS.zip)   
+See: [TS.js and TS.d.ts download.](./TS.zip) (Use right click -> Save link as...)   
 See: [Overview](./Docs/Overview.html)
 
 There is also a complete list of all extension functions implemented in this LINQ library.

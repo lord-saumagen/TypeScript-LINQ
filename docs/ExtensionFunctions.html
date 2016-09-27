@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Extensions functions</title>
+    <meta charset="utf-8" />
+    <link href="w3.css" rel="stylesheet" />
+    <link href="w3-theme-blue.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+      table, thead, tbody, tr, th, td {
+        border: 1px solid;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      .notImplemented {
+        background-color: #EE3B3B;
+      }
+
+      .notYetImplemented {
+        background-color: #FFC125;
+      }
+
+      .fullyImplemented {
+        background-color: #7CCD7C;
+      }
+
+      .italic {
+        font-style: italic;
+      }
+
+      ul {
+        list-style: none;
+        margin-left: 1em;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+ <main class="w3-main w3-container" style="margin-left: 1em;">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3">Implemented LINQ extension functions
+                </th>
+        </tr>
+        <tr>
+          <th style="width: 12em;">Name</th>
+          <th style="width: 12em;">Execution behavior</th>
+          <th style="width: 12em;">Overloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fullyImplemented">
+          <td>aggregate
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>all
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>any
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload
+                </td>
+        </tr>
+        <tr class="notImplemented">
+          <td>asEnumerable
+                </td>
+          <td>&nbsp;
+                </td>
+          <td>NOT IMPLEMENTED!</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>average
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;
+                </td>
+        </tr>
+        <tr class="notImplemented">
+          <td>cast
+                </td>
+          <td>&nbsp;
+                </td>
+          <td>NOT IMPLEMENTED!
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>concat
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>contains
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>count
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>defaultIfEmpty
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>distinct
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>elementAt
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>elementAtOrDefault
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>empty
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>except
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>first
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>firstOrDefault
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>groupBy
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>2 overloads
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>groupJoin
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>intersect
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>join
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>last
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>lastOrDefault
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>max
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>min
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="notImplemented">
+          <td>ofType
+                </td>
+          <td>&nbsp;
+                </td>
+          <td>NOT IMPLEMENTED!
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>orderBy
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>orderByDescending
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>range
+                </td>
+          <td>Deferred execution&nbsp;
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>repeat
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>reverse
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>select
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>selectMany
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>sequenceEqual
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>single
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>singleOrDefault
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>skip
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>skipWhile
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>sum
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>take
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>takeWhile
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>thenBy
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>thenByDescending
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>toArray
+                </td>
+          <td>Immediate execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="notImplemented">
+          <td>toDictionary
+                </td>
+          <td>&nbsp;
+                </td>
+          <td>NOT IMPLEMENTED!
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>toList
+                </td>
+          <td>Immediate execution
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="notImplemented">
+          <td>toLookup
+                </td>
+          <td>&nbsp;
+                </td>
+          <td>NOT IMPLEMENTED!
+                </td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>union
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>1 overload</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>where
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>zip
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      There following table lists the implemented extension functions which are not part of the&nbsp; LINQ extension functions as defined by Microsoft. The &quot;cycle&quot; and &quot;random&quot; are generators and should only be used in conjuntion with a following &quot;take&quot; or another limiting operator to limit their output. Otherwise you will run out of memory pretty soon.</p>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3">Additional extension functions</th>
+        </tr>
+        <tr>
+          <th style="width: 12em;">Name</th>
+          <th style="width: 12em;">Execution behavior</th>
+          <th style="width: 12em;">Overloads</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="fullyImplemented">
+          <td style="width: 12em;">cycle
+                </td>
+          <td style="width: 12em;">Deferred execution
+                </td>
+          <td style="width: 12em;">&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>forEach
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>random
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr class="fullyImplemented">
+          <td>shuffle
+                </td>
+          <td>Deferred execution
+                </td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+   </main>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 
 This is an implementation of the standard LINQ operators defined by Microsoft, in TypeScript.
 
-See: [Classification of Standard Query Operators by Manner of Execution (C#)](https://msdn.microsoft.com/en-us/library/mt693095.aspx) 
+See: [Classification of Standard Query Operators by Manner of Execution (C#)](https://msdn.microsoft.com/en-us/library/mt693095.aspx)
 
 This project is the successor of an earlier LINQ project in TypeScript. The earlier project used it's own implementation of the iterator pattern. This project uses the so called "iteration protocols" which are new in ECMAScript 2015. By the time of this writing, there is no Microsoft browser available which supports ECMAScript 2015. Therefore the project code is only tested with Chrome (Version 52.0.2741) and Firefox (Version 48.0.2).
 The project itself is a Visual Studio solution completely written with "Visual Studio Community 2015" update 3 and TypeScript version 1.8.36.0.
@@ -18,12 +18,12 @@ I decided to create a separate procject for the Node.js test because I couldn't 
 
 Please be aware that this library is intentionally compiled into ECMAScript 2015. The library is neither tested nor designed to run on Javascript engines which doesn't support the ECMAScript 2015 standard. 
 
-See: [typescript-linq V1.0.0](https://www.npmjs.com/package/typescript-linq) (npm package)
-See: [TypeScript-LINQ-Node-Test](https://github.com/lord-saumagen/TypeScript-LINQ-Node-Test) (Node.js test)
-See: [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
-See: [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)
-See: [Visual Studio](https://www.visualstudio.com)
-See: [TypeDoc](https://github.com/TypeStrong/typedoc)
+See: [typescript-linq V1.0.0](https://www.npmjs.com/package/typescript-linq) (npm package)   
+See: [TypeScript-LINQ-Node-Test](https://github.com/lord-saumagen/TypeScript-LINQ-Node-Test) (Node.js test)   
+See: [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)   
+See: [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)   
+See: [Visual Studio](https://www.visualstudio.com)   
+See: [TypeDoc](https://github.com/TypeStrong/typedoc)   
 
 ##Usage
 
@@ -39,7 +39,7 @@ The TS.js file is the combined javascript output of the complete solution. The T
 
 You will find a complete solution description n the "Overfiew.html" file in the "Docs" directory.
 
-See: [TS.js and TS.d.ts download.](./TS.zip)
+See: [TS.js and TS.d.ts download.](./TS.zip)   
 See: [Overview](./Docs/Overview.html)
 
 There is also a complete list of all extension functions implemented in this LINQ library.

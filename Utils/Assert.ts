@@ -52,7 +52,7 @@
 
       /**
       * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false.
-      *  Array like types are collections like the arguments or collection or DOM collections. They have a
+      *  Array like types are collections like the arguments collection or DOM collections. They have a
       *  length property but they are actually not arrays because they have no indexer.
       * @param {any} source
       *
@@ -83,24 +83,6 @@
         return true;
       }
 
-
-      /**
-      * @description  Returns true if the type of the argument 'source' is a dense array type. That means
-      *  the array contains no element which is undefined. Returns false otherwise.
-      *
-      * @param {any} source
-      *
-      * @returns {boolean}
-      */
-      export function isDenseArray(source: any): boolean
-      {
-        if (!TS.Utils.Assert.isArray(source))
-        {
-          return false;
-        }//END if
-
-        return !(<Array<any>> source).some((value, index, array) => value === undefined );
-      }
 
 
       /**
@@ -183,7 +165,65 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is considered a valid constructor functions which
+      * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
+      *
+      * @see TS.Utils.Assert.isByteValue
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isByteArray(source: any): boolean
+      {
+        if (TS.Utils.Assert.isNullUndefOrEmpty(source))
+        {
+          return false;
+        }//END if
+
+        if (!TS.Utils.Assert.isArray(source))
+        {
+          return false;
+        }//END if
+
+        return source.every((value: any) => 
+        {
+          if (TS.Utils.Assert.isArray(value))
+          {
+            return TS.Utils.Assert.isByteArray(value);
+          }//END if
+          else
+          {
+            return TS.Utils.Assert.isByteValue(value)
+          }//END else
+        });
+      }
+
+
+      /**
+      * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values [-127 .. 127], otherwise false.
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isByteValue(source: any): boolean
+      {
+        if (TS.Utils.Assert.isNullOrUndefined(source))
+        {
+          return false;
+        }//END if
+
+        if (!TS.Utils.Assert.isIntegerNumber(source))
+        {
+          return false;
+        }//END if
+
+        return ((source >= -127) && (source <= 127));
+      }
+
+
+      /**
+      * @description Returns true if the type of the argument 'source' is considered a valid constructor function which
       *  creates a none empty object, otherwise false.
       *  An empty object is one which can be created using an object literal like '{}' or calling the Object constructor
       *  with a null argument 'new Object(null)'. If the constructor function returns such an object the constructor will
@@ -311,7 +351,7 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a none empty decimal string.If the string
+      * @description Returns true if the type of the argument 'source' is a none empty decimal string. If the string
       *  contains other characters than [0-9], even white space, the return value will be false.
       *
       * @param {any} source
@@ -327,6 +367,26 @@
 
         return (/^[0-9]+$/gmi).test(source);
       }
+
+
+      /**
+      * @description  Returns true if the type of the argument 'source' is a dense array type. That means
+      *  the array contains no element which is undefined. Returns false otherwise.
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isDenseArray(source: any): boolean
+      {
+        if (!TS.Utils.Assert.isArray(source))
+        {
+          return false;
+        }//END if
+
+        return !(<Array<any>>source).some((value, index, array) => value === undefined);
+      }
+
 
 
       /**
@@ -445,7 +505,7 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a infinite number value type, otherwise false.
+      * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isNumberValue
@@ -572,7 +632,7 @@
 
       /**
       * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string or array.
-      *  Ther function returns false for all argument values which are neither null or undefined nor an empty array or empty string.
+      *  The function returns false for all argument values which are neither null or undefined nor an empty array or empty string.
       * 
       * @param {Array<any> | string} source
       *
@@ -708,19 +768,20 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a positive infinite number value type, otherwise false.
-      *
-      * @see TS.Utils.Assert.isNumber
-      * @see TS.Utils.Assert.isNumberValue
-      * @see TS.Utils.Assert.isNumberObject
+      * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
       *
       * @param {any} source
       *
       * @returns {boolean}
       */
-      export function isUnsignedInfiniteNumber(source: any): boolean
+      export function isObject(source: any): boolean
       {
-        return TS.Utils.Assert.isNumberValue(source) && (source === Number.POSITIVE_INFINITY);
+        if (TS.Utils.Assert.isNullOrUndefined(source))
+        {
+          return false;
+        }//END if
+
+        return typeof (source) == "object";
       }
 
 
@@ -759,76 +820,36 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
+      * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
       *
       * @param {any} source
       *
       * @returns {boolean}
       */
-      export function isObject(source: any): boolean
+      export function isRegEx(source: any): boolean
       {
         if (TS.Utils.Assert.isNullOrUndefined(source))
         {
           return false;
         }//END if
 
-        return typeof (source) == "object";
+        return Object.prototype.toString.call(source).indexOf("RegExp") > 0;
       }
 
 
       /**
-      * @description Returns true if the value of the argument 'source' is a valid integer number in the range of [0..Number.MAX_SAFE_INTEGER], otherwise false.
+      * @description Returns true if the type of the argument 'source' is a string type, otherwise false.
       *
-      * @see TS.Utils.Assert.isNumber
-      * @see TS.Utils.Assert.isIntegerNumber
+      * @see TS.Utils.Assert.isStringLiteral
+      * @see TS.Utils.Assert.isStringObject
       *
       * @param {any} source
       *
       * @returns {boolean}
       */
-      export function isUnsignedIntegerNumber(source: any): boolean
+      export function isString(source: any): boolean
       {
-        if (TS.Utils.Assert.isIntegerNumber(source))
-        {
-          return source > -1;
-        }//END if
-
-        return false;
-      }
-
-
-      /**
-      * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
-      *
-      * @see TS.Utils.Assert.isByteValue
-      *
-      * @param {any} source
-      *
-      * @returns {boolean}
-      */
-      export function isByteArray(source: any): boolean
-      {
-        if (TS.Utils.Assert.isNullUndefOrEmpty(source))
-        {
-          return false;
-        }//END if
-
-        if (!TS.Utils.Assert.isArray(source))
-        {
-          return false;
-        }//END if
-
-        return source.every((value: any) => 
-        {
-          if (TS.Utils.Assert.isArray(value))
-          {
-            return TS.Utils.Assert.isByteArray(value);
-          }//END if
-          else
-          {
-            return TS.Utils.Assert.isByteValue(value)
-          }//END else
-        });
+        return TS.Utils.Assert.isStringObject(source) || TS.Utils.Assert.isStringValue(source);
       }
 
 
@@ -864,75 +885,6 @@
             return TS.Utils.Assert.isStringValue(value);
           }//END else
         });
-      }
-
-
-      /**
-      * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise false.
-      *
-      * @see TS.Utils.Assert.isUnsignedByteValue
-      *
-      * @param {any} source
-      *
-      * @returns {boolean}
-      */
-      export function isUnsignedByteArray(source: any): boolean
-      {
-        if (TS.Utils.Assert.isNullUndefOrEmpty(source))
-        {
-          return false;
-        }//END if
-
-        if (!TS.Utils.Assert.isArray(source))
-        {
-          return false;
-        }//END if
-
-        return source.every((value : any, index: number, array : Array<any>) => 
-        {
-          if (TS.Utils.Assert.isArray(value))
-          {
-            return TS.Utils.Assert.isUnsignedByteArray(value);
-          }//END if
-          else
-          {
-            return TS.Utils.Assert.isUnsignedByteValue(value);
-          }//END else
-        });
-      }
-
-
-      /**
-      * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
-      *
-      * @param {any} source
-      *
-      * @returns {boolean}
-      */
-      export function isRegEx(source: any): boolean
-      {
-        if (TS.Utils.Assert.isNullOrUndefined(source))
-        {
-          return false;
-        }//END if
-
-        return Object.prototype.toString.call(source).indexOf("RegExp") > 0;
-      }
-
-
-      /**
-      * @description Returns true if the type of the argument 'source' is a string, type, otherwise false.
-      *
-      * @see TS.Utils.Assert.isStringLiteral
-      * @see TS.Utils.Assert.isStringObject
-      *
-      * @param {any} source
-      *
-      * @returns {boolean}
-      */
-      export function isString(source: any): boolean
-      {
-        return TS.Utils.Assert.isStringObject(source) || TS.Utils.Assert.isStringValue(source);
       }
 
 
@@ -993,7 +945,7 @@
           return false;
         }//END if
 
-        return typeof(source) == "symbol"
+        return typeof (source) == "symbol"
       }
 
 
@@ -1011,25 +963,37 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values [-127 .. 127], otherwise false.
+      * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise false.
+      *
+      * @see TS.Utils.Assert.isUnsignedByteValue
       *
       * @param {any} source
       *
       * @returns {boolean}
       */
-      export function isByteValue(source: any): boolean
+      export function isUnsignedByteArray(source: any): boolean
       {
-        if (TS.Utils.Assert.isNullOrUndefined(source))
+        if (TS.Utils.Assert.isNullUndefOrEmpty(source))
         {
           return false;
         }//END if
 
-        if (!TS.Utils.Assert.isIntegerNumber(source))
+        if (!TS.Utils.Assert.isArray(source))
         {
           return false;
         }//END if
 
-        return ((source >= -127) && (source <= 127));
+        return source.every((value: any, index: number, array: Array<any>) => 
+        {
+          if (TS.Utils.Assert.isArray(value))
+          {
+            return TS.Utils.Assert.isUnsignedByteArray(value);
+          }//END if
+          else
+          {
+            return TS.Utils.Assert.isUnsignedByteValue(value);
+          }//END else
+        });
       }
 
 
@@ -1053,6 +1017,46 @@
         }//END if
 
         return ((0 <= source) && (source < 256));
+      }
+
+
+      /**
+      * @description Returns true if the type of the argument 'source' is a positive infinite number value type, otherwise false.
+      *
+      * @see TS.Utils.Assert.isNumber
+      * @see TS.Utils.Assert.isNumberValue
+      * @see TS.Utils.Assert.isNumberObject
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isUnsignedInfiniteNumber(source: any): boolean
+      {
+        return TS.Utils.Assert.isNumberValue(source) && (source === Number.POSITIVE_INFINITY);
+      }
+
+
+
+
+      /**
+      * @description Returns true if the value of the argument 'source' is a valid integer number in the range of [0..Number.MAX_SAFE_INTEGER], otherwise false.
+      *
+      * @see TS.Utils.Assert.isNumber
+      * @see TS.Utils.Assert.isIntegerNumber
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isUnsignedIntegerNumber(source: any): boolean
+      {
+        if (TS.Utils.Assert.isIntegerNumber(source))
+        {
+          return source > -1;
+        }//END if
+
+        return false;
       }
 
 

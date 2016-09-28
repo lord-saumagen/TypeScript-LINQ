@@ -371,7 +371,7 @@ namespace TS
     /**
     * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows
     *  a 'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+    *  The exceptions message uses the 'pparameterNamearamName' and 'functionName' in its message to signal which parameter
     *  failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -380,11 +380,11 @@ namespace TS
     *
     * @throws {TS.InvalidTypeException}
     */
-    export function checkArrayLikeParameter(paramName: string, parameter: any, functionName: string): void
+    export function checkArrayLikeParameter(parameterName: string, parameter: any, functionName: string): void
     {
       if (!TS.Utils.Assert.isArrayLike(parameter))
       {
-        throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an 'ArrayLike' parameter in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an 'ArrayLike' parameter in function '" + functionName + "'.");
       }
     }
 
@@ -392,8 +392,8 @@ namespace TS
     /**
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
     *  the argument is either null or undefined.
-    *  Checks also whether the value of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array..
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
+    *  Checks also whether the value of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array.
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -423,7 +423,7 @@ namespace TS
     *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
     *  Checks whether the argument 'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
     *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters "[0,1]" only, with no white space.)
-    *  Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+    *  Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
     *  failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -448,7 +448,7 @@ namespace TS
 
     /**
     * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a 'TS.InvalidTypeException'
-    *  if the value of argument 'parameter' is not a boolean. The exceptions message uses the 'paramName' and 'functionName'
+    *  if the value of argument 'parameter' is not a boolean. The exceptions message uses the 'parameterName' and 'functionName'
     *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -457,11 +457,11 @@ namespace TS
     *
     * @throws {TS.InvalidTypeException}
     */
-    export function checkBooleanParameter(paramName: string, parameter: any, functionName: string): void
+    export function checkBooleanParameter(parameterName: string, parameter: any, functionName: string): void
     {
       if (!TS.Utils.Assert.isBoolean(parameter))
       {
-        throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be a boolean parameter in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be a boolean parameter in function '" + functionName + "'.");
       }//END if
     }
 
@@ -533,7 +533,7 @@ namespace TS
     * @throws {TS.ArgumentNullOrUndefinedException}
     * @throws {TS.InvalidTypeException}
     */
-    export function checkConstructorParameter(paramName: string, parameter: any, functionName: string)
+    export function checkConstructorParameter(parameterName: string, parameter: any, functionName: string)
     {
       let object: any;
       let ownPropertyArray: Array<any>;
@@ -541,12 +541,12 @@ namespace TS
 
       if (TS.Utils.Assert.isNullOrUndefined(parameter))
       {
-        throw new TS.ArgumentNullOrUndefinedException(paramName, "Argument '" + paramName + "' must not be null or undefinde in function '" + functionName + "'.");
+        throw new TS.ArgumentNullOrUndefinedException(parameterName, "Argument '" + parameterName + "' must not be null or undefinde in function '" + functionName + "'.");
       }//END if
 
       if (typeof (parameter) != "function")
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must not of type 'function' in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must not of type 'function' in function '" + functionName + "'.");
       }//END if
 
       try
@@ -555,17 +555,17 @@ namespace TS
       }//END try
       catch (Ex)
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       };
 
       if (TS.Utils.Assert.isNullOrUndefined(object))
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       }//END if
 
       if (!TS.Utils.Assert.isObject(object))
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       }//END if
 
       //
@@ -574,12 +574,12 @@ namespace TS
       //
       if (!(object instanceof parameter))
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       }//END if
 
       if (!(parameter.prototype.isPrototypeOf(object)))
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       }//END if
 
       //
@@ -617,7 +617,7 @@ namespace TS
       //
       if (ownPropertyArray.length == 0)
       {
-        throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
       }//END if
 
     }
@@ -625,7 +625,7 @@ namespace TS
 
     /**
     * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a 'InvalidTypeException' is thrown.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and 
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -634,11 +634,11 @@ namespace TS
     *
     * @throws {TS.InvalidTypeException}
     */
-    export function checkFunctionParameter(paramName: string, parameter: any, functionName: string)
+    export function checkFunctionParameter(parameterName: string, parameter: any, functionName: string)
     {
       if (!TS.Utils.Assert.isFunction(parameter))
       {
-        throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be a function parameter in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be a function parameter in function '" + functionName + "'.");
       }//END if
     }
 
@@ -647,7 +647,7 @@ namespace TS
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
     *  the argument is either null or undefined. 
     *  Checks also whether the value of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER] and throws a
-    *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at all. The exceptions message uses the 'paramName' and 'functionName' 
+    *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at all. The exceptions message uses the 'parameterName' and 'functionName'
     *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -674,7 +674,7 @@ namespace TS
 
     /**
     * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a 'TS.InvalidTypeException' if the value of argument 
-    *  'parameter' is not iterable. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+    *  'parameter' is not iterable. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
     *  failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -683,11 +683,11 @@ namespace TS
     *
     * @throws {TS.InvalidTypeException}
     */
-    export function checkIterableParameter(paramName: string, parameter: any, functionName: string)
+    export function checkIterableParameter(parameterName: string, parameter: any, functionName: string)
     {
       if (!TS.Utils.Assert.isIterable(parameter))
       {
-        throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an iterable parameter in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an iterable parameter in function '" + functionName + "'.");
       }//END if
     }
 
@@ -695,7 +695,7 @@ namespace TS
     /**
     * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a 'TS.InvalidTypeException' if not.
     *  Checks whether the value of argument 'parameter' is an array with 16, 24 or 32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and which function
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
     *  received the invalid parameter.
     *
     * @param {string} parameterName
@@ -705,16 +705,16 @@ namespace TS
     * @throws {TS.InvalidTypeException}
     * @throws {TS.ArgumentOutOfRangeException}
     */
-    export function checkKeyByteArray(paramName: string, parameter: any, functionName: string)
+    export function checkKeyByteArray(parameterName: string, parameter: any, functionName: string)
     {
       if (!TS.Utils.Assert.isUnsignedByteArray(parameter))
       {
-        throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an unsigned byte value array in function '" + functionName + "'.");
+        throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an unsigned byte value array in function '" + functionName + "'.");
       }//eND if
 
       if ([16, 24, 32].filter((value) => value == parameter.length).length == 0)
       {
-        throw new TS.ArgumentOutOfRangeException(paramName, parameter, "Argument '" + paramName + "' must be an array of unsigned byte values with [16 | 24 | 32] elements in function '" + functionName + "'.");
+        throw new TS.ArgumentOutOfRangeException(parameterName, parameter, "Argument '" + parameterName + "' must be an array of unsigned byte values with [16 | 24 | 32] elements in function '" + functionName + "'.");
       }//END if
     }
 
@@ -722,7 +722,7 @@ namespace TS
 
     /**
     * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty array and throws a
-    *  'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions message uses the 'paramName' and 'functionName' 
+    *  'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions message uses the 'parameterName' and 'functionName'
     *  in its message to signal which parameter failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -731,18 +731,18 @@ namespace TS
     *
     * @throws {TS.ArgumentNullUndefOrEmptyException}
     */
-    export function checkNotEmptyParameter(paramName: string, parameter: any, functionName: string)
+    export function checkNotEmptyParameter(parameterName: string, parameter: any, functionName: string)
     {
       if (TS.Utils.Assert.isNullUndefOrEmpty(parameter))
       {
-        throw new TS.ArgumentNullUndefOrEmptyException(parameter, "Argument '" + paramName + "' must not be null, undefined, an empty array or an empty string in function '" + functionName + "'.");
+        throw new TS.ArgumentNullUndefOrEmptyException(parameter, "Argument '" + parameterName + "' must not be null, undefined, an empty array or an empty string in function '" + functionName + "'.");
       }//END if
     }
 
 
     /**
     * @description Checks the value of argument 'parameter' against undefined and throws a 'TS.ArgumentUndefinedException' if
-    *  the argument is undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which
+    *  the argument is undefined. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which
     *  parameter failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -763,7 +763,7 @@ namespace TS
     /**
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
     *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException'
-    *  if the value is either not an number. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+    *  if the value is either not an number. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
     *  failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -790,7 +790,7 @@ namespace TS
 
     /**
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-    *  the argument is either null or undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+    *  the argument is either null or undefined. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
     *  failed the check and which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -799,11 +799,11 @@ namespace TS
     *
     * @throws {TS.ArgumentNullOrUndefinedException}
     */
-    export function checkParameter(paramName: string, parameter: any, functionName: string)
+    export function checkParameter(parameterName: string, parameter: any, functionName: string)
     {
       if (TS.Utils.Assert.isNullOrUndefined(parameter))
       {
-        throw new TS.ArgumentNullOrUndefinedException(paramName, "Argument '" + paramName + "' must not be null or undefinde in function '" + functionName + "'.");
+        throw new TS.ArgumentNullOrUndefinedException(parameterName, "Argument '" + parameterName + "' must not be null or undefinde in function '" + functionName + "'.");
       }//END if
     }
 
@@ -812,7 +812,7 @@ namespace TS
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
     *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
     *  Checks whether the argument 'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and 
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -844,7 +844,7 @@ namespace TS
 
     /**
     * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a 'TS.InvalidTypeException' if not.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and 
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -865,7 +865,7 @@ namespace TS
 
     /**
     * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a 'TS.InvalidTypeException' if not.
-    *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and 
+    *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -894,7 +894,7 @@ namespace TS
     * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
     *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a integer number in the range
     *  [0..Number.MAX_SAFE_INTEGER] or not and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not
-    *  a number at all. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and 
+    *  a number at all. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and
     *  which function received the invalid parameter.
     *
     * @param {string} parameterName
@@ -1406,7 +1406,7 @@ namespace TS
     }
 
 
-    /*
+    /**
     * @description Converts the unsigned integer number in argument 'value' into an array of byte values and returns that array. The array 
     *  has as much elements as necessary to represent the value given in argument 'value'.
     *

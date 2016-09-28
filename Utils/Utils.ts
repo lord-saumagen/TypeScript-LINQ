@@ -236,9 +236,8 @@ namespace TS
 
 
     /**
-    * @description Converts a bit string into an array of byte values. If the string given in argument 'bitString' is null,
-    *  undefined, empty of white space, the resulting byte array is an empty array. The function throws an exceptions if the
-    *  string is not empty but also not a valid bit string.
+    * @description Converts a bit string into an array of byte values.  The function throws an exceptions if the
+    *  string is not a valid bit string.
     *
     * @parm {string} bitString, The bit string to convert.
     *

@@ -8,8 +8,6 @@ This project is the successor of an earlier LINQ project in TypeScript. The earl
 The project itself is a Visual Studio solution completely written with "Visual Studio Community 2015" update 3 and TypeScript version 1.8.36.0.
 Open the test suite an see for yourself which parts of this soluation are compatible with your current browser.
 
-See: [Test suite](./Test/TestSuite.html)
-
 All public classes and functions have a full set of doumentation comments. So there is full IntelliSense support available in the code editor. There is also a library documentation created with TypeDoc. You will find that documentation in the "Docs" directory in subdirectory "Documentation".
 The code compiles with the TypeScript build settings "ECMAScript version" set to "ECMAScript 6". That is in fact an alias for "ECMAScript 2015". The code passes all tests in the lates Chrome or Firefox browser. 
 
@@ -24,6 +22,7 @@ See: [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 See: [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)   
 See: [Visual Studio](https://www.visualstudio.com)   
 See: [TypeDoc](https://github.com/TypeStrong/typedoc)   
+See: [Library Dcoumentation](https://lord-saumagen.github.io/TypeScript-LINQ/Documentation/index.html)
 
 ##Usage
 

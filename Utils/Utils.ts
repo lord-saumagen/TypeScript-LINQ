@@ -236,10 +236,10 @@ namespace TS
 
 
     /**
-    * @description Converts a bit string into an array of byte values.  The function throws an exceptions if the
-    *  string is not a valid bit string.
+    * @description Converts a bit string into an array of byte values. The function throws an exceptions if the
+    *  value of argument 'bitString' is not a valid bit string.
     *
-    * @parm {string} bitString, The bit string to convert.
+    * @param {string} bitString, The bit string to convert.
     *
     * @returns {Array<number>}, The resulting byte value array which may be empty.
     *

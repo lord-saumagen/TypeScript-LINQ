@@ -16,6 +16,8 @@ module TS_Utils_Test
     }
   }
 
+  enum testEnum { ZERO, ONE, TWO, THREE };
+
   QUnit.module("TS.Utils",
     {
       before: function ()
@@ -1009,6 +1011,20 @@ module TS_Utils_Test
   //  }, TS.InvalidTypeException, "The call should fail with a \"TS.ArgumentNullOrUndefinedException\" for a parameter value which is undefined.");
 
   //});
+
+
+  QUnit.test("getValueFromEnum", (assert) => 
+  {
+    assert.equal(TS.Utils.getValueFromEnum("ONE", testEnum), 1, "Should return the expected enumeration value.");
+    assert.equal(TS.Utils.getValueFromEnum(3, testEnum), "THREE", "Should return the expected enumeration value.");
+    assert.equal(TS.Utils.getValueFromEnum("2", testEnum), undefined, "Should return undefined for an unknown 'key'.");
+    assert.equal(TS.Utils.getValueFromEnum("FOUR", testEnum), undefined, "Should return undefined for an unknown 'key'.");
+    assert.equal(TS.Utils.getValueFromEnum(5, testEnum), undefined, "Should return undefined for an unknown 'key'.");
+    assert.equal(TS.Utils.getValueFromEnum(null, testEnum), undefined, "Should return undefined for a null 'key' value.");
+    assert.equal(TS.Utils.getValueFromEnum(undefined, testEnum), undefined, "Should return undefined for an andefined 'key' value.");
+    assert.equal(TS.Utils.getValueFromEnum("ONE", null), undefined, "Should return undefined for a null 'enumObj' value.");
+    assert.equal(TS.Utils.getValueFromEnum(1, undefined), undefined, "Should return undefined for an undefined 'enumObj' value.");
+  });
 
 
   QUnit.test("nextIndexOfReverse", (assert) =>

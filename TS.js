@@ -841,10 +841,10 @@ var TS;
 (function (TS) {
     "use strict";
     /**
-     * @description The module 'Utils' hosts a collection of funcitons which offer solutions for common
-     *  problems or reoccuring tasks which are not class specific. Since they are not class specific, they
-     *  are also not part of a class. They are simpley collected in this file and are part of the namespac.
-     *  Alle of the functions are static.
+     * @description The module 'Utils' hosts a collection of funcitons which offer solutions for common problems or
+     *  reoccuring tasks which are not class specific. Since they are not class specific, they are also not part of a
+     *  class. They are simply collected in this file and are part of the namespac. You can consider all of this
+     *  functions as static if you like, because you can call them without a prior instantiation of an object.
      */
     var Utils;
     (function (Utils) {
@@ -855,8 +855,8 @@ var TS;
          */
         Utils.currencyArray = new Array({ Name: "United Arab Emirates Dirham", Code: "AED", Symbol: "" }, { Name: "Afghanistan Afghani", Code: "AFN", Symbol: "؋" }, { Name: "Albania Lek", Code: "ALL", Symbol: "" }, { Name: "Armenia Dram", Code: "AMD", Symbol: "" }, { Name: "Netherlands Antilles Guilder", Code: "ANG", Symbol: "ƒ" }, { Name: "Angola Kwanza", Code: "AOA", Symbol: "" }, { Name: "Argentina Peso", Code: "ARS", Symbol: "$" }, { Name: "Australia Dollar", Code: "AUD", Symbol: "$" }, { Name: "Aruba Guilder", Code: "AWG", Symbol: "ƒ" }, { Name: "Azerbaijan New Manat", Code: "AZN", Symbol: "ман" }, { Name: "Bosnia and Herzegovina Convertible Marka", Code: "BAM", Symbol: "KM" }, { Name: "Barbados Dollar", Code: "BBD", Symbol: "$" }, { Name: "Bangladesh Taka", Code: "BDT", Symbol: "" }, { Name: "Bulgaria Lev", Code: "BGN", Symbol: "лв" }, { Name: "Bahrain Dinar", Code: "BHD", Symbol: "" }, { Name: "Burundi Franc", Code: "BIF", Symbol: "" }, { Name: "Bermuda Dollar", Code: "BMD", Symbol: "$" }, { Name: "Brunei Darussalam Dollar", Code: "BND", Symbol: "$" }, { Name: "Bolivia Bolíviano", Code: "BOB", Symbol: "$b" }, { Name: "Brazil Real", Code: "BRL", Symbol: "R$" }, { Name: "Bahamas Dollar", Code: "BSD", Symbol: "$" }, { Name: "Bhutan Ngultrum", Code: "BTN", Symbol: "" }, { Name: "Botswana Pula", Code: "BWP", Symbol: "P" }, { Name: "Belarus Ruble", Code: "BYR", Symbol: "p." }, { Name: "Belize Dollar", Code: "BZD", Symbol: "BZ$" }, { Name: "Canada Dollar", Code: "CAD", Symbol: "$" }, { Name: "Congo/Kinshasa Franc", Code: "CDF", Symbol: "" }, { Name: "Switzerland Franc", Code: "CHF", Symbol: "CHF" }, { Name: "Chile Peso", Code: "CLP", Symbol: "$" }, { Name: "China Yuan Renminbi", Code: "CNY", Symbol: "¥" }, { Name: "Colombia Peso", Code: "COP", Symbol: "" }, { Name: "Costa Rica Colon", Code: "CRC", Symbol: "₡" }, { Name: "Cuba Convertible Peso", Code: "CUC", Symbol: "" }, { Name: "Cuba Peso", Code: "CUP", Symbol: "₱" }, { Name: "Cape Verde Escudo", Code: "CVE", Symbol: "" }, { Name: "Czech Republic Koruna", Code: "CZK", Symbol: "Kč" }, { Name: "Djibouti Franc", Code: "DJF", Symbol: "" }, { Name: "Denmark Krone", Code: "DKK", Symbol: "kr" }, { Name: "Dominican Republic Peso", Code: "DOP", Symbol: "RD$" }, { Name: "Algeria Dinar", Code: "DZD", Symbol: "" }, { Name: "Egypt Pound", Code: "EGP", Symbol: "£" }, { Name: "Eritrea Nakfa", Code: "ERN", Symbol: "" }, { Name: "Ethiopia Birr", Code: "ETB", Symbol: "" }, { Name: "European Union Euro", Code: "EUR", Symbol: "€" }, { Name: "Fiji Dollar", Code: "FJD", Symbol: "$" }, { Name: "Falkland Islands (Malvinas) Pound", Code: "FKP", Symbol: "£" }, { Name: "United Kingdom Pound", Code: "GBP", Symbol: "£" }, { Name: "Georgia Lari", Code: "GEL", Symbol: "" }, { Name: "Guernsey Pound", Code: "GGP", Symbol: "£" }, { Name: "Ghana Cedi", Code: "GHS", Symbol: "¢" }, { Name: "Gibraltar Pound", Code: "GIP", Symbol: "£" }, { Name: "Gambia Dalasi", Code: "GMD", Symbol: "" }, { Name: "Guinea Franc", Code: "GNF", Symbol: "" }, { Name: "Guatemala Quetzal", Code: "GTQ", Symbol: "Q" }, { Name: "Guyana Dollar", Code: "GYD", Symbol: "$" }, { Name: "Hong Kong Dollar", Code: "HKD", Symbol: "$" }, { Name: "Honduras Lempira", Code: "HNL", Symbol: "L" }, { Name: "Croatia Kuna", Code: "HRK", Symbol: "kn" }, { Name: "Haiti Gourde", Code: "HTG", Symbol: "" }, { Name: "Hungary Forint", Code: "HUF", Symbol: "Ft" }, { Name: "Indonesia Rupiah", Code: "IDR", Symbol: "Rp" }, { Name: "Israel Shekel", Code: "ILS", Symbol: "₪" }, { Name: "Isle of Man Pound", Code: "IMP", Symbol: "£" }, { Name: "India Rupee", Code: "INR", Symbol: "" }, { Name: "Iraq Dinar", Code: "IQD", Symbol: "" }, { Name: "Iran Rial", Code: "IRR", Symbol: "﷼" }, { Name: "Iceland Krona", Code: "ISK", Symbol: "kr" }, { Name: "Jersey Pound", Code: "JEP", Symbol: "£" }, { Name: "Jamaica Dollar", Code: "JMD", Symbol: "J$" }, { Name: "Jordan Dinar", Code: "JOD", Symbol: "" }, { Name: "Japan Yen", Code: "JPY", Symbol: "¥" }, { Name: "Kenya Shilling", Code: "KES", Symbol: "" }, { Name: "Kyrgyzstan Som", Code: "KGS", Symbol: "лв" }, { Name: "Cambodia Riel", Code: "KHR", Symbol: "៛" }, { Name: "Comoros Franc", Code: "KMF", Symbol: "" }, { Name: "Korea (North) Won", Code: "KPW", Symbol: "₩" }, { Name: "Korea (South) Won", Code: "KRW", Symbol: "₩" }, { Name: "Kuwait Dinar", Code: "KWD", Symbol: "" }, { Name: "Cayman Islands Dollar", Code: "KYD", Symbol: "$" }, { Name: "Kazakhstan Tenge", Code: "KZT", Symbol: "лв" }, { Name: "Laos Kip", Code: "LAK", Symbol: "₭" }, { Name: "Lebanon Pound", Code: "LBP", Symbol: "£" }, { Name: "Sri Lanka Rupee", Code: "LKR", Symbol: "₨" }, { Name: "Liberia Dollar", Code: "LRD", Symbol: "$" }, { Name: "Lesotho Loti", Code: "LSL", Symbol: "" }, { Name: "Libya Dinar", Code: "LYD", Symbol: "" }, { Name: "Morocco Dirham", Code: "MAD", Symbol: "" }, { Name: "Moldova Leu", Code: "MDL", Symbol: "" }, { Name: "Madagascar Ariary", Code: "MGA", Symbol: "" }, { Name: "Macedonia Denar", Code: "MKD", Symbol: "ден" }, { Name: "Myanmar (Burma) Kyat", Code: "MMK", Symbol: "" }, { Name: "Mongolia Tughrik", Code: "MNT", Symbol: "₮" }, { Name: "Macau Pataca", Code: "MOP", Symbol: "" }, { Name: "Mauritania Ouguiya", Code: "MRO", Symbol: "" }, { Name: "Mauritius Rupee", Code: "MUR", Symbol: "₨" }, { Name: "Maldives (Maldive Islands) Rufiyaa", Code: "MVR", Symbol: "" }, { Name: "Malawi Kwacha", Code: "MWK", Symbol: "" }, { Name: "Mexico Peso", Code: "MXN", Symbol: "$" }, { Name: "Malaysia Ringgit", Code: "MYR", Symbol: "RM" }, { Name: "Mozambique Metical", Code: "MZN", Symbol: "MT" }, { Name: "Namibia Dollar", Code: "NAD", Symbol: "$" }, { Name: "Nigeria Naira", Code: "NGN", Symbol: "₦" }, { Name: "Nicaragua Cordoba", Code: "NIO", Symbol: "C$" }, { Name: "Norway Krone", Code: "NOK", Symbol: "kr" }, { Name: "Nepal Rupee", Code: "NPR", Symbol: "₨" }, { Name: "New Zealand Dollar", Code: "NZD", Symbol: "$" }, { Name: "Oman Rial", Code: "OMR", Symbol: "﷼" }, { Name: "Panama Balboa", Code: "PAB", Symbol: "B/." }, { Name: "Peru Sol", Code: "PEN", Symbol: "S/." }, { Name: "Papua New Guinea Kina", Code: "PGK", Symbol: "" }, { Name: "Philippines Peso", Code: "PHP", Symbol: "₱" }, { Name: "Pakistan Rupee", Code: "PKR", Symbol: "₨" }, { Name: "Poland Zloty", Code: "PLN", Symbol: "zł" }, { Name: "Paraguay Guarani", Code: "PYG", Symbol: "Gs" }, { Name: "Qatar Riyal", Code: "QAR", Symbol: "﷼" }, { Name: "Romania New Leu", Code: "RON", Symbol: "lei" }, { Name: "Serbia Dinar", Code: "RSD", Symbol: "Дин." }, { Name: "Russia Ruble", Code: "RUB", Symbol: "руб" }, { Name: "Rwanda Franc", Code: "RWF", Symbol: "" }, { Name: "Saudi Arabia Riyal", Code: "SAR", Symbol: "﷼" }, { Name: "Solomon Islands Dollar", Code: "SBD", Symbol: "$" }, { Name: "Seychelles Rupee", Code: "SCR", Symbol: "₨" }, { Name: "Sudan Pound", Code: "SDG", Symbol: "" }, { Name: "Sweden Krona", Code: "SEK", Symbol: "kr" }, { Name: "Singapore Dollar", Code: "SGD", Symbol: "$" }, { Name: "Saint Helena Pound", Code: "SHP", Symbol: "£" }, { Name: "Sierra Leone Leone", Code: "SLL", Symbol: "" }, { Name: "Somalia Shilling", Code: "SOS", Symbol: "S" }, { Name: "Suriname Dollar", Code: "SRD", Symbol: "$" }, { Name: "São Tomé and Príncipe Dobra", Code: "STD", Symbol: "" }, { Name: "El Salvador Colon", Code: "SVC", Symbol: "$" }, { Name: "Syria Pound", Code: "SYP", Symbol: "£" }, { Name: "Swaziland Lilangeni", Code: "SZL", Symbol: "" }, { Name: "Thailand Baht", Code: "THB", Symbol: "฿" }, { Name: "Tajikistan Somoni", Code: "TJS", Symbol: "" }, { Name: "Turkmenistan Manat", Code: "TMT", Symbol: "" }, { Name: "Tunisia Dinar", Code: "TND", Symbol: "" }, { Name: "Tonga Pa'anga", Code: "TOP", Symbol: "" }, { Name: "Turkey Lira", Code: "TRY", Symbol: "" }, { Name: "Trinidad and Tobago Dollar", Code: "TTD", Symbol: "TT$" }, { Name: "Tuvalu Dollar", Code: "TVD", Symbol: "$" }, { Name: "Taiwan New Dollar", Code: "TWD", Symbol: "NT$" }, { Name: "Tanzania Shilling", Code: "TZS", Symbol: "" }, { Name: "Ukraine Hryvnia", Code: "UAH", Symbol: "₴" }, { Name: "Uganda Shilling", Code: "UGX", Symbol: "" }, { Name: "United States Dollar", Code: "USD", Symbol: "$" }, { Name: "Uruguay Peso", Code: "UYU", Symbol: "$U" }, { Name: "Uzbekistan Som", Code: "UZS", Symbol: "лв" }, { Name: "Venezuela Bolivar", Code: "VEF", Symbol: "Bs" }, { Name: "Viet Nam Dong", Code: "VND", Symbol: "₫" }, { Name: "Vanuatu Vatu", Code: "VUV", Symbol: "" }, { Name: "Samoa Tala", Code: "WST", Symbol: "" }, { Name: "Communauté Financière Africaine (BEAC) CFA Franc BEAC", Code: "XAF", Symbol: "" }, { Name: "East Caribbean Dollar", Code: "XCD", Symbol: "$" }, { Name: "International Monetary Fund (IMF) Special Drawing Rights", Code: "XDR", Symbol: "" }, { Name: "Communauté Financière Africaine (BCEAO) Franc", Code: "XOF", Symbol: "" }, { Name: "Comptoirs Français du Pacifique (CFP) Franc", Code: "XPF", Symbol: "" }, { Name: "Yemen Rial", Code: "YER", Symbol: "﷼" }, { Name: "South Africa Rand", Code: "ZAR", Symbol: "R" }, { Name: "Zambia Kwacha", Code: "ZMW", Symbol: "" }, { Name: "Zimbabwe Dollar", Code: "ZWD", Symbol: "Z$" });
         /**
-        * @description Searches for all occurrences of 'searchString' in 'sourceString' and returns an array of the indexes where the searchstring
-        *  occurred in the sourceString.
+        * @description Searches for all occurrences of 'searchString' in 'sourceString' and returns an array of the
+        *  indexes where the searchstring occurred in the sourceString.
         *
         * @param {string} sourceString
         * @param {string} searchString
@@ -883,11 +883,10 @@ var TS;
         }
         Utils.allIndexOf = allIndexOf;
         /**
-        * @description Converts a bit string into an array of byte values. If the string given in argument 'bitString' is null,
-        *  undefined, empty of white space, the resulting byte array is an empty array. The function throws an exceptions if the
-        *  string is not empty but also not a valid bit string.
+        * @description Converts a bit string into an array of byte values. The function throws an exceptions if the
+        *  value of argument 'bitString' is not a valid bit string.
         *
-        * @parm {string} bitString, The bit string to convert.
+        * @param {string} bitString, The bit string to convert.
         *
         * @returns {Array<number>}, The resulting byte value array which may be empty.
         *
@@ -922,7 +921,7 @@ var TS;
         * @param {Array<number>} byteArray, The array of byte values to convert.
         *
         * @returns {string}, The resulting bit string.
-        Ü
+        *
         * @throws {TS.ArgumentNullUndefOrEmptyException}
         * @throws {TS.InvalidTypeException }
         */
@@ -936,9 +935,9 @@ var TS;
         }
         Utils.byteArrayToBitString = byteArrayToBitString;
         /**
-        * @description Converts an array of unsigned byte values into an unsinged integer value. The function throws an exception if the value in
-        *  argument 'unsignedByteArray' is not a valid byte array or empty. The function throws a 'TS.ArgumentOutOfRangeException' if the
-        *  conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)
+        * @description Converts an array of unsigned byte values into an unsinged integer value. The function throws an
+        *  exception if the value in argument 'unsignedByteArray' is not a valid byte array or empty. The function throws
+        *  a 'TS.ArgumentOutOfRangeException' if the conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)
         *
         * @params {Array<number>} byteArray, An array of unsigned byte values.
         *
@@ -966,8 +965,8 @@ var TS;
         }
         Utils.byteArrayToUInt = byteArrayToUInt;
         /**
-        * @description Converts the value given in argument 'value' into an 8 character bit string. The result string will be padded
-        *  with leading '0' characters if necessary until the length of 8 characters is reached.
+        * @description Converts the value given in argument 'value' into an 8 character bit string. The result string will be
+        *  padded with leading '0' characters if necessary until the length of 8 characters is reached.
         *
         * @param {number} value, Has to be a byte value.
         *
@@ -987,10 +986,10 @@ var TS;
         }
         Utils.byteToBitString = byteToBitString;
         /**
-        * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows
-        *  a 'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type. The exceptions
+        *  message uses the 'pparameterNamearamName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -998,18 +997,18 @@ var TS;
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkArrayLikeParameter(paramName, parameter, functionName) {
+        function checkArrayLikeParameter(parameterName, parameter, functionName) {
             if (!TS.Utils.Assert.isArrayLike(parameter)) {
-                throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an 'ArrayLike' parameter in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an 'ArrayLike' parameter in function '" + functionName + "'.");
             }
         }
         Utils.checkArrayLikeParameter = checkArrayLikeParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined.
-        *  Checks also whether the value of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array..
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array. The
+        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1028,12 +1027,14 @@ var TS;
         }
         Utils.checkArrayParameter = checkArrayParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the argument 'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters "[0,1]" only, with no white space.)
-        *  Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
+        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
+        *  'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
+        *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters
+        *  "[0,1]" only, with no white space.) Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
+        *  received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {string} parameter
@@ -1051,9 +1052,10 @@ var TS;
         }
         Utils.checkBitStringParameter = checkBitStringParameter;
         /**
-        * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a 'TS.InvalidTypeException'
-        *  if the value of argument 'parameter' is not a boolean. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not a boolean. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and  which function
+        *  received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1061,16 +1063,16 @@ var TS;
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkBooleanParameter(paramName, parameter, functionName) {
+        function checkBooleanParameter(parameterName, parameter, functionName) {
             if (!TS.Utils.Assert.isBoolean(parameter)) {
-                throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be a boolean parameter in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be a boolean parameter in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkBooleanParameter = checkBooleanParameter;
         /**
-        * @description Checks whether the 'thisContext' is a valid type for a constructor call or not. Throws a 'TS.InvalidOperationException' if the value
-        *  of argument 'thisContext' is either null or undefined or not of the required type. Throws a 'TS.ArgumentNullOrUndefinedException'
-        *  if argument 'requiredType' is not specified.
+        * @description Checks whether the 'thisContext' is a valid type for a constructor call or not. Throws a
+        *  'TS.InvalidOperationException' if the value of argument 'thisContext' is either null or undefined or not of the
+        *  required type. Throws a 'TS.ArgumentNullOrUndefinedException' if argument 'requiredType' is not specified.
         *
         * @param {any} thisContext
         * @param {any} requiredType
@@ -1102,18 +1104,19 @@ var TS;
         }
         Utils.checkConstructorCall = checkConstructorCall;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if the argument is
-        *  either null or undefined.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined.
         *
-        *  Checks also the type of the argument which must evaluate to 'function' and checks whether the function returns an object if it is called with the 'new'
-        *  operator and an empty argument list.
+        *  Checks also the type of the argument which must evaluate to 'function' and checks whether the function returns
+        *  an object if it is called with the 'new' operator and an empty argument list.
         *
-        *  The function throws a 'TS.InvalidTypeException' if the call with the 'new' operator fails for any reason or the returned value is not an object,
-        *  an empty object, null or undefined.
+        *  The function throws a 'TS.InvalidTypeException' if the call with the 'new' operator fails for any reason or the
+        *  returned value is not an object, an empty object, null or undefined.
         *
-        *  Attention, even if the check succeeded, the function specified in the argument 'parameter' may not be supposed to be called as a constructor function.
-        *  (To be called with the new operator.) Since JavaScript allows to call every function with the new operator there is no way to tell whether a function
-        *  was supposed to be used as a constructor function or not. But at least that check can tell that a call to that function as constructor
+        *  Attention, even if the check succeeded, the function specified in the argument 'parameter' may not be supposed
+        *  to be called as a constructor function. (To be called with the new operator.) Since JavaScript allows to call
+        *  every function with the new operator there is no way to tell whether a function was supposed to be used as a
+        *  constructor function or not. But at least that check can tell that a call to that function as constructor
         *  function won't fail and will return an object of any type when the function passed the check.
         *
         * @param {string} parameterName
@@ -1123,43 +1126,43 @@ var TS;
         * @throws {TS.ArgumentNullOrUndefinedException}
         * @throws {TS.InvalidTypeException}
         */
-        function checkConstructorParameter(paramName, parameter, functionName) {
+        function checkConstructorParameter(parameterName, parameter, functionName) {
             let object;
             let ownPropertyArray;
             let prototype;
             if (TS.Utils.Assert.isNullOrUndefined(parameter)) {
-                throw new TS.ArgumentNullOrUndefinedException(paramName, "Argument '" + paramName + "' must not be null or undefinde in function '" + functionName + "'.");
+                throw new TS.ArgumentNullOrUndefinedException(parameterName, "Argument '" + parameterName + "' must not be null or undefinde in function '" + functionName + "'.");
             } //END if
             if (typeof (parameter) != "function") {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must not of type 'function' in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must not of type 'function' in function '" + functionName + "'.");
             } //END if
             try {
                 object = new parameter();
             } //END try
             catch (Ex) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             }
             ;
             if (TS.Utils.Assert.isNullOrUndefined(object)) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             } //END if
             if (!TS.Utils.Assert.isObject(object)) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             } //END if
             //
-            //Assure that the object is at least one created by the constructor function in argument 'parameter'
-            //and not an arbitrary object returned by a factory function.
+            // Assure that the object is at least one created by the constructor function in argument 'parameter' and not an 
+            // arbitrary object returned by a factory function.
             //
             if (!(object instanceof parameter)) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             } //END if
             if (!(parameter.prototype.isPrototypeOf(object))) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             } //END if
             //
-            // Check whether the new created object is an empty object or not. If the object is an empty object (An object without any properties
-            // or methods which are not default values.) treat it as erroneous. A constructor function shouldn't return an empty object because
-            // that's meaningless.
+            // Check whether the new created object is an empty object or not. If the object is an empty object (An object 
+            // without any properties or methods which are not default values.) treat it as erroneous. A constructor function
+            // shouldn't return an empty object because that's meaningless.
             //
             ownPropertyArray = new Array();
             for (let key in object) {
@@ -1183,14 +1186,14 @@ var TS;
             // It's an empty object. 
             //
             if (ownPropertyArray.length == 0) {
-                throw new TS.InvalidTypeException(paramName, "Argument '" + paramName + "' must be a valid constructor function in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, "Argument '" + parameterName + "' must be a valid constructor function in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkConstructorParameter = checkConstructorParameter;
         /**
-        * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a 'InvalidTypeException' is thrown.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a
+        *  'InvalidTypeException' is thrown. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1198,18 +1201,19 @@ var TS;
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkFunctionParameter(paramName, parameter, functionName) {
+        function checkFunctionParameter(parameterName, parameter, functionName) {
             if (!TS.Utils.Assert.isFunction(parameter)) {
-                throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be a function parameter in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be a function parameter in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkFunctionParameter = checkFunctionParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined.
-        *  Checks also whether the value of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER] and throws a
-        *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at all. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER]
+        *  and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at
+        *  all. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
+        *  failed the check and  which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {number} parameter
@@ -1228,9 +1232,10 @@ var TS;
         }
         Utils.checkIntNumberParameter = checkIntNumberParameter;
         /**
-        * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a 'TS.InvalidTypeException' if the value of argument
-        *  'parameter' is not iterable. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not iterable. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
+        *   received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1238,17 +1243,18 @@ var TS;
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkIterableParameter(paramName, parameter, functionName) {
+        function checkIterableParameter(parameterName, parameter, functionName) {
             if (!TS.Utils.Assert.isIterable(parameter)) {
-                throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an iterable parameter in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an iterable parameter in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkIterableParameter = checkIterableParameter;
         /**
-        * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the value of argument 'parameter' is an array with 16, 24 or 32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and which function
-        *  received the invalid parameter.
+        * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a
+        *  'TS.InvalidTypeException' if not. Checks whether the value of argument 'parameter' is an array with 16, 24 or
+        *  32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not. The exceptions message uses the 'parameterName'
+        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
+        *  invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1257,19 +1263,20 @@ var TS;
         * @throws {TS.InvalidTypeException}
         * @throws {TS.ArgumentOutOfRangeException}
         */
-        function checkKeyByteArray(paramName, parameter, functionName) {
+        function checkKeyByteArray(parameterName, parameter, functionName) {
             if (!TS.Utils.Assert.isUnsignedByteArray(parameter)) {
-                throw new TS.InvalidTypeException(paramName, parameter, "Argument '" + paramName + "' must be an unsigned byte value array in function '" + functionName + "'.");
+                throw new TS.InvalidTypeException(parameterName, parameter, "Argument '" + parameterName + "' must be an unsigned byte value array in function '" + functionName + "'.");
             } //eND if
             if ([16, 24, 32].filter((value) => value == parameter.length).length == 0) {
-                throw new TS.ArgumentOutOfRangeException(paramName, parameter, "Argument '" + paramName + "' must be an array of unsigned byte values with [16 | 24 | 32] elements in function '" + functionName + "'.");
+                throw new TS.ArgumentOutOfRangeException(parameterName, parameter, "Argument '" + parameterName + "' must be an array of unsigned byte values with [16 | 24 | 32] elements in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkKeyByteArray = checkKeyByteArray;
         /**
-        * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty array and throws a
-        *  'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and which function received the invalid parameter.
+        * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty
+        *  array and throws a 'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions
+        *  message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check
+        *  and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1277,16 +1284,17 @@ var TS;
         *
         * @throws {TS.ArgumentNullUndefOrEmptyException}
         */
-        function checkNotEmptyParameter(paramName, parameter, functionName) {
+        function checkNotEmptyParameter(parameterName, parameter, functionName) {
             if (TS.Utils.Assert.isNullUndefOrEmpty(parameter)) {
-                throw new TS.ArgumentNullUndefOrEmptyException(parameter, "Argument '" + paramName + "' must not be null, undefined, an empty array or an empty string in function '" + functionName + "'.");
+                throw new TS.ArgumentNullUndefOrEmptyException(parameter, "Argument '" + parameterName + "' must not be null, undefined, an empty array or an empty string in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkNotEmptyParameter = checkNotEmptyParameter;
         /**
-        * @description Checks the value of argument 'parameter' against undefined and throws a 'TS.ArgumentUndefinedException' if
-        *  the argument is undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which
-        *  parameter failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against undefined and throws a
+        *  'TS.ArgumentUndefinedException' if the argument is undefined. The exceptions message uses the 'parameterName'
+        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
+        *  invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1301,9 +1309,10 @@ var TS;
         }
         Utils.checkNotUndefinedParameter = checkNotUndefinedParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException'
-        *  if the value is either not an number. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException' if the value is either not an number.
+        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
         *  failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
@@ -1323,9 +1332,10 @@ var TS;
         }
         Utils.checkNumberParameter = checkNumberParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. The exceptions message uses
+        *  the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and which
+        *  function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1333,18 +1343,19 @@ var TS;
         *
         * @throws {TS.ArgumentNullOrUndefinedException}
         */
-        function checkParameter(paramName, parameter, functionName) {
+        function checkParameter(parameterName, parameter, functionName) {
             if (TS.Utils.Assert.isNullOrUndefined(parameter)) {
-                throw new TS.ArgumentNullOrUndefinedException(paramName, "Argument '" + paramName + "' must not be null or undefinde in function '" + functionName + "'.");
+                throw new TS.ArgumentNullOrUndefinedException(parameterName, "Argument '" + parameterName + "' must not be null or undefinde in function '" + functionName + "'.");
             } //END if
         }
         Utils.checkParameter = checkParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the argument 'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
+        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
+        *  'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
+        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
+        *  failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1367,9 +1378,9 @@ var TS;
         }
         Utils.checkStringParameter = checkStringParameter;
         /**
-        * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a 'TS.InvalidTypeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a '
+        *  TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1384,9 +1395,9 @@ var TS;
         }
         Utils.checkUByteArrayParameter = checkUByteArrayParameter;
         /**
-        * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a 'TS.InvalidTypeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a
+        *  'TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1405,11 +1416,12 @@ var TS;
         }
         Utils.checkUByteParameter = checkUByteParameter;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a integer number in the range
-        *  [0..Number.MAX_SAFE_INTEGER] or not and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not
-        *  a number at all. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *   of argument 'parameter' is a integer number in the range [0..Number.MAX_SAFE_INTEGER] or not and throws a
+        *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not  a number at all. The
+        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1427,10 +1439,34 @@ var TS;
             } //END if
         }
         Utils.checkUIntNumberParameter = checkUIntNumberParameter;
+        //TODO: Add Test
         /**
-        * @description Takes a sparse array and returns a new created dense array. That is an array where all elements with an 'undefined' value are removed.
-        *  If 'allowNull' is set to false, the elements with a 'null' value gets also removed. That is also the default behavior.
-        *  Returns an empty array if it is called with an invalid argument.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is a TS.TypeCode.UInt64 number. Throws a 'TS.InvalidTypeException' if the value is not
+        *  a  TS.TypeCode.UInt64 integer. The exceptions message uses the 'parameterName' and 'functionName' in its message
+        *  to signal which parameter failed the check and which function received the invalid parameter.
+        *
+        * @param {string} parameterName
+        * @param {any} parameter
+        * @param {string} functionName
+        *
+        * @throws {TS.ArgumentNullOrUndefinedException}
+        * @throws {TS.InvalidTypeException}
+        */
+        function checkUInt64NumberParameter(parameterName, parameter, functionName) {
+            if (TS.Utils.Assert.isNullOrUndefined(parameter)) {
+                throw new TS.ArgumentNullOrUndefinedException(parameterName, "Argument '" + parameterName + "' must not be null or undefined in function '" + functionName + "'.");
+            } //END if
+            if (TS.Utils.Assert.isNullOrUndefined(parameter.MSInteger) || TS.Utils.Assert.isNullOrUndefined(parameter.LSInteger)) {
+                throw new TS.InvalidTypeException("parameterName", parameter, "Argument '" + parameterName + "' must be a valid UInt64 number in function'" + functionName + "'.");
+            } //END if
+        }
+        Utils.checkUInt64NumberParameter = checkUInt64NumberParameter;
+        /**
+        * @description Takes a sparse array and returns a new created dense array. That is an array where all elements with
+        *  an 'undefined' value are removed. If 'allowNull' is set to false, the elements with a 'null' value gets also
+        *  removed. That is also the default behavior. Returns an empty array if it is called with an invalid argument.
         *
         * @param {Array<any>}, sparseArray
         * @param {boolean} allowNull,  Default = false
@@ -1499,8 +1535,9 @@ var TS;
         }
         Utils.createGUID = createGUID;
         /**
-        * @description Finds all currency element which matches with the search pattern given in argument 'currency' and returns them in an array.
-        *  The function returns an empty result array if there is no match for the provided search pattern.
+        * @description Finds all currency element which matches with the search pattern given in argument 'currency' and
+        *  returns them in an array. The function returns an empty result array if there is no match for the provided
+        *  search pattern.
         *
         * @param {string} currency, the search pattern used to identify a currency.
         *
@@ -1531,8 +1568,8 @@ var TS;
         }
         Utils.findAllCurrencies = findAllCurrencies;
         /**
-        * @description Finds the currency element which matches with the search pattern given in argument 'currency'
-        *  and returns that currency element. If the search pattern leads to multiple results, a 'TS.AmbiguousResultException'
+        * @description Finds the currency element which matches with the search pattern given in argument 'currency' and
+        *  returns that currency element. If the search pattern leads to multiple results, a 'TS.AmbiguousResultException'
         *  exceptions gets thrown. The function returns null if there is no match for the provided search pattern.
         *
         * @param {string} currency, the search pattern used to identify a currency.
@@ -1558,10 +1595,57 @@ var TS;
         }
         Utils.findSingleCurrency = findSingleCurrency;
         /**
-        * @description Searches for the next occurrence of 'searchString' in 'sourceString' beginning at positon 'startIndex' and returns the
-        *  position in the string as number. If argument 'startIndex' isn't provided, search begins at the last position in 'sourceString'.
-        *  The search direction is in reverse order. That means the search starts at the provided startIndes and goes down two lower indexes during
-        *  search. Returns -1 if the 'searchString' doesn't exist in the 'sourceString'.
+         * @desciption Returns the corresponding value to a given key from the specified enumeration. If the key of enumObj
+         *  is invalid, the returned value will be undefined. If the key is a string and the enumeration has a name value
+         *  with a machting name, that value will be returned. If the key is a number and the enumeration has a named value
+         *  with a matching value, the name of that value will be returned. This function does not implicitly convert
+         *  number strings to numbers. That differs from the normal enum bahavior and is by design. See example
+         *
+         * @example
+         *
+         *  enum testEnum = { ZERO, ONE, TWO };
+         *
+         *  testEnum[2];     // "TWO"
+         *  testEnum["ONE"]; // 1
+         *  testEnum["2"];   // "TWO"
+         *
+         *  getValueFromEnum[2];     // "TWO"
+         *  getValueFromEnum["ONE"]; // 1
+         *  getValueFromEnum["2"];   // undefined
+         *
+         * @param {string | number} key
+         * @param {any} enumObj
+         *
+         * @returns {string | number | undefined}
+         */
+        function getValueFromEnum(key, enumObj) {
+            if (TS.Utils.Assert.isNullOrUndefined(key)) {
+                return undefined;
+            }
+            if (TS.Utils.Assert.isNullOrUndefined(enumObj)) {
+                return undefined;
+            }
+            if (!TS.Utils.Assert.isEnum(enumObj)) {
+                return undefined;
+            }
+            if (TS.Utils.Assert.isString(key) || TS.Utils.Assert.isNumber(key)) {
+                let result = enumObj[key];
+                if (TS.Utils.Assert.isString(key) && TS.Utils.Assert.isNumber(result)) {
+                    return result;
+                }
+                if (TS.Utils.Assert.isNumber(key) && TS.Utils.Assert.isString(result)) {
+                    return result;
+                }
+            }
+            return undefined;
+        }
+        Utils.getValueFromEnum = getValueFromEnum;
+        /**
+        * @description Searches for the next occurrence of 'searchString' in 'sourceString' beginning at positon
+        *  'startIndex' and returns the position in the string as number. If argument 'startIndex' isn't provided, search
+        *  begins at the last position in 'sourceString'. The search direction is in reverse order. That means the search
+        *  starts at the provided startIndes and goes down two lower indexes during search. Returns -1 if the
+        *  'searchString' doesn't exist in the 'sourceString'.
         *
         * @param {string} sourceString
         * @param {number} startIndex,
@@ -1604,7 +1688,9 @@ var TS;
         }
         Utils.nextIndexOfReverse = nextIndexOfReverse;
         /**
-        * @description Takes the string from argument 'path' and returns a new string which is normalized by the following rules:
+        * @description Takes the string from argument 'path' and returns a new string which is normalized by the following
+        *  rules:
+        *
         * 1)  Replace all "\" by "/"
         * 2)  Replace all "/./ by "/"
         * 3)  Replace all "//" by "/";
@@ -1638,11 +1724,13 @@ var TS;
             } //END while
             while (returnPath.indexOf("/../") > -1) {
                 if (returnPath.indexOf("/../") == 0) {
-                    /* Something like '/../more/path/elements'. Up navigation at the root or the path isn't possible. Simple substitution with a single slash. */
+                    // Something like '/../more/path/elements'. Up navigation at the root or the path isn't possible. Simple 
+                    // substitution with a single slash. 
                     returnPath = returnPath.substr(3);
                 }
                 else if ((returnPath.indexOf("/../") == 2) && (returnPath.indexOf(":") == 1)) {
-                    /* Something like 'A:/../'. Up navigation at the drive letter isn't possible. Simple substitution with a single slash. */
+                    // Something like 'A:/../'. Up navigation at the drive letter isn't possible. Simple substitution with a 
+                    // single slash. 
                     returnPath = returnPath.substring(0, 2) + returnPath.substr(5);
                 }
                 else {
@@ -1671,11 +1759,12 @@ var TS;
         }
         Utils.normalizePath = normalizePath;
         /**
-        * @description Returns a string which is padded with leading characters as specified in argument 'fillChar' until the length provided
-        *  in argument 'length'is reached. The function returns a copy of the source string if the values of the arguments 'fillChar' or
-        *  'length' are invalid. A copy of the 'source' string is also returned if the length of the source is greater or equal
-        *  the value of the 'length' parameter. The function doesn't truncate the string. The function returns a string consisting of
-        *  a concatenation of 'fillChar' up to the length given in argument 'length' if the argument value of argument 'source' is invalid, null or empty.
+        * @description Returns a string which is padded with leading characters as specified in argument 'fillChar' until
+        *  the length provided in argument 'length'is reached. The function returns a copy of the source string if the
+        *  values of the arguments 'fillChar' or 'length' are invalid. A copy of the 'source' string is also returned if
+        *  the length of the source is greater or equal the value of the 'length' parameter. The function doesn't truncate
+        *  the string. The function returns a string consisting of a concatenation of 'fillChar' up to the length given in
+        *  argument 'length' if the argument value of argument 'source' is invalid, null or empty.
         *
         * @param {string} source
         * @param {string} fillChar
@@ -1719,8 +1808,9 @@ var TS;
         }
         Utils.removeUTF8BOM = removeUTF8BOM;
         /**
-        * @description Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in argument 'value'.
-        *  The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with a leading '0' character.
+        * @description Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in
+        *  argument 'value'. The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with
+        *  a leading '0' character.
         *
         * @param {number}, value
         *
@@ -1739,8 +1829,9 @@ var TS;
         }
         Utils.UByteToHexString = UByteToHexString;
         /**
-        * @description Converts the unsigned 32 bit integer number in argument 'value' into an array of 4 byte values and returns that array.
-        *  The array will be padded with leading 0 byte values for lower numbers until the length of 4 byte values is reached.
+        * @description Converts the unsigned 32 bit integer number in argument 'value' into an array of 4 byte values and
+        *  returns that array. The array will be padded with leading 0 byte values for lower numbers until the length of 4
+        *  byte values is reached.
         *
         * @param {number} value
         *
@@ -1764,9 +1855,9 @@ var TS;
         }
         Utils.UInt32To4ByteArray = UInt32To4ByteArray;
         /**
-        * @description Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value provided in arguemnt 'value'.
-        *  The returned string has a fixed lenght of 8 characters. The returned string will be padded with as much leading '0' as necessary to
-        *  reach the length of 8 characters.
+        * @description Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value
+        *  provided in arguemnt 'value'. The returned string has a fixed lenght of 8 characters. The returned string will
+        *  be padded with as much leading '0' as necessary to reach the length of 8 characters.
         *
         * @param {number}, value
         *
@@ -1786,9 +1877,9 @@ var TS;
             return TS.Utils.padLeft(resultString, "0", 8);
         }
         Utils.UInt32ToHexString = UInt32ToHexString;
-        /*
-        * @description Converts the unsigned integer number in argument 'value' into an array of byte values and returns that array. The array
-        *  has as much elements as necessary to represent the value given in argument 'value'.
+        /**
+        * @description Converts the unsigned integer number in argument 'value' into an array of byte values and returns
+        *  that array. The array has as much elements as necessary to represent the value given in argument 'value'.
         *
         * @param {number} value, Has to be an unsigned integer.
         *
@@ -1853,9 +1944,10 @@ var TS;
             }
             Assert.isArray = isArray;
             /**
-            * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false.
-            *  Array like types are collections like the arguments or collection or DOM collections. They have a
-            *  length property but they are actually not arrays because they have no indexer.
+            * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false. Array
+            *  like types are collections like the arguments collection or DOM collections. They have a length property but
+            *  they are actually not arrays because they have no indexer.
+            *
             * @param {any} source
             *
             * @returns {boolean}
@@ -1877,21 +1969,6 @@ var TS;
                 return true;
             }
             Assert.isArrayLike = isArrayLike;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a dense array type. That means
-            *  the array contains no element which is undefined. Returns false otherwise.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isDenseArray(source) {
-                if (!TS.Utils.Assert.isArray(source)) {
-                    return false;
-                } //END if
-                return !source.some((value, index, array) => value === undefined);
-            }
-            Assert.isDenseArray = isDenseArray;
             /**
             * @description Returns true if the type of the argument 'source' is a none empty binary string. If the string
             *  contains other characters than '0' and '1', even white space, the return value will be false.
@@ -1958,11 +2035,55 @@ var TS;
             }
             Assert.isBooleanValue = isBooleanValue;
             /**
-            * @description Returns true if the type of the argument 'source' is considered a valid constructor functions which
+            * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
+            *
+            * @see TS.Utils.Assert.isByteValue
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isByteArray(source) {
+                if (TS.Utils.Assert.isNullUndefOrEmpty(source)) {
+                    return false;
+                } //END if
+                if (!TS.Utils.Assert.isArray(source)) {
+                    return false;
+                } //END if
+                return source.every((value) => {
+                    if (TS.Utils.Assert.isArray(value)) {
+                        return TS.Utils.Assert.isByteArray(value);
+                    } //END if
+                    else {
+                        return TS.Utils.Assert.isByteValue(value);
+                    } //END else
+                });
+            }
+            Assert.isByteArray = isByteArray;
+            /**
+            * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values
+            *  [-127 .. 127], otherwise false.
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isByteValue(source) {
+                if (TS.Utils.Assert.isNullOrUndefined(source)) {
+                    return false;
+                } //END if
+                if (!TS.Utils.Assert.isIntegerNumber(source)) {
+                    return false;
+                } //END if
+                return ((source >= -127) && (source <= 127));
+            }
+            Assert.isByteValue = isByteValue;
+            /**
+            * @description Returns true if the type of the argument 'source' is considered a valid constructor function which
             *  creates a none empty object, otherwise false.
-            *  An empty object is one which can be created using an object literal like '{}' or calling the Object constructor
-            *  with a null argument 'new Object(null)'. If the constructor function returns such an object the constructor will
-            *  fail the test.
+            *  An empty object is one which can be created using an object literal like '{}' or calling the Object
+            *  constructor with a null argument 'new Object(null)'. If the constructor function returns such an object the
+            *  constructor will fail the test.
             *
             * @param {any} source
             *
@@ -2002,9 +2123,9 @@ var TS;
                     return false;
                 } //END if
                 //
-                // Check whether the new created object is an empty object or not. If the object is an empty object (an object without any properties
-                // or methods which are not default values.) treat it as erroneous. A constructor function shouldn't return an empty object because
-                // that's meaningless.
+                // Check whether the new created object is an empty object or not. If the object is an empty object (an object 
+                // without any properties or methods which are not default values.) treat it as erroneous. A constructor 
+                // function shouldn't return an empty object because that's meaningless.
                 //
                 //
                 // Collect the ownPoperties of the current instance.
@@ -2037,8 +2158,8 @@ var TS;
             }
             Assert.isConstructor = isConstructor;
             /**
-            * @description Returns true if the type of the argument 'source' is a date object type created with
-            *  'new Date()', otherwise false.
+            * @description Returns true if the type of the argument 'source' is a date object type created with 'new Date()',
+            *  otherwise false.
             *
             * @param {any} source
             *
@@ -2052,7 +2173,7 @@ var TS;
             }
             Assert.isDate = isDate;
             /**
-            * @description Returns true if the type of the argument 'source' is a none empty decimal string.If the string
+            * @description Returns true if the type of the argument 'source' is a none empty decimal string. If the string
             *  contains other characters than [0-9], even white space, the return value will be false.
             *
             * @param {any} source
@@ -2066,6 +2187,21 @@ var TS;
                 return (/^[0-9]+$/gmi).test(source);
             }
             Assert.isDecimalString = isDecimalString;
+            /**
+            * @description  Returns true if the type of the argument 'source' is a dense array type. That means the array
+            *  contains no element which is undefined. Returns false otherwise.
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isDenseArray(source) {
+                if (!TS.Utils.Assert.isArray(source)) {
+                    return false;
+                } //END if
+                return !source.some((value, index, array) => value === undefined);
+            }
+            Assert.isDenseArray = isDenseArray;
             /**
             * @description Returns true if the type of the argument 'source' is an enum type, otherwise false.
             *
@@ -2136,8 +2272,8 @@ var TS;
             }
             Assert.isGenerator = isGenerator;
             /**
-            * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the string
-            *  contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
+            * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the
+            *  string contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
             *
             * @param {any} source
             *
@@ -2151,7 +2287,8 @@ var TS;
             }
             Assert.isHexString = isHexString;
             /**
-            * @description Returns true if the type of the argument 'source' is a infinite number value type, otherwise false.
+            * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise
+            *  false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -2166,9 +2303,8 @@ var TS;
             }
             Assert.isInfiniteNumber = isInfiniteNumber;
             /**
-            * @description Returns true if the value of the argument 'source' is an integer number in the
-            *   range of [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER],
-            *              otherwise false.
+            * @description Returns true if the value of the argument 'source' is an integer number in the range of
+            *  [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER], otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isPositiveIntegerNumber
@@ -2211,8 +2347,8 @@ var TS;
             }
             Assert.isNaN = isNaN;
             /**
-            * @description Returns true if the type of the argument 'source' is a negative
-            *              infinite number value type, otherwise false.
+            * @description Returns true if the type of the argument 'source' is a negative infinite number value type,
+            *  otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -2271,8 +2407,8 @@ var TS;
             }
             Assert.isNullUndefOrEmpty = isNullUndefOrEmpty;
             /**
-            * @description Returns true if the argument value is either null or undefined or is a string wich is either
-            *  empty or contains only white space characters.
+            * @description Returns true if the argument value is either null or undefined or is a string wich is either empty
+            *  or contains only white space characters.
             *
             * @param {string} source
             *
@@ -2308,7 +2444,8 @@ var TS;
             }
             Assert.isNumber = isNumber;
             /**
-            * @description Returns true if the type of the argument 'source' is a number object type created with 'new Number()', otherwise false.
+            * @description Returns true if the type of the argument 'source' is a number object type created with
+            *  'new Number()', otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -2347,23 +2484,54 @@ var TS;
             }
             Assert.isNumberValue = isNumberValue;
             /**
-            * @description Returns true if the type of the argument 'source' is a positive infinite number value type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isNumberObject
+            * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isUnsignedInfiniteNumber(source) {
-                return TS.Utils.Assert.isNumberValue(source) && (source === Number.POSITIVE_INFINITY);
+            function isObject(source) {
+                if (TS.Utils.Assert.isNullOrUndefined(source)) {
+                    return false;
+                } //END if
+                return typeof (source) == "object";
             }
-            Assert.isUnsignedInfiniteNumber = isUnsignedInfiniteNumber;
+            Assert.isObject = isObject;
             /**
-            * @description Returns true if the type of argument 'source' is either a boolean value, a number value or
-            *  a string value. Otherwise the result value will be false.
+            * @description Returns true if the type of argument 'source' is a plain object otherwise false.
+            * @example
+            *
+            * function Foo() {
+            *   this.a = 1;
+            * }
+            *
+            * isPlainObject(new Foo) => false
+            *
+            * isPlainObject([1, 2, 3]) => false
+            *
+            * isPlainObject({ 'x': 0, 'y': 0 }) => true
+            *
+            * isPlainObject(Object.create(null)) => true
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isPlainObject(source) {
+                if (!isObject(source)) {
+                    return false;
+                }
+                let prototype = Object.getPrototypeOf(source);
+                if (prototype === null) {
+                    return true;
+                }
+                let ctor = Object.prototype.hasOwnProperty.call(prototype, 'constructor') && prototype.constructor;
+                return (typeof ctor == 'function' && ctor instanceof ctor && Function.prototype.toString.call(ctor) == Function.prototype.toString.call(Object));
+            }
+            Assert.isPlainObject = isPlainObject;
+            /**
+            * @description Returns true if the type of argument 'source' is either a boolean value, a number value or a
+            *  string value. Otherwise the result value will be false.
             *
             * @param {any} source
             *
@@ -2386,62 +2554,33 @@ var TS;
             }
             Assert.isPrimitiveType = isPrimitiveType;
             /**
-            * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
+            * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isObject(source) {
+            function isRegEx(source) {
                 if (TS.Utils.Assert.isNullOrUndefined(source)) {
                     return false;
                 } //END if
-                return typeof (source) == "object";
+                return Object.prototype.toString.call(source).indexOf("RegExp") > 0;
             }
-            Assert.isObject = isObject;
+            Assert.isRegEx = isRegEx;
             /**
-            * @description Returns true if the value of the argument 'source' is a valid integer number in the range of [0..Number.MAX_SAFE_INTEGER], otherwise false.
+            * @description Returns true if the type of the argument 'source' is a string type, otherwise false.
             *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isIntegerNumber
+            * @see TS.Utils.Assert.isStringLiteral
+            * @see TS.Utils.Assert.isStringObject
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isUnsignedIntegerNumber(source) {
-                if (TS.Utils.Assert.isIntegerNumber(source)) {
-                    return source > -1;
-                } //END if
-                return false;
+            function isString(source) {
+                return TS.Utils.Assert.isStringObject(source) || TS.Utils.Assert.isStringValue(source);
             }
-            Assert.isUnsignedIntegerNumber = isUnsignedIntegerNumber;
-            /**
-            * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isByteValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isByteArray(source) {
-                if (TS.Utils.Assert.isNullUndefOrEmpty(source)) {
-                    return false;
-                } //END if
-                if (!TS.Utils.Assert.isArray(source)) {
-                    return false;
-                } //END if
-                return source.every((value) => {
-                    if (TS.Utils.Assert.isArray(value)) {
-                        return TS.Utils.Assert.isByteArray(value);
-                    } //END if
-                    else {
-                        return TS.Utils.Assert.isByteValue(value);
-                    } //END else
-                });
-            }
-            Assert.isByteArray = isByteArray;
+            Assert.isString = isString;
             /**
             * @description Returns true if the type of the argument 'source' is an array of string values, otherwise false.
             *
@@ -2469,62 +2608,8 @@ var TS;
             }
             Assert.isStringArray = isStringArray;
             /**
-            * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isUnsignedByteValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedByteArray(source) {
-                if (TS.Utils.Assert.isNullUndefOrEmpty(source)) {
-                    return false;
-                } //END if
-                if (!TS.Utils.Assert.isArray(source)) {
-                    return false;
-                } //END if
-                return source.every((value, index, array) => {
-                    if (TS.Utils.Assert.isArray(value)) {
-                        return TS.Utils.Assert.isUnsignedByteArray(value);
-                    } //END if
-                    else {
-                        return TS.Utils.Assert.isUnsignedByteValue(value);
-                    } //END else
-                });
-            }
-            Assert.isUnsignedByteArray = isUnsignedByteArray;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isRegEx(source) {
-                if (TS.Utils.Assert.isNullOrUndefined(source)) {
-                    return false;
-                } //END if
-                return Object.prototype.toString.call(source).indexOf("RegExp") > 0;
-            }
-            Assert.isRegEx = isRegEx;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string, type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isStringLiteral
-            * @see TS.Utils.Assert.isStringObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isString(source) {
-                return TS.Utils.Assert.isStringObject(source) || TS.Utils.Assert.isStringValue(source);
-            }
-            Assert.isString = isString;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string object type created with 'new String()',
-            *  otherwise false.
+            * @description Returns true if the type of the argument 'source' is a string object type created with
+            *  'new String()', otherwise false.
             *
             * @see TS.Utils.Assert.isString
             * @see TS.Utils.Assert.isStringLiteral
@@ -2583,24 +2668,35 @@ var TS;
             }
             Assert.isUndefined = isUndefined;
             /**
-            * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values [-127 .. 127], otherwise false.
+            * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise
+            *  false.
+            *
+            * @see TS.Utils.Assert.isUnsignedByteValue
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isByteValue(source) {
-                if (TS.Utils.Assert.isNullOrUndefined(source)) {
+            function isUnsignedByteArray(source) {
+                if (TS.Utils.Assert.isNullUndefOrEmpty(source)) {
                     return false;
                 } //END if
-                if (!TS.Utils.Assert.isIntegerNumber(source)) {
+                if (!TS.Utils.Assert.isArray(source)) {
                     return false;
                 } //END if
-                return ((source >= -127) && (source <= 127));
+                return source.every((value, index, array) => {
+                    if (TS.Utils.Assert.isArray(value)) {
+                        return TS.Utils.Assert.isUnsignedByteArray(value);
+                    } //END if
+                    else {
+                        return TS.Utils.Assert.isUnsignedByteValue(value);
+                    } //END else
+                });
             }
-            Assert.isByteValue = isByteValue;
+            Assert.isUnsignedByteArray = isUnsignedByteArray;
             /**
-            * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values [0 .. 255], otherwise false.
+            * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values
+            *  [0 .. 255], otherwise false.
             *
             * @param {any} source
             *
@@ -2617,7 +2713,55 @@ var TS;
             }
             Assert.isUnsignedByteValue = isUnsignedByteValue;
             /**
-            * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in argument 'enumObj'.
+            * @description Returns true if the type of the argument 'source' is a positive infinite number value type,
+            *  otherwise false.
+            *
+            * @see TS.Utils.Assert.isNumber
+            * @see TS.Utils.Assert.isNumberValue
+            * @see TS.Utils.Assert.isNumberObject
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isUnsignedInfiniteNumber(source) {
+                return TS.Utils.Assert.isNumberValue(source) && (source === Number.POSITIVE_INFINITY);
+            }
+            Assert.isUnsignedInfiniteNumber = isUnsignedInfiniteNumber;
+            /**
+            * @description Returns true if the value of the argument 'source' is a valid integer number in the range of
+            *  [0..Number.MAX_SAFE_INTEGER], otherwise false.
+            *
+            * @see TS.Utils.Assert.isNumber
+            * @see TS.Utils.Assert.isIntegerNumber
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isUnsignedIntegerNumber(source) {
+                if (TS.Utils.Assert.isIntegerNumber(source)) {
+                    return source > -1;
+                } //END if
+                return false;
+            }
+            Assert.isUnsignedIntegerNumber = isUnsignedIntegerNumber;
+            /**
+            * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in
+            *  argument 'enumObj'. This function does not implicitly convert number strings to numbers. That differs from the
+            *  normal enum bahavior and is by design. See example.
+            *
+            * @example
+            *
+            *  enum testEnum = { ZERO, ONE, TWO };
+            *
+            *  testEnum[2];     // "TWO"  -> 2 accepted as valid enum member
+            *  testEnum["ONE"]; // 1      -> "ONE" accepted as valid enum member
+            *  testEnum["2"];   // "TWO"  -> "2" accepted as valid enum member
+            *
+            *  isValueOfEnum[2];     // true   -> 2 accepted as valid enum member
+            *  isValueOfEnum["ONE"]; // true   -> "ONE" accepted as valid enum member
+            *  isValueOfEnum["2"];   // false  -> "2" NOT accepted as valid enum member
             *
             * @param {number | string} source
             * @param {Object} enumObj
@@ -2625,24 +2769,25 @@ var TS;
             * @returns {boolean}
             */
             function isValueOfEnum(source, enumObj) {
-                let elementArray;
                 if (TS.Utils.Assert.isNullOrUndefined(source)) {
                     return false;
-                } //END if
-                if (!TS.Utils.Assert.isNumberValue(source) && !TS.Utils.Assert.isString(source)) {
-                    return false;
-                } //END if
+                }
                 if (TS.Utils.Assert.isNullOrUndefined(enumObj)) {
                     return false;
-                } //END if
+                }
                 if (!TS.Utils.Assert.isEnum(enumObj)) {
                     return false;
-                } //END if
-                elementArray = new Array();
-                for (let item in enumObj) {
-                    elementArray.push(item);
                 }
-                return (elementArray.find((value) => value == source) != undefined);
+                if (TS.Utils.Assert.isString(source) || TS.Utils.Assert.isNumber(source)) {
+                    let result = enumObj[source];
+                    if (TS.Utils.Assert.isString(source) && TS.Utils.Assert.isNumber(result)) {
+                        return true;
+                    }
+                    if (TS.Utils.Assert.isNumber(source) && TS.Utils.Assert.isString(result)) {
+                        return true;
+                    }
+                }
+                return false;
             }
             Assert.isValueOfEnum = isValueOfEnum;
         })(Assert = Utils.Assert || (Utils.Assert = {})); //END class

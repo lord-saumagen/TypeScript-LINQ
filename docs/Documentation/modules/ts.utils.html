@@ -74,10 +74,10 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>description</dt>
-						<dd><p>The module &#39;Utils&#39; hosts a collection of funcitons which offer solutions for common
-								problems or reoccuring tasks which are not class specific. Since they are not class specific, they
-								are also not part of a class. They are simpley collected in this file and are part of the namespac.
-							Alle of the functions are static.</p>
+						<dd><p>The module &#39;Utils&#39; hosts a collection of funcitons which offer solutions for common problems or
+								reoccuring tasks which are not class specific. Since they are not class specific, they are also not part of a
+								class. They are simply collected in this file and are part of the namespac. You can consider all of this
+							functions as static if you like, because you can call them without a prior instantiation of an object.</p>
 						</dd>
 					</dl>
 				</div>
@@ -133,11 +133,13 @@
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#checkstringparameter" class="tsd-kind-icon">check<wbr>String<wbr>Parameter</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#checkubytearrayparameter" class="tsd-kind-icon">checkUByte<wbr>Array<wbr>Parameter</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#checkubyteparameter" class="tsd-kind-icon">checkUByte<wbr>Parameter</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#checkuint64numberparameter" class="tsd-kind-icon">checkUInt64<wbr>Number<wbr>Parameter</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#checkuintnumberparameter" class="tsd-kind-icon">checkUInt<wbr>Number<wbr>Parameter</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#compactarray" class="tsd-kind-icon">compact<wbr>Array</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#createguid" class="tsd-kind-icon">createGUID</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#findallcurrencies" class="tsd-kind-icon">find<wbr>All<wbr>Currencies</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#findsinglecurrency" class="tsd-kind-icon">find<wbr>Single<wbr>Currency</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#getvaluefromenum" class="tsd-kind-icon">get<wbr>Value<wbr>From<wbr>Enum</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#nextindexofreverse" class="tsd-kind-icon">next<wbr>Index<wbr>OfReverse</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#normalizepath" class="tsd-kind-icon">normalize<wbr>Path</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="ts.utils.html#padleft" class="tsd-kind-icon">pad<wbr>Left</a></li>
@@ -182,14 +184,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1335</li>
+									<li>Defined in Utils/Utils.ts:1446</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in argument &#39;value&#39;.
-										The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with a leading &#39;0&#39; character.</p>
+									<dd><p>Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in
+											argument &#39;value&#39;. The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with
+										a leading &#39;0&#39; character.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -223,14 +226,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1360</li>
+									<li>Defined in Utils/Utils.ts:1472</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Converts the unsigned 32 bit integer number in argument &#39;value&#39; into an array of 4 byte values and returns that array.
-										The array will be padded with leading 0 byte values for lower numbers until the length of 4 byte values is reached.</p>
+									<dd><p>Converts the unsigned 32 bit integer number in argument &#39;value&#39; into an array of 4 byte values and
+											returns that array. The array will be padded with leading 0 byte values for lower numbers until the length of 4
+										byte values is reached.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -266,15 +270,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1393</li>
+									<li>Defined in Utils/Utils.ts:1505</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value provided in arguemnt &#39;value&#39;.
-											The returned string has a fixed lenght of 8 characters. The returned string will be padded with as much leading &#39;0&#39; as necessary to
-										reach the length of 8 characters.</p>
+									<dd><p>Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value
+											provided in arguemnt &#39;value&#39;. The returned string has a fixed lenght of 8 characters. The returned string will
+										be padded with as much leading &#39;0&#39; as necessary to reach the length of 8 characters.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -308,14 +312,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1420</li>
+									<li>Defined in Utils/Utils.ts:1532</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Converts the unsigned integer number in argument &#39;value&#39; into an array of byte values and returns that array. The array
-										has as much elements as necessary to represent the value given in argument &#39;value&#39;.</p>
+									<dd><p>Converts the unsigned integer number in argument &#39;value&#39; into an array of byte values and returns
+										that array. The array has as much elements as necessary to represent the value given in argument &#39;value&#39;.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -352,8 +356,8 @@
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Searches for all occurrences of &#39;searchString&#39; in &#39;sourceString&#39; and returns an array of the indexes where the searchstring
-										occurred in the sourceString.</p>
+									<dd><p>Searches for all occurrences of &#39;searchString&#39; in &#39;sourceString&#39; and returns an array of the
+										indexes where the searchstring occurred in the sourceString.</p>
 									</dd>
 								</dl>
 							</div>
@@ -450,8 +454,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>, The resulting bit string.
-							Ü</p>
+							<p>, The resulting bit string.</p>
 						</li>
 					</ul>
 				</section>
@@ -471,9 +474,9 @@
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Converts an array of unsigned byte values into an unsinged integer value. The function throws an exception if the value in
-											argument &#39;unsignedByteArray&#39; is not a valid byte array or empty. The function throws a &#39;TS.ArgumentOutOfRangeException&#39; if the
-										conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)</p>
+									<dd><p>Converts an array of unsigned byte values into an unsinged integer value. The function throws an
+											exception if the value in argument &#39;unsignedByteArray&#39; is not a valid byte array or empty. The function throws
+										a &#39;TS.ArgumentOutOfRangeException&#39; if the conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)</p>
 									</dd>
 									<dt>params</dt>
 									<dd><p>{Array<number>} byteArray, An array of unsigned byte values.</p>
@@ -516,8 +519,8 @@
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Converts the value given in argument &#39;value&#39; into an 8 character bit string. The result string will be padded
-										with leading &#39;0&#39; characters if necessary until the length of 8 characters is reached.</p>
+									<dd><p>Converts the value given in argument &#39;value&#39; into an 8 character bit string. The result string will be
+										padded with leading &#39;0&#39; characters if necessary until the length of 8 characters is reached.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -554,10 +557,10 @@
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument &#39;parameter&#39; is an ArrayLike type or not. Trows
-											a &#39;TS.InvalidTypeException&#39; if the value of argument &#39;parameter&#39; is not an &#39;ArrayLike&#39; type.
-											The exceptions message uses the &#39;pparameterNamearamName&#39; and &#39;functionName&#39; in its message to signal which parameter
-										failed the check and which function received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument &#39;parameter&#39; is an ArrayLike type or not. Trows a
+											&#39;TS.InvalidTypeException&#39; if the value of argument &#39;parameter&#39; is not an &#39;ArrayLike&#39; type. The exceptions
+											message uses the &#39;pparameterNamearamName&#39; and &#39;functionName&#39; in its message to signal which parameter failed
+										the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -598,11 +601,11 @@
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined.
-											Checks also whether the value of argument &#39;parameter&#39; is an array. Throws a &#39;TS.InvalidTypeException&#39; if the value is not an array.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks also whether the value
+											of argument &#39;parameter&#39; is an array. Throws a &#39;TS.InvalidTypeException&#39; if the value is not an array. The
+											exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed
+										the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -640,18 +643,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:437</li>
+									<li>Defined in Utils/Utils.ts:439</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined. Checks whether the argument &#39;parameter&#39; is a valid string. Throws a &#39;TS.InvalidTypeException&#39; if not.
-											Checks whether the argument &#39;parameter&#39; is an empty string or whitespace only. Throws a &#39;TS.ArgumentNullUndefOrWhiteSpaceException&#39; if so.
-											Check whether the argument &#39;parameter&#39; is a valid binary string. (A string which comprises the characters &quot;[0,1]&quot; only, with no white space.)
-											Throws a &#39;TS.InvalidTypeException&#39; if not. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
-										failed the check and which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks whether the argument
+											&#39;parameter&#39; is a valid string. Throws a &#39;TS.InvalidTypeException&#39; if not. Checks whether the argument
+											&#39;parameter&#39; is an empty string or whitespace only. Throws a &#39;TS.ArgumentNullUndefOrWhiteSpaceException&#39; if so.
+											Check whether the argument &#39;parameter&#39; is a valid binary string. (A string which comprises the characters
+											&quot;[0,1]&quot; only, with no white space.) Throws a &#39;TS.InvalidTypeException&#39; if not. The exceptions message uses the
+											&#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and which function
+										received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -692,15 +697,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:460</li>
+									<li>Defined in Utils/Utils.ts:463</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a boolean or not. Throws a &#39;TS.InvalidTypeException&#39;
-											if the value of argument &#39;parameter&#39; is not a boolean. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39;
-										in its message to signal which parameter failed the check and  which function received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a boolean or not. Throws a
+											&#39;TS.InvalidTypeException&#39; if the value of argument &#39;parameter&#39; is not a boolean. The exceptions message uses the
+											&#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and  which function
+										received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -735,15 +741,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:480</li>
+									<li>Defined in Utils/Utils.ts:483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the &#39;thisContext&#39; is a valid type for a constructor call or not. Throws a &#39;TS.InvalidOperationException&#39; if the value
-											of argument &#39;thisContext&#39; is either null or undefined or not of the required type. Throws a &#39;TS.ArgumentNullOrUndefinedException&#39;
-										if argument &#39;requiredType&#39; is not specified.</p>
+									<dd><p>Checks whether the &#39;thisContext&#39; is a valid type for a constructor call or not. Throws a
+											&#39;TS.InvalidOperationException&#39; if the value of argument &#39;thisContext&#39; is either null or undefined or not of the
+										required type. Throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if argument &#39;requiredType&#39; is not specified.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -778,21 +784,22 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:536</li>
+									<li>Defined in Utils/Utils.ts:540</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is
-										either null or undefined.</p>
-										<p> Checks also the type of the argument which must evaluate to &#39;function&#39; and checks whether the function returns an object if it is called with the &#39;new&#39;
-										operator and an empty argument list.</p>
-										<p> The function throws a &#39;TS.InvalidTypeException&#39; if the call with the &#39;new&#39; operator fails for any reason or the returned value is not an object,
-										an empty object, null or undefined.</p>
-										<p> Attention, even if the check succeeded, the function specified in the argument &#39;parameter&#39; may not be supposed to be called as a constructor function.
-											(To be called with the new operator.) Since JavaScript allows to call every function with the new operator there is no way to tell whether a function
-											was supposed to be used as a constructor function or not. But at least that check can tell that a call to that function as constructor
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+										&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined.</p>
+										<p> Checks also the type of the argument which must evaluate to &#39;function&#39; and checks whether the function returns
+										an object if it is called with the &#39;new&#39; operator and an empty argument list.</p>
+										<p> The function throws a &#39;TS.InvalidTypeException&#39; if the call with the &#39;new&#39; operator fails for any reason or the
+										returned value is not an object, an empty object, null or undefined.</p>
+										<p> Attention, even if the check succeeded, the function specified in the argument &#39;parameter&#39; may not be supposed
+											to be called as a constructor function. (To be called with the new operator.) Since JavaScript allows to call
+											every function with the new operator there is no way to tell whether a function was supposed to be used as a
+											constructor function or not. But at least that check can tell that a call to that function as constructor
 										function won&#39;t fail and will return an object of any type when the function passed the check.</p>
 									</dd>
 									<dt>throws</dt>
@@ -831,15 +838,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:637</li>
+									<li>Defined in Utils/Utils.ts:641</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>This function checks whether the value of argument &#39;parameter&#39; is a function or not. If not, a &#39;InvalidTypeException&#39; is thrown.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>This function checks whether the value of argument &#39;parameter&#39; is a function or not. If not, a
+											&#39;InvalidTypeException&#39; is thrown. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its
+										message to signal which parameter failed the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -874,17 +881,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:660</li>
+									<li>Defined in Utils/Utils.ts:665</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined.
-											Checks also whether the value of argument &#39;parameter&#39; is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER] and throws a
-											&#39;TS.InvalidTypeException&#39; if the value is either not an integer, out of range or not a number at all. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39;
-										in its message to signal which parameter failed the check and  which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks also whether the value
+											of argument &#39;parameter&#39; is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER]
+											and throws a &#39;TS.InvalidTypeException&#39; if the value is either not an integer, out of range or not a number at
+											all. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
+										failed the check and  which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -922,15 +930,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:686</li>
+									<li>Defined in Utils/Utils.ts:692</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument &#39;parameter&#39; is iterable or not. Throws a &#39;TS.InvalidTypeException&#39; if the value of argument
-											&#39;parameter&#39; is not iterable. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
-										failed the check and which function received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument &#39;parameter&#39; is iterable or not. Throws a
+											&#39;TS.InvalidTypeException&#39; if the value of argument &#39;parameter&#39; is not iterable. The exceptions message uses the
+											&#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and which function
+										received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -965,16 +974,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:708</li>
+									<li>Defined in Utils/Utils.ts:715</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument  &#39;parameter&#39; is an array of unsigned byte values. Throws a &#39;TS.InvalidTypeException&#39; if not.
-											Checks whether the value of argument &#39;parameter&#39; is an array with 16, 24 or 32 elements. Throws a &#39;TS.ArgumentOutOfRangeException&#39; if not.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and which function
-										received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument  &#39;parameter&#39; is an array of unsigned byte values. Throws a
+											&#39;TS.InvalidTypeException&#39; if not. Checks whether the value of argument &#39;parameter&#39; is an array with 16, 24 or
+											32 elements. Throws a &#39;TS.ArgumentOutOfRangeException&#39; if not. The exceptions message uses the &#39;parameterName&#39;
+											and &#39;functionName&#39; in its message to signal which parameter failed the check and which function received the
+										invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -1012,15 +1022,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:734</li>
+									<li>Defined in Utils/Utils.ts:742</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>This function checks the argument &#39;parameter&#39; against null, undefined, an empty string and an empty array and throws a
-											&#39;TS.ArgumentNullUndefOrEmptyException&#39; if the argument is either of this. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39;
-										in its message to signal which parameter failed the check and which function received the invalid parameter.</p>
+									<dd><p>This function checks the argument &#39;parameter&#39; against null, undefined, an empty string and an empty
+											array and throws a &#39;TS.ArgumentNullUndefOrEmptyException&#39; if the argument is either of this. The exceptions
+											message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check
+										and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullUndefOrEmptyException}</p>
@@ -1055,15 +1066,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:754</li>
+									<li>Defined in Utils/Utils.ts:763</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against undefined and throws a &#39;TS.ArgumentUndefinedException&#39; if
-											the argument is undefined. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which
-										parameter failed the check and which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against undefined and throws a
+											&#39;TS.ArgumentUndefinedException&#39; if the argument is undefined. The exceptions message uses the &#39;parameterName&#39;
+											and &#39;functionName&#39; in its message to signal which parameter failed the check and which function received the
+										invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentUndefinedException}</p>
@@ -1098,15 +1110,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:776</li>
+									<li>Defined in Utils/Utils.ts:786</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined. Checks also whether the value of argument &#39;parameter&#39; is a number. Throws a &#39;TS.InvalidTypeException&#39;
-											if the value is either not an number. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks also whether the value
+											of argument &#39;parameter&#39; is a number. Throws a &#39;TS.InvalidTypeException&#39; if the value is either not an number.
+											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
 										failed the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
@@ -1145,15 +1158,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:802</li>
+									<li>Defined in Utils/Utils.ts:813</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
-										failed the check and which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. The exceptions message uses
+											the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and which
+										function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -1188,17 +1202,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:826</li>
+									<li>Defined in Utils/Utils.ts:838</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined. Checks whether the argument &#39;parameter&#39; is a valid string. Throws a &#39;TS.InvalidTypeException&#39; if not.
-											Checks whether the argument &#39;parameter&#39; is an empty string or whitespace only.Throws a &#39;TS.ArgumentNullUndefOrWhiteSpaceException&#39; if so.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks whether the argument
+											&#39;parameter&#39; is a valid string. Throws a &#39;TS.InvalidTypeException&#39; if not. Checks whether the argument
+											&#39;parameter&#39; is an empty string or whitespace only.Throws a &#39;TS.ArgumentNullUndefOrWhiteSpaceException&#39; if so.
+											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter
+										failed the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -1239,15 +1254,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:856</li>
+									<li>Defined in Utils/Utils.ts:868</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a valid array of unsigned bytes and throws a &#39;TS.InvalidTypeException&#39; if not.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a valid array of unsigned bytes and throws a &#39;
+											TS.InvalidTypeException&#39; if not. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its
+										message to signal which parameter failed the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.InvalidTypeException}</p>
@@ -1282,15 +1297,63 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:878</li>
+									<li>Defined in Utils/Utils.ts:890</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a valid unsigned byte value and throws a &#39;TS.InvalidTypeException&#39; if not.
-											The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>Checks whether the value of argument &#39;parameter&#39; is a valid unsigned byte value and throws a
+											&#39;TS.InvalidTypeException&#39; if not. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its
+										message to signal which parameter failed the check and which function received the invalid parameter.</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{TS.InvalidTypeException}</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parameterName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>parameter: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>functionName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="checkuint64numberparameter" class="tsd-anchor"></a>
+					<h3>checkUInt64<wbr>Number<wbr>Parameter</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">checkUInt64<wbr>Number<wbr>Parameter<span class="tsd-signature-symbol">(</span>parameterName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, parameter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, functionName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Utils/Utils.ts:950</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>description</dt>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks also whether the value
+											of argument &#39;parameter&#39; is a TS.TypeCode.UInt64 number. Throws a &#39;TS.InvalidTypeException&#39; if the value is not
+											a  TS.TypeCode.UInt64 integer. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message
+										to signal which parameter failed the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -1328,17 +1391,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:907</li>
+									<li>Defined in Utils/Utils.ts:920</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a &#39;TS.ArgumentNullOrUndefinedException&#39; if
-											the argument is either null or undefined. Checks also whether the value of argument &#39;parameter&#39; is a integer number in the range
-											[0..Number.MAX_SAFE_INTEGER] or not and throws a &#39;TS.InvalidTypeException&#39; if the value is either not an integer, out of range or not
-											a number at all. The exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed the check and
-										which function received the invalid parameter.</p>
+									<dd><p>Checks the value of argument &#39;parameter&#39; against null and undefined and throws a
+											&#39;TS.ArgumentNullOrUndefinedException&#39; if the argument is either null or undefined. Checks also whether the value
+											of argument &#39;parameter&#39; is a integer number in the range [0..Number.MAX_SAFE_INTEGER] or not and throws a
+											&#39;TS.InvalidTypeException&#39; if the value is either not an integer, out of range or not  a number at all. The
+											exceptions message uses the &#39;parameterName&#39; and &#39;functionName&#39; in its message to signal which parameter failed
+										the check and which function received the invalid parameter.</p>
 									</dd>
 									<dt>throws</dt>
 									<dd><p>{TS.ArgumentNullOrUndefinedException}</p>
@@ -1376,15 +1440,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:932</li>
+									<li>Defined in Utils/Utils.ts:975</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Takes a sparse array and returns a new created dense array. That is an array where all elements with an &#39;undefined&#39; value are removed.
-											If &#39;allowNull&#39; is set to false, the elements with a &#39;null&#39; value gets also removed. That is also the default behavior.
-										Returns an empty array if it is called with an invalid argument.</p>
+									<dd><p>Takes a sparse array and returns a new created dense array. That is an array where all elements with
+											an &#39;undefined&#39; value are removed. If &#39;allowNull&#39; is set to false, the elements with a &#39;null&#39; value gets also
+										removed. That is also the default behavior. Returns an empty array if it is called with an invalid argument.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1411,7 +1475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:978</li>
+									<li>Defined in Utils/Utils.ts:1021</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1442,14 +1506,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1030</li>
+									<li>Defined in Utils/Utils.ts:1074</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Finds all currency element which matches with the search pattern given in argument &#39;currency&#39; and returns them in an array.
-										The function returns an empty result array if there is no match for the provided search pattern.</p>
+									<dd><p>Finds all currency element which matches with the search pattern given in argument &#39;currency&#39; and
+											returns them in an array. The function returns an empty result array if there is no match for the provided
+										search pattern.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1474,14 +1539,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1077</li>
+									<li>Defined in Utils/Utils.ts:1121</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Finds the currency element which matches with the search pattern given in argument &#39;currency&#39;
-											and returns that currency element. If the search pattern leads to multiple results, a &#39;TS.AmbiguousResultException&#39;
+									<dd><p>Finds the currency element which matches with the search pattern given in argument &#39;currency&#39; and
+											returns that currency element. If the search pattern leads to multiple results, a &#39;TS.AmbiguousResultException&#39;
 										exceptions gets thrown. The function returns null if there is no match for the provided search pattern.</p>
 									</dd>
 									<dt>throws</dt>
@@ -1501,6 +1566,54 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getvaluefromenum" class="tsd-anchor"></a>
+					<h3>get<wbr>Value<wbr>From<wbr>Enum</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<wbr>From<wbr>Enum<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, enumObj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Utils/Utils.ts:1173</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>desciption</dt>
+									<dd><p>Returns the corresponding value to a given key from the specified enumeration. If the key of enumObj
+											is invalid, the returned value will be undefined. If the key is a string and the enumeration has a name value
+											with a machting name, that value will be returned. If the key is a number and the enumeration has a named value
+											with a matching value, the name of that value will be returned. This function does not implicitly convert
+										number strings to numbers. That differs from the normal enum bahavior and is by design. See example</p>
+									</dd>
+									<dt>example</dt>
+									<dd><p> enum testEnum = { ZERO, ONE, TWO };</p>
+										<p> testEnum[2];     // &quot;TWO&quot;
+											testEnum[&quot;ONE&quot;]; // 1
+										testEnum[&quot;2&quot;];   // &quot;TWO&quot;</p>
+										<p> getValueFromEnum[2];     // &quot;TWO&quot;
+											getValueFromEnum[&quot;ONE&quot;]; // 1
+										getValueFromEnum[&quot;2&quot;];   // undefined</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>enumObj: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 					<a name="nextindexofreverse" class="tsd-anchor"></a>
 					<h3>next<wbr>Index<wbr>OfReverse</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -1510,16 +1623,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1117</li>
+									<li>Defined in Utils/Utils.ts:1222</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Searches for the next occurrence of &#39;searchString&#39; in &#39;sourceString&#39; beginning at positon &#39;startIndex&#39; and returns the
-											position in the string as number. If argument &#39;startIndex&#39; isn&#39;t provided, search begins at the last position in &#39;sourceString&#39;.
-											The search direction is in reverse order. That means the search starts at the provided startIndes and goes down two lower indexes during
-										search. Returns -1 if the &#39;searchString&#39; doesn&#39;t exist in the &#39;sourceString&#39;.</p>
+									<dd><p>Searches for the next occurrence of &#39;searchString&#39; in &#39;sourceString&#39; beginning at positon
+											&#39;startIndex&#39; and returns the position in the string as number. If argument &#39;startIndex&#39; isn&#39;t provided, search
+											begins at the last position in &#39;sourceString&#39;. The search direction is in reverse order. That means the search
+											starts at the provided startIndes and goes down two lower indexes during search. Returns -1 if the
+										&#39;searchString&#39; doesn&#39;t exist in the &#39;sourceString&#39;.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1552,14 +1666,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1183</li>
+									<li>Defined in Utils/Utils.ts:1290</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Takes the string from argument &#39;path&#39; and returns a new string which is normalized by the following rules:
-											1)  Replace all &quot;\&quot; by &quot;/&quot;
+									<dd><p>Takes the string from argument &#39;path&#39; and returns a new string which is normalized by the following
+										rules:</p>
+										<p>1)  Replace all &quot;\&quot; by &quot;/&quot;
 											2)  Replace all &quot;/./ by &quot;/&quot;
 											3)  Replace all &quot;//&quot; by &quot;/&quot;;
 											4)  Navigate up one hierarchy level for all &#39;/../&#39; except for those at the root level.
@@ -1589,17 +1704,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1275</li>
+									<li>Defined in Utils/Utils.ts:1385</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
-									<dd><p>Returns a string which is padded with leading characters as specified in argument &#39;fillChar&#39; until the length provided
-											in argument &#39;length&#39;is reached. The function returns a copy of the source string if the values of the arguments &#39;fillChar&#39; or
-											&#39;length&#39; are invalid. A copy of the &#39;source&#39; string is also returned if the length of the source is greater or equal
-											the value of the &#39;length&#39; parameter. The function doesn&#39;t truncate the string. The function returns a string consisting of
-										a concatenation of &#39;fillChar&#39; up to the length given in argument &#39;length&#39; if the argument value of argument &#39;source&#39; is invalid, null or empty.</p>
+									<dd><p>Returns a string which is padded with leading characters as specified in argument &#39;fillChar&#39; until
+											the length provided in argument &#39;length&#39;is reached. The function returns a copy of the source string if the
+											values of the arguments &#39;fillChar&#39; or &#39;length&#39; are invalid. A copy of the &#39;source&#39; string is also returned if
+											the length of the source is greater or equal the value of the &#39;length&#39; parameter. The function doesn&#39;t truncate
+											the string. The function returns a string consisting of a concatenation of &#39;fillChar&#39; up to the length given in
+										argument &#39;length&#39; if the argument value of argument &#39;source&#39; is invalid, null or empty.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1631,7 +1747,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Utils/Utils.ts:1317</li>
+									<li>Defined in Utils/Utils.ts:1427</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1768,6 +1884,9 @@
 						<a href="ts.utils.html#checkubyteparameter" class="tsd-kind-icon">checkUByte<wbr>Parameter</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="ts.utils.html#checkuint64numberparameter" class="tsd-kind-icon">checkUInt64<wbr>Number<wbr>Parameter</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="ts.utils.html#checkuintnumberparameter" class="tsd-kind-icon">checkUInt<wbr>Number<wbr>Parameter</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
@@ -1781,6 +1900,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="ts.utils.html#findsinglecurrency" class="tsd-kind-icon">find<wbr>Single<wbr>Currency</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="ts.utils.html#getvaluefromenum" class="tsd-kind-icon">get<wbr>Value<wbr>From<wbr>Enum</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="ts.utils.html#nextindexofreverse" class="tsd-kind-icon">next<wbr>Index<wbr>OfReverse</a>

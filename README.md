@@ -6,13 +6,13 @@ See: [Classification of Standard Query Operators by Manner of Execution (C#)](ht
 
 This project is the successor of an earlier LINQ project in TypeScript. The earlier project used it's own implementation of the iterator pattern. This project uses the so called "iteration protocols" which are new in ECMAScript 2015. By the time of this writing, there is no Microsoft browser available which supports ECMAScript 2015. Therefore the project code is only tested with Chrome (Version 52.0.2741) and Firefox (Version 48.0.2).
 The project itself is a Visual Studio solution completely written with "Visual Studio Community 2015" update 3 and TypeScript version 1.8.36.0.
-Open the test suite an see for yourself which parts of this soluation are compatible with your current browser.
+Open the test suite and see for yourself which parts of this solution are compatible with your current browser.
 
-All public classes and functions have a full set of doumentation comments. So there is full IntelliSense support available in the code editor. There is also a library documentation created with TypeDoc. You will find that documentation in the "Docs" directory in subdirectory "Documentation".
-The code compiles with the TypeScript build settings "ECMAScript version" set to "ECMAScript 6". That is in fact an alias for "ECMAScript 2015". The code passes all tests in the lates Chrome or Firefox browser. 
+All public classes and functions have a full set of documentation comments. So there is full IntelliSense support available in the code editor. There is also a library documentation created with TypeDoc. You will find that documentation in the "Docs" directory in subdirectory "Documentation".
+The code compiles with the TypeScript build settings "ECMAScript version" set to "ECMAScript 6". That is in fact an alias for "ECMAScript 2015". The code passes all tests in the latest Chrome or Firefox browser. 
 
 There is an npm package for the Node.js runtime available. The package is called "typescript-linq" and the current version is 1.0.0. The npm package has it's own test project. That project is also available at github. 
-I decided to create a separate procject for the Node.js test because I couldn't find a test framework which supports client and Node.js execution in an adequate way. 
+I decided to create a separate project for the Node.js test because I couldn't find a test framework which supports client and Node.js execution in an adequate way. 
 
 Please be aware that this library is intentionally compiled into ECMAScript 2015. The library is neither tested nor designed to run on Javascript engines which doesn't support the ECMAScript 2015 standard. 
 
@@ -26,7 +26,7 @@ See: [Library Dcoumentation](https://lord-saumagen.github.io/TypeScript-LINQ/Doc
 
 ##Usage
 
-If you intent to use this library in your own project you have to reference the following files: **TS.js** and **TS.d.ts**. There is a download link below which saves you the trouble to download the whole solution for just including the library in your own program. 
+If you intend to use this library in your own project you have to reference the following files: **TS.js** and **TS.d.ts**. There is a download link below which saves you the trouble to download the whole solution for just including the library in your own program. 
 
 You will also find these files in the "TS" project directory which is the root directory of the solution.
 
@@ -36,7 +36,7 @@ The TS.js file is the combined javascript output of the complete solution. The T
 * Copy the TypeScript files of interest into your own project.
 * Set references to the TypeScript files in your own project.
 
-You will find a complete solution description n the "Overfiew.html" file in the "Docs" directory.
+You will find a complete solution description in the "index.html" file in the "Docs" directory.
 
 See: [TS.js and TS.d.ts download.](./TS.zip) (Use right click -> Save link as...)   
 See: [Overview](https://lord-saumagen.github.io/TypeScript-LINQ/)

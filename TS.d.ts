@@ -704,10 +704,10 @@ declare namespace TS {
 }
 declare namespace TS {
     /**
-     * @description The module 'Utils' hosts a collection of funcitons which offer solutions for common
-     *  problems or reoccuring tasks which are not class specific. Since they are not class specific, they
-     *  are also not part of a class. They are simpley collected in this file and are part of the namespac.
-     *  Alle of the functions are static.
+     * @description The module 'Utils' hosts a collection of funcitons which offer solutions for common problems or
+     *  reoccuring tasks which are not class specific. Since they are not class specific, they are also not part of a
+     *  class. They are simply collected in this file and are part of the namespac. You can consider all of this
+     *  functions as static if you like, because you can call them without a prior instantiation of an object.
      */
     namespace Utils {
         /**
@@ -725,8 +725,8 @@ declare namespace TS {
          */
         const currencyArray: Array<ICurrency>;
         /**
-        * @description Searches for all occurrences of 'searchString' in 'sourceString' and returns an array of the indexes where the searchstring
-        *  occurred in the sourceString.
+        * @description Searches for all occurrences of 'searchString' in 'sourceString' and returns an array of the
+        *  indexes where the searchstring occurred in the sourceString.
         *
         * @param {string} sourceString
         * @param {string} searchString
@@ -735,11 +735,10 @@ declare namespace TS {
         */
         function allIndexOf(sourceString: string, searchString: string): Array<number>;
         /**
-        * @description Converts a bit string into an array of byte values. If the string given in argument 'bitString' is null,
-        *  undefined, empty of white space, the resulting byte array is an empty array. The function throws an exceptions if the
-        *  string is not empty but also not a valid bit string.
+        * @description Converts a bit string into an array of byte values. The function throws an exceptions if the
+        *  value of argument 'bitString' is not a valid bit string.
         *
-        * @parm {string} bitString, The bit string to convert.
+        * @param {string} bitString, The bit string to convert.
         *
         * @returns {Array<number>}, The resulting byte value array which may be empty.
         *
@@ -755,15 +754,15 @@ declare namespace TS {
         * @param {Array<number>} byteArray, The array of byte values to convert.
         *
         * @returns {string}, The resulting bit string.
-        Ü
+        *
         * @throws {TS.ArgumentNullUndefOrEmptyException}
         * @throws {TS.InvalidTypeException }
         */
         function byteArrayToBitString(byteArray: Array<number>): string;
         /**
-        * @description Converts an array of unsigned byte values into an unsinged integer value. The function throws an exception if the value in
-        *  argument 'unsignedByteArray' is not a valid byte array or empty. The function throws a 'TS.ArgumentOutOfRangeException' if the
-        *  conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)
+        * @description Converts an array of unsigned byte values into an unsinged integer value. The function throws an
+        *  exception if the value in argument 'unsignedByteArray' is not a valid byte array or empty. The function throws
+        *  a 'TS.ArgumentOutOfRangeException' if the conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)
         *
         * @params {Array<number>} byteArray, An array of unsigned byte values.
         *
@@ -775,8 +774,8 @@ declare namespace TS {
         */
         function byteArrayToUInt(unsignedByteArray: Array<number>): number;
         /**
-        * @description Converts the value given in argument 'value' into an 8 character bit string. The result string will be padded
-        *  with leading '0' characters if necessary until the length of 8 characters is reached.
+        * @description Converts the value given in argument 'value' into an 8 character bit string. The result string will be
+        *  padded with leading '0' characters if necessary until the length of 8 characters is reached.
         *
         * @param {number} value, Has to be a byte value.
         *
@@ -787,10 +786,10 @@ declare namespace TS {
         */
         function byteToBitString(value: number): string;
         /**
-        * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows
-        *  a 'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type. The exceptions
+        *  message uses the 'pparameterNamearamName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -798,13 +797,13 @@ declare namespace TS {
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkArrayLikeParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkArrayLikeParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined.
-        *  Checks also whether the value of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array..
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array. The
+        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -815,12 +814,14 @@ declare namespace TS {
         */
         function checkArrayParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the argument 'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters "[0,1]" only, with no white space.)
-        *  Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
+        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
+        *  'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
+        *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters
+        *  "[0,1]" only, with no white space.) Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
+        *  received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {string} parameter
@@ -832,9 +833,10 @@ declare namespace TS {
         */
         function checkBitStringParameter(parameterName: string, parameter: string, functionName: string): void;
         /**
-        * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a 'TS.InvalidTypeException'
-        *  if the value of argument 'parameter' is not a boolean. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not a boolean. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and  which function
+        *  received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -842,11 +844,11 @@ declare namespace TS {
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkBooleanParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkBooleanParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks whether the 'thisContext' is a valid type for a constructor call or not. Throws a 'TS.InvalidOperationException' if the value
-        *  of argument 'thisContext' is either null or undefined or not of the required type. Throws a 'TS.ArgumentNullOrUndefinedException'
-        *  if argument 'requiredType' is not specified.
+        * @description Checks whether the 'thisContext' is a valid type for a constructor call or not. Throws a
+        *  'TS.InvalidOperationException' if the value of argument 'thisContext' is either null or undefined or not of the
+        *  required type. Throws a 'TS.ArgumentNullOrUndefinedException' if argument 'requiredType' is not specified.
         *
         * @param {any} thisContext
         * @param {any} requiredType
@@ -856,18 +858,19 @@ declare namespace TS {
         */
         function checkConstructorCall(thisContext: any, requiredType: any): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if the argument is
-        *  either null or undefined.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined.
         *
-        *  Checks also the type of the argument which must evaluate to 'function' and checks whether the function returns an object if it is called with the 'new'
-        *  operator and an empty argument list.
+        *  Checks also the type of the argument which must evaluate to 'function' and checks whether the function returns
+        *  an object if it is called with the 'new' operator and an empty argument list.
         *
-        *  The function throws a 'TS.InvalidTypeException' if the call with the 'new' operator fails for any reason or the returned value is not an object,
-        *  an empty object, null or undefined.
+        *  The function throws a 'TS.InvalidTypeException' if the call with the 'new' operator fails for any reason or the
+        *  returned value is not an object, an empty object, null or undefined.
         *
-        *  Attention, even if the check succeeded, the function specified in the argument 'parameter' may not be supposed to be called as a constructor function.
-        *  (To be called with the new operator.) Since JavaScript allows to call every function with the new operator there is no way to tell whether a function
-        *  was supposed to be used as a constructor function or not. But at least that check can tell that a call to that function as constructor
+        *  Attention, even if the check succeeded, the function specified in the argument 'parameter' may not be supposed
+        *  to be called as a constructor function. (To be called with the new operator.) Since JavaScript allows to call
+        *  every function with the new operator there is no way to tell whether a function was supposed to be used as a
+        *  constructor function or not. But at least that check can tell that a call to that function as constructor
         *  function won't fail and will return an object of any type when the function passed the check.
         *
         * @param {string} parameterName
@@ -877,11 +880,11 @@ declare namespace TS {
         * @throws {TS.ArgumentNullOrUndefinedException}
         * @throws {TS.InvalidTypeException}
         */
-        function checkConstructorParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkConstructorParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a 'InvalidTypeException' is thrown.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a
+        *  'InvalidTypeException' is thrown. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -889,13 +892,14 @@ declare namespace TS {
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkFunctionParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkFunctionParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined.
-        *  Checks also whether the value of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER] and throws a
-        *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at all. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER]
+        *  and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at
+        *  all. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
+        *  failed the check and  which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {number} parameter
@@ -906,9 +910,10 @@ declare namespace TS {
         */
         function checkIntNumberParameter(parameterName: string, parameter: number, functionName: string): void;
         /**
-        * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a 'TS.InvalidTypeException' if the value of argument
-        *  'parameter' is not iterable. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a
+        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not iterable. The exceptions message uses the
+        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
+        *   received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -916,12 +921,13 @@ declare namespace TS {
         *
         * @throws {TS.InvalidTypeException}
         */
-        function checkIterableParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkIterableParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the value of argument 'parameter' is an array with 16, 24 or 32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and which function
-        *  received the invalid parameter.
+        * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a
+        *  'TS.InvalidTypeException' if not. Checks whether the value of argument 'parameter' is an array with 16, 24 or
+        *  32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not. The exceptions message uses the 'parameterName'
+        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
+        *  invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -930,11 +936,12 @@ declare namespace TS {
         * @throws {TS.InvalidTypeException}
         * @throws {TS.ArgumentOutOfRangeException}
         */
-        function checkKeyByteArray(paramName: string, parameter: any, functionName: string): void;
+        function checkKeyByteArray(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty array and throws a
-        *  'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions message uses the 'paramName' and 'functionName'
-        *  in its message to signal which parameter failed the check and which function received the invalid parameter.
+        * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty
+        *  array and throws a 'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions
+        *  message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check
+        *  and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -942,11 +949,12 @@ declare namespace TS {
         *
         * @throws {TS.ArgumentNullUndefOrEmptyException}
         */
-        function checkNotEmptyParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkNotEmptyParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against undefined and throws a 'TS.ArgumentUndefinedException' if
-        *  the argument is undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which
-        *  parameter failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against undefined and throws a
+        *  'TS.ArgumentUndefinedException' if the argument is undefined. The exceptions message uses the 'parameterName'
+        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
+        *  invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -956,9 +964,10 @@ declare namespace TS {
         */
         function checkNotUndefinedParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException'
-        *  if the value is either not an number. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException' if the value is either not an number.
+        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
         *  failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
@@ -970,9 +979,10 @@ declare namespace TS {
         */
         function checkNumberParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. The exceptions message uses
+        *  the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and which
+        *  function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -980,13 +990,14 @@ declare namespace TS {
         *
         * @throws {TS.ArgumentNullOrUndefinedException}
         */
-        function checkParameter(paramName: string, parameter: any, functionName: string): void;
+        function checkParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks whether the argument 'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not.
-        *  Checks whether the argument 'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
+        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
+        *  'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
+        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
+        *  failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -998,9 +1009,9 @@ declare namespace TS {
         */
         function checkStringParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a 'TS.InvalidTypeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a '
+        *  TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1010,9 +1021,9 @@ declare namespace TS {
         */
         function checkUByteArrayParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a 'TS.InvalidTypeException' if not.
-        *  The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a
+        *  'TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
+        *  message to signal which parameter failed the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1023,11 +1034,12 @@ declare namespace TS {
         */
         function checkUByteParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a 'TS.ArgumentNullOrUndefinedException' if
-        *  the argument is either null or undefined. Checks also whether the value of argument 'parameter' is a integer number in the range
-        *  [0..Number.MAX_SAFE_INTEGER] or not and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not
-        *  a number at all. The exceptions message uses the 'paramName' and 'functionName' in its message to signal which parameter failed the check and
-        *  which function received the invalid parameter.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *   of argument 'parameter' is a integer number in the range [0..Number.MAX_SAFE_INTEGER] or not and throws a
+        *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not  a number at all. The
+        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
+        *  the check and which function received the invalid parameter.
         *
         * @param {string} parameterName
         * @param {any} parameter
@@ -1038,9 +1050,24 @@ declare namespace TS {
         */
         function checkUIntNumberParameter(parameterName: string, parameter: any, functionName: string): void;
         /**
-        * @description Takes a sparse array and returns a new created dense array. That is an array where all elements with an 'undefined' value are removed.
-        *  If 'allowNull' is set to false, the elements with a 'null' value gets also removed. That is also the default behavior.
-        *  Returns an empty array if it is called with an invalid argument.
+        * @description Checks the value of argument 'parameter' against null and undefined and throws a
+        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
+        *  of argument 'parameter' is a TS.TypeCode.UInt64 number. Throws a 'TS.InvalidTypeException' if the value is not
+        *  a  TS.TypeCode.UInt64 integer. The exceptions message uses the 'parameterName' and 'functionName' in its message
+        *  to signal which parameter failed the check and which function received the invalid parameter.
+        *
+        * @param {string} parameterName
+        * @param {any} parameter
+        * @param {string} functionName
+        *
+        * @throws {TS.ArgumentNullOrUndefinedException}
+        * @throws {TS.InvalidTypeException}
+        */
+        function checkUInt64NumberParameter(parameterName: string, parameter: any, functionName: string): void;
+        /**
+        * @description Takes a sparse array and returns a new created dense array. That is an array where all elements with
+        *  an 'undefined' value are removed. If 'allowNull' is set to false, the elements with a 'null' value gets also
+        *  removed. That is also the default behavior. Returns an empty array if it is called with an invalid argument.
         *
         * @param {Array<any>}, sparseArray
         * @param {boolean} allowNull,  Default = false
@@ -1058,8 +1085,9 @@ declare namespace TS {
         */
         function createGUID(): string;
         /**
-        * @description Finds all currency element which matches with the search pattern given in argument 'currency' and returns them in an array.
-        *  The function returns an empty result array if there is no match for the provided search pattern.
+        * @description Finds all currency element which matches with the search pattern given in argument 'currency' and
+        *  returns them in an array. The function returns an empty result array if there is no match for the provided
+        *  search pattern.
         *
         * @param {string} currency, the search pattern used to identify a currency.
         *
@@ -1067,8 +1095,8 @@ declare namespace TS {
         */
         function findAllCurrencies(currency: string): Array<ICurrency>;
         /**
-        * @description Finds the currency element which matches with the search pattern given in argument 'currency'
-        *  and returns that currency element. If the search pattern leads to multiple results, a 'TS.AmbiguousResultException'
+        * @description Finds the currency element which matches with the search pattern given in argument 'currency' and
+        *  returns that currency element. If the search pattern leads to multiple results, a 'TS.AmbiguousResultException'
         *  exceptions gets thrown. The function returns null if there is no match for the provided search pattern.
         *
         * @param {string} currency, the search pattern used to identify a currency.
@@ -1077,10 +1105,36 @@ declare namespace TS {
         */
         function findSingleCurrency(currency: string): ICurrency;
         /**
-        * @description Searches for the next occurrence of 'searchString' in 'sourceString' beginning at positon 'startIndex' and returns the
-        *  position in the string as number. If argument 'startIndex' isn't provided, search begins at the last position in 'sourceString'.
-        *  The search direction is in reverse order. That means the search starts at the provided startIndes and goes down two lower indexes during
-        *  search. Returns -1 if the 'searchString' doesn't exist in the 'sourceString'.
+         * @desciption Returns the corresponding value to a given key from the specified enumeration. If the key of enumObj
+         *  is invalid, the returned value will be undefined. If the key is a string and the enumeration has a name value
+         *  with a machting name, that value will be returned. If the key is a number and the enumeration has a named value
+         *  with a matching value, the name of that value will be returned. This function does not implicitly convert
+         *  number strings to numbers. That differs from the normal enum bahavior and is by design. See example
+         *
+         * @example
+         *
+         *  enum testEnum = { ZERO, ONE, TWO };
+         *
+         *  testEnum[2];     // "TWO"
+         *  testEnum["ONE"]; // 1
+         *  testEnum["2"];   // "TWO"
+         *
+         *  getValueFromEnum[2];     // "TWO"
+         *  getValueFromEnum["ONE"]; // 1
+         *  getValueFromEnum["2"];   // undefined
+         *
+         * @param {string | number} key
+         * @param {any} enumObj
+         *
+         * @returns {string | number | undefined}
+         */
+        function getValueFromEnum(key: string | number, enumObj: any): any;
+        /**
+        * @description Searches for the next occurrence of 'searchString' in 'sourceString' beginning at positon
+        *  'startIndex' and returns the position in the string as number. If argument 'startIndex' isn't provided, search
+        *  begins at the last position in 'sourceString'. The search direction is in reverse order. That means the search
+        *  starts at the provided startIndes and goes down two lower indexes during search. Returns -1 if the
+        *  'searchString' doesn't exist in the 'sourceString'.
         *
         * @param {string} sourceString
         * @param {number} startIndex,
@@ -1090,7 +1144,9 @@ declare namespace TS {
         */
         function nextIndexOfReverse(sourceString: string, searchString: string, startIndex?: number): number;
         /**
-        * @description Takes the string from argument 'path' and returns a new string which is normalized by the following rules:
+        * @description Takes the string from argument 'path' and returns a new string which is normalized by the following
+        *  rules:
+        *
         * 1)  Replace all "\" by "/"
         * 2)  Replace all "/./ by "/"
         * 3)  Replace all "//" by "/";
@@ -1103,11 +1159,12 @@ declare namespace TS {
         */
         function normalizePath(path: string): string;
         /**
-        * @description Returns a string which is padded with leading characters as specified in argument 'fillChar' until the length provided
-        *  in argument 'length'is reached. The function returns a copy of the source string if the values of the arguments 'fillChar' or
-        *  'length' are invalid. A copy of the 'source' string is also returned if the length of the source is greater or equal
-        *  the value of the 'length' parameter. The function doesn't truncate the string. The function returns a string consisting of
-        *  a concatenation of 'fillChar' up to the length given in argument 'length' if the argument value of argument 'source' is invalid, null or empty.
+        * @description Returns a string which is padded with leading characters as specified in argument 'fillChar' until
+        *  the length provided in argument 'length'is reached. The function returns a copy of the source string if the
+        *  values of the arguments 'fillChar' or 'length' are invalid. A copy of the 'source' string is also returned if
+        *  the length of the source is greater or equal the value of the 'length' parameter. The function doesn't truncate
+        *  the string. The function returns a string consisting of a concatenation of 'fillChar' up to the length given in
+        *  argument 'length' if the argument value of argument 'source' is invalid, null or empty.
         *
         * @param {string} source
         * @param {string} fillChar
@@ -1125,8 +1182,9 @@ declare namespace TS {
         */
         function removeUTF8BOM(text: string): string;
         /**
-        * @description Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in argument 'value'.
-        *  The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with a leading '0' character.
+        * @description Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in
+        *  argument 'value'. The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with
+        *  a leading '0' character.
         *
         * @param {number}, value
         *
@@ -1138,8 +1196,9 @@ declare namespace TS {
         */
         function UByteToHexString(value: number): string;
         /**
-        * @description Converts the unsigned 32 bit integer number in argument 'value' into an array of 4 byte values and returns that array.
-        *  The array will be padded with leading 0 byte values for lower numbers until the length of 4 byte values is reached.
+        * @description Converts the unsigned 32 bit integer number in argument 'value' into an array of 4 byte values and
+        *  returns that array. The array will be padded with leading 0 byte values for lower numbers until the length of 4
+        *  byte values is reached.
         *
         * @param {number} value
         *
@@ -1151,9 +1210,9 @@ declare namespace TS {
         */
         function UInt32To4ByteArray(value: number): Array<number>;
         /**
-        * @description Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value provided in arguemnt 'value'.
-        *  The returned string has a fixed lenght of 8 characters. The returned string will be padded with as much leading '0' as necessary to
-        *  reach the length of 8 characters.
+        * @description Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value
+        *  provided in arguemnt 'value'. The returned string has a fixed lenght of 8 characters. The returned string will
+        *  be padded with as much leading '0' as necessary to reach the length of 8 characters.
         *
         * @param {number}, value
         *
@@ -1164,6 +1223,17 @@ declare namespace TS {
         * @throws {TS.ArgumentOutOfRangeException}
         */
         function UInt32ToHexString(value: number): string;
+        /**
+        * @description Converts the unsigned integer number in argument 'value' into an array of byte values and returns
+        *  that array. The array has as much elements as necessary to represent the value given in argument 'value'.
+        *
+        * @param {number} value, Has to be an unsigned integer.
+        *
+        * @returns {Array<number>}, An array of byte values.
+        *
+        * @throws {TS.ArgumentNullOrUndefinedException}
+        * @throws {TS.InvalidTypeException}
+        */
         function UIntToByteArray(value: number): Array<number>;
     }
 }
@@ -1191,23 +1261,15 @@ declare namespace TS {
             */
             function isArray(source: any): boolean;
             /**
-            * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false.
-            *  Array like types are collections like the arguments or collection or DOM collections. They have a
-            *  length property but they are actually not arrays because they have no indexer.
+            * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false. Array
+            *  like types are collections like the arguments collection or DOM collections. They have a length property but
+            *  they are actually not arrays because they have no indexer.
+            *
             * @param {any} source
             *
             * @returns {boolean}
             */
             function isArrayLike(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a dense array type. That means
-            *  the array contains no element which is undefined. Returns false otherwise.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isDenseArray(source: any): boolean;
             /**
             * @description Returns true if the type of the argument 'source' is a none empty binary string. If the string
             *  contains other characters than '0' and '1', even white space, the return value will be false.
@@ -1253,11 +1315,30 @@ declare namespace TS {
             */
             function isBooleanValue(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is considered a valid constructor functions which
+            * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
+            *
+            * @see TS.Utils.Assert.isByteValue
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isByteArray(source: any): boolean;
+            /**
+            * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values
+            *  [-127 .. 127], otherwise false.
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isByteValue(source: any): boolean;
+            /**
+            * @description Returns true if the type of the argument 'source' is considered a valid constructor function which
             *  creates a none empty object, otherwise false.
-            *  An empty object is one which can be created using an object literal like '{}' or calling the Object constructor
-            *  with a null argument 'new Object(null)'. If the constructor function returns such an object the constructor will
-            *  fail the test.
+            *  An empty object is one which can be created using an object literal like '{}' or calling the Object
+            *  constructor with a null argument 'new Object(null)'. If the constructor function returns such an object the
+            *  constructor will fail the test.
             *
             * @param {any} source
             *
@@ -1265,8 +1346,8 @@ declare namespace TS {
             */
             function isConstructor(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a date object type created with
-            *  'new Date()', otherwise false.
+            * @description Returns true if the type of the argument 'source' is a date object type created with 'new Date()',
+            *  otherwise false.
             *
             * @param {any} source
             *
@@ -1274,7 +1355,7 @@ declare namespace TS {
             */
             function isDate(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a none empty decimal string.If the string
+            * @description Returns true if the type of the argument 'source' is a none empty decimal string. If the string
             *  contains other characters than [0-9], even white space, the return value will be false.
             *
             * @param {any} source
@@ -1282,6 +1363,15 @@ declare namespace TS {
             * @returns {boolean}
             */
             function isDecimalString(source: any): boolean;
+            /**
+            * @description  Returns true if the type of the argument 'source' is a dense array type. That means the array
+            *  contains no element which is undefined. Returns false otherwise.
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isDenseArray(source: any): boolean;
             /**
             * @description Returns true if the type of the argument 'source' is an enum type, otherwise false.
             *
@@ -1307,8 +1397,8 @@ declare namespace TS {
             */
             function isGenerator(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the string
-            *  contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
+            * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the
+            *  string contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
             *
             * @param {any} source
             *
@@ -1316,7 +1406,8 @@ declare namespace TS {
             */
             function isHexString(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a infinite number value type, otherwise false.
+            * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise
+            *  false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -1328,9 +1419,8 @@ declare namespace TS {
             */
             function isInfiniteNumber(source: any): boolean;
             /**
-            * @description Returns true if the value of the argument 'source' is an integer number in the
-            *   range of [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER],
-            *              otherwise false.
+            * @description Returns true if the value of the argument 'source' is an integer number in the range of
+            *  [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER], otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isPositiveIntegerNumber
@@ -1358,8 +1448,8 @@ declare namespace TS {
             */
             function isNaN(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a negative
-            *              infinite number value type, otherwise false.
+            * @description Returns true if the type of the argument 'source' is a negative infinite number value type,
+            *  otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -1387,8 +1477,9 @@ declare namespace TS {
             */
             function isNullOrUndefined(source: any): boolean;
             /**
-            * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string or array.
-            *  Ther function returns false for all argument values which are neither null or undefined nor an empty array or empty string.
+            * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string
+            *  or array. The function returns false for all argument values which are neither null or undefined nor an empty
+            *  array or empty string.
             *
             * @param {Array<any> | string} source
             *
@@ -1397,8 +1488,8 @@ declare namespace TS {
             function isNullUndefOrEmpty(source: Array<any>): boolean;
             function isNullUndefOrEmpty(source: string): boolean;
             /**
-            * @description Returns true if the argument value is either null or undefined or is a string wich is either
-            *  empty or contains only white space characters.
+            * @description Returns true if the argument value is either null or undefined or is a string wich is either empty
+            *  or contains only white space characters.
             *
             * @param {string} source
             *
@@ -1419,7 +1510,8 @@ declare namespace TS {
             */
             function isNumber(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a number object type created with 'new Number()', otherwise false.
+            * @description Returns true if the type of the argument 'source' is a number object type created with
+            *  'new Number()', otherwise false.
             *
             * @see TS.Utils.Assert.isNumber
             * @see TS.Utils.Assert.isNumberValue
@@ -1440,27 +1532,6 @@ declare namespace TS {
             */
             function isNumberValue(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is a positive infinite number value type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isNumberObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedInfiniteNumber(source: any): boolean;
-            /**
-            * @description Returns true if the type of argument 'source' is either a boolean value, a number value or
-            *  a string value. Otherwise the result value will be false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isPrimitiveType(source: any): boolean;
-            /**
             * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
             *
             * @param {any} source
@@ -1469,26 +1540,54 @@ declare namespace TS {
             */
             function isObject(source: any): boolean;
             /**
-            * @description Returns true if the value of the argument 'source' is a valid integer number in the range of [0..Number.MAX_SAFE_INTEGER], otherwise false.
+            * @description Returns true if the type of argument 'source' is a plain object otherwise false.
+            * @example
             *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isIntegerNumber
+            * function Foo() {
+            *   this.a = 1;
+            * }
+            *
+            * isPlainObject(new Foo) => false
+            *
+            * isPlainObject([1, 2, 3]) => false
+            *
+            * isPlainObject({ 'x': 0, 'y': 0 }) => true
+            *
+            * isPlainObject(Object.create(null)) => true
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isUnsignedIntegerNumber(source: any): boolean;
+            function isPlainObject(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isByteValue
+            * @description Returns true if the type of argument 'source' is either a boolean value, a number value or a
+            *  string value. Otherwise the result value will be false.
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isByteArray(source: any): boolean;
+            function isPrimitiveType(source: any): boolean;
+            /**
+            * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isRegEx(source: any): boolean;
+            /**
+            * @description Returns true if the type of the argument 'source' is a string type, otherwise false.
+            *
+            * @see TS.Utils.Assert.isStringLiteral
+            * @see TS.Utils.Assert.isStringObject
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isString(source: any): boolean;
             /**
             * @description Returns true if the type of the argument 'source' is an array of string values, otherwise false.
             *
@@ -1500,37 +1599,8 @@ declare namespace TS {
             */
             function isStringArray(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isUnsignedByteValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedByteArray(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isRegEx(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string, type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isStringLiteral
-            * @see TS.Utils.Assert.isStringObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isString(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string object type created with 'new String()',
-            *  otherwise false.
+            * @description Returns true if the type of the argument 'source' is a string object type created with
+            *  'new String()', otherwise false.
             *
             * @see TS.Utils.Assert.isString
             * @see TS.Utils.Assert.isStringLiteral
@@ -1568,15 +1638,19 @@ declare namespace TS {
             */
             function isUndefined(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values [-127 .. 127], otherwise false.
+            * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise
+            *  false.
+            *
+            * @see TS.Utils.Assert.isUnsignedByteValue
             *
             * @param {any} source
             *
             * @returns {boolean}
             */
-            function isByteValue(source: any): boolean;
+            function isUnsignedByteArray(source: any): boolean;
             /**
-            * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values [0 .. 255], otherwise false.
+            * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values
+            *  [0 .. 255], otherwise false.
             *
             * @param {any} source
             *
@@ -1584,14 +1658,53 @@ declare namespace TS {
             */
             function isUnsignedByteValue(source: any): boolean;
             /**
-            * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in argument 'enumObj'.
+            * @description Returns true if the type of the argument 'source' is a positive infinite number value type,
+            *  otherwise false.
+            *
+            * @see TS.Utils.Assert.isNumber
+            * @see TS.Utils.Assert.isNumberValue
+            * @see TS.Utils.Assert.isNumberObject
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isUnsignedInfiniteNumber(source: any): boolean;
+            /**
+            * @description Returns true if the value of the argument 'source' is a valid integer number in the range of
+            *  [0..Number.MAX_SAFE_INTEGER], otherwise false.
+            *
+            * @see TS.Utils.Assert.isNumber
+            * @see TS.Utils.Assert.isIntegerNumber
+            *
+            * @param {any} source
+            *
+            * @returns {boolean}
+            */
+            function isUnsignedIntegerNumber(source: any): boolean;
+            /**
+            * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in
+            *  argument 'enumObj'. This function does not implicitly convert number strings to numbers. That differs from the
+            *  normal enum bahavior and is by design. See example.
+            *
+            * @example
+            *
+            *  enum testEnum = { ZERO, ONE, TWO };
+            *
+            *  testEnum[2];     // "TWO"  -> 2 accepted as valid enum member
+            *  testEnum["ONE"]; // 1      -> "ONE" accepted as valid enum member
+            *  testEnum["2"];   // "TWO"  -> "2" accepted as valid enum member
+            *
+            *  isValueOfEnum[2];     // true   -> 2 accepted as valid enum member
+            *  isValueOfEnum["ONE"]; // true   -> "ONE" accepted as valid enum member
+            *  isValueOfEnum["2"];   // false  -> "2" NOT accepted as valid enum member
             *
             * @param {number | string} source
             * @param {Object} enumObj
             *
             * @returns {boolean}
             */
-            function isValueOfEnum(source: number | string, enumObj: Object): boolean;
+            function isValueOfEnum(source: number | string, enumObj: any): boolean;
         }
     }
 }

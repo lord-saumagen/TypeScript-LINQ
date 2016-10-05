@@ -51,9 +51,10 @@
 
 
       /**
-      * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false.
-      *  Array like types are collections like the arguments collection or DOM collections. They have a
-      *  length property but they are actually not arrays because they have no indexer.
+      * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false. Array
+      *  like types are collections like the arguments collection or DOM collections. They have a length property but
+      *  they are actually not arrays because they have no indexer.
+      *
       * @param {any} source
       *
       * @returns {boolean}
@@ -200,7 +201,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values [-127 .. 127], otherwise false.
+      * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values
+      *  [-127 .. 127], otherwise false.
       *
       * @param {any} source
       *
@@ -225,9 +227,9 @@
       /**
       * @description Returns true if the type of the argument 'source' is considered a valid constructor function which
       *  creates a none empty object, otherwise false.
-      *  An empty object is one which can be created using an object literal like '{}' or calling the Object constructor
-      *  with a null argument 'new Object(null)'. If the constructor function returns such an object the constructor will
-      *  fail the test. 
+      *  An empty object is one which can be created using an object literal like '{}' or calling the Object
+      *  constructor with a null argument 'new Object(null)'. If the constructor function returns such an object the
+      *  constructor will fail the test. 
       *
       * @param {any} source
       *
@@ -284,9 +286,9 @@
 
 
         //
-        // Check whether the new created object is an empty object or not. If the object is an empty object (an object without any properties
-        // or methods which are not default values.) treat it as erroneous. A constructor function shouldn't return an empty object because
-        // that's meaningless.
+        // Check whether the new created object is an empty object or not. If the object is an empty object (an object 
+        // without any properties or methods which are not default values.) treat it as erroneous. A constructor 
+        // function shouldn't return an empty object because that's meaningless.
         //
 
 
@@ -332,8 +334,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a date object type created with
-      *  'new Date()', otherwise false.
+      * @description Returns true if the type of the argument 'source' is a date object type created with 'new Date()',
+      *  otherwise false.
       *
       * @param {any} source
       *
@@ -370,8 +372,8 @@
 
 
       /**
-      * @description  Returns true if the type of the argument 'source' is a dense array type. That means
-      *  the array contains no element which is undefined. Returns false otherwise.
+      * @description  Returns true if the type of the argument 'source' is a dense array type. That means the array
+      *  contains no element which is undefined. Returns false otherwise.
       *
       * @param {any} source
       *
@@ -486,8 +488,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the string
-      *  contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
+      * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the
+      *  string contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
       *
       * @param {any} source
       *
@@ -505,7 +507,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise false.
+      * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise
+      *  false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isNumberValue
@@ -522,9 +525,8 @@
 
 
       /**
-      * @description Returns true if the value of the argument 'source' is an integer number in the
-      *   range of [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER],
-      *              otherwise false.
+      * @description Returns true if the value of the argument 'source' is an integer number in the range of
+      *  [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER], otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isPositiveIntegerNumber
@@ -577,8 +579,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a negative
-      *              infinite number value type, otherwise false.
+      * @description Returns true if the type of the argument 'source' is a negative infinite number value type,
+      *  otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isNumberValue
@@ -631,8 +633,9 @@
 
 
       /**
-      * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string or array.
-      *  The function returns false for all argument values which are neither null or undefined nor an empty array or empty string.
+      * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string
+      *  or array. The function returns false for all argument values which are neither null or undefined nor an empty
+      *  array or empty string.
       * 
       * @param {Array<any> | string} source
       *
@@ -668,8 +671,8 @@
 
 
       /**
-      * @description Returns true if the argument value is either null or undefined or is a string wich is either
-      *  empty or contains only white space characters.
+      * @description Returns true if the argument value is either null or undefined or is a string wich is either empty
+      *  or contains only white space characters.
       *
       * @param {string} source
       *
@@ -715,7 +718,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a number object type created with 'new Number()', otherwise false.
+      * @description Returns true if the type of the argument 'source' is a number object type created with
+      *  'new Number()', otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isNumberValue
@@ -786,8 +790,46 @@
 
 
       /**
-      * @description Returns true if the type of argument 'source' is either a boolean value, a number value or
-      *  a string value. Otherwise the result value will be false.
+      * @description Returns true if the type of argument 'source' is a plain object otherwise false.
+      * @example
+      *
+      * function Foo() {
+      *   this.a = 1;
+      * }
+      *
+      * isPlainObject(new Foo) => false
+      *
+      * isPlainObject([1, 2, 3]) => false
+      *
+      * isPlainObject({ 'x': 0, 'y': 0 }) => true
+      *
+      * isPlainObject(Object.create(null)) => true
+      *
+      * @param {any} source
+      *
+      * @returns {boolean}
+      */
+      export function isPlainObject(source: any): boolean
+      {
+        if (!isObject(source))
+        {
+          return false;
+        }
+
+        let prototype = Object.getPrototypeOf(source);
+        if (prototype === null)
+        {
+          return true;
+        }
+
+        let ctor = Object.prototype.hasOwnProperty.call(prototype, 'constructor') && prototype.constructor;
+        return (typeof ctor == 'function' && ctor instanceof ctor && (Function.prototype as any).toString.call(ctor) == (Function.prototype as any).toString.call(Object));
+      }
+
+
+      /**
+      * @description Returns true if the type of argument 'source' is either a boolean value, a number value or a
+      *  string value. Otherwise the result value will be false.
       *
       * @param {any} source
       *
@@ -889,8 +931,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a string object type created with 'new String()',
-      *  otherwise false.
+      * @description Returns true if the type of the argument 'source' is a string object type created with
+      *  'new String()', otherwise false.
       *
       * @see TS.Utils.Assert.isString
       * @see TS.Utils.Assert.isStringLiteral
@@ -963,7 +1005,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise false.
+      * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise
+      *  false.
       *
       * @see TS.Utils.Assert.isUnsignedByteValue
       *
@@ -998,7 +1041,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values [0 .. 255], otherwise false.
+      * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values
+      *  [0 .. 255], otherwise false.
       *
       * @param {any} source
       *
@@ -1021,7 +1065,8 @@
 
 
       /**
-      * @description Returns true if the type of the argument 'source' is a positive infinite number value type, otherwise false.
+      * @description Returns true if the type of the argument 'source' is a positive infinite number value type,
+      *  otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isNumberValue
@@ -1040,7 +1085,8 @@
 
 
       /**
-      * @description Returns true if the value of the argument 'source' is a valid integer number in the range of [0..Number.MAX_SAFE_INTEGER], otherwise false.
+      * @description Returns true if the value of the argument 'source' is a valid integer number in the range of
+      *  [0..Number.MAX_SAFE_INTEGER], otherwise false.
       *
       * @see TS.Utils.Assert.isNumber
       * @see TS.Utils.Assert.isIntegerNumber
@@ -1061,44 +1107,60 @@
 
 
       /**
-      * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in argument 'enumObj'.
+      * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in
+      *  argument 'enumObj'. This function does not implicitly convert number strings to numbers. That differs from the
+      *  normal enum bahavior and is by design. See example.
+      *
+      * @example
+      *
+      *  enum testEnum = { ZERO, ONE, TWO };
+      *
+      *  testEnum[2];     // "TWO"  -> 2 accepted as valid enum member
+      *  testEnum["ONE"]; // 1      -> "ONE" accepted as valid enum member
+      *  testEnum["2"];   // "TWO"  -> "2" accepted as valid enum member
+      *
+      *  isValueOfEnum[2];     // true   -> 2 accepted as valid enum member
+      *  isValueOfEnum["ONE"]; // true   -> "ONE" accepted as valid enum member
+      *  isValueOfEnum["2"];   // false  -> "2" NOT accepted as valid enum member
       *
       * @param {number | string} source
       * @param {Object} enumObj
       *
       * @returns {boolean}
       */
-      export function isValueOfEnum(source: number | string, enumObj: Object): boolean
+      export function isValueOfEnum(source: number | string, enumObj: any): boolean
       {
-        let elementArray: Array<any>;
-
         if (TS.Utils.Assert.isNullOrUndefined(source))
         {
           return false;
-        }//END if
-
-        if (!TS.Utils.Assert.isNumberValue(source) && !TS.Utils.Assert.isString(source))
-        {
-          return false;
-        }//END if
+        }
 
         if (TS.Utils.Assert.isNullOrUndefined(enumObj))
         {
           return false;
-        }//END if
+        }
 
         if (!TS.Utils.Assert.isEnum(enumObj))
         {
           return false;
-        }//END if
-
-        elementArray = new Array<any>();
-        for (let item in enumObj)
-        {
-          elementArray.push(item);
         }
 
-        return (elementArray.find((value: any) => value == source) != undefined);
+        if (TS.Utils.Assert.isString(source) || TS.Utils.Assert.isNumber(source))
+        {
+          let result: any = enumObj[source];
+
+          if (TS.Utils.Assert.isString(source) && TS.Utils.Assert.isNumber(result))
+          {
+            return true;
+          }
+
+          if (TS.Utils.Assert.isNumber(source) && TS.Utils.Assert.isString(result))
+          {
+            return true;
+          }
+        }
+
+        return false;
       }
     }//END class
 

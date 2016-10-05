@@ -57,7 +57,7 @@
           </p>
           <p>
             The iterator pattern is also the basic pattern which drives LINQ. The earlier project used it&#39;s own implementation of the iterator pattern. Since the iterator 
-            pattern is now an integral part of Javascript, that implementation became obsolet. There were also breaking changes in the TypeScript language which made it impossible 
+            pattern is now an integral part of Javascript, that implementation became obsolete. There were also breaking changes in the TypeScript language which made it impossible 
             to compile the old code with the new 1.8 TypeScript compiler. That gave me the motivation for a complete rewrite.
           </p>
           <p>
@@ -85,12 +85,13 @@
             </p>
             <p>I removed all template files from the project directories and after that I got pretty much what I would call a library project.</p>
             <p>
-              The project directories are placed inside the solution directory. (Visual Studio tries to create the project directories at the same filehierarchy level as 
-              the solution directory. You have to select the target directory manually if you want to recreate the current solution setup.)
-            </p>
-            This setup has two adavantages. 
+              The project directories are placed inside the solution directory. (Visual Studio tries to create the project directories at the same 
+              <meta charset="utf-8" />
+              <b id="docs-internal-guid-7b688f53-9283-4b90-9609-9356bb6fda0d" style="font-weight:normal;"><span style="font-size:15.333333333333332px;font-family:Verdana;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">file hierarchy </span></b>level as 
+              the solution directory. You have to select the target directory manually if you want to recreate the current solution setup.) </p>
+            This setup has two advantages. 
             <br />
-            First, it is much easyer to create the code documentation with TypeDoc when the projects are placed in a common root directory. 
+            First, it is much easier to create the code documentation with TypeDoc when the projects are placed in a common root directory. 
             <br />
             Second, you can start debugging right out of the IDE. You just have to select the &quot;Test&quot; project as your start project. 
             <br />
@@ -114,8 +115,7 @@
             </p>
             <p>
               The &quot;TS&quot; project, which is the main project from the solution, has also the &quot;Combine JavaScript output into file:&quot; selected. The path in this 
-              setting is &quot;H:\PROJECT\TYPESCRIPT\TS\TS.js&quot; on my system. That is the path to the solution project 
-              &quot;TS&quot; and the filename is &quot;TS.js&quot;. You may change the path or filename according to your own system.
+              setting is &quot;./TS/TS.js&quot; on my system. That is the path to the solution project &quot;TS&quot; and the filename is &quot;TS.js&quot;.
             </p>
             <p>
               Please keep in mind, that not all module system allow to compile into one file. So, if you select a module system appropriate for you own solution, you mal also 
@@ -185,7 +185,7 @@
               </div>
               <div class="w3-rest w3-content">
                 <p>
-                  The "Linq" project comprieses the classes and interfaces which build the foundation of the LINQ implementation. The &quot;Extensions.ts&quot; file contains all the extension 
+                  The "Linq" project comprises the classes and interfaces which build the foundation of the LINQ implementation. The &quot;Extensions.ts&quot; file contains all the extension 
                   functions which have a counterpart in the &quot;Enumerable&quot; class in .NET.
                 </p>
                 <p><a href="https://msdn.microsoft.com/en-us/library/system.linq.enumerable(v=vs.110).aspx" class="w3-hover-blue-grey" target="_blank">Enumerable</a> | MSDN</p>
@@ -250,7 +250,7 @@
                   tells you whether the argument value matches a specific condition or not. 
                 </p>
                 <p>
-                  The paraemter check functions in the "TS.Utils" namespace and the assertion functions in
+                  The parameter check functions in the "TS.Utils" namespace and the assertion functions in
                   the "TS.Utils.Assert" namespace are heavily use throughout this solution. 
                 </p>
               </div>
@@ -271,9 +271,9 @@
               <p>
                 The &quot;Test&quot; project comprises the test files for the Collections, Exceptions, Linq and Utils projects. For obvious reasons there are no test files for the Docs, TS or Test project itself. The test file names follow a common conventions. Each file name starts with the project name 
                 which hosts the classes or functions which get tested in the current test. Separated by an underscore follows the class name the test belongs to. In case the test is designed to test functions which are not bound to a class (namespace functions) there won&#39;t be a class name. After that follows the ending &#39;test.ts&quot; or &quot;test_plain.js&quot; which is also separated by an underscore. The files which end on &quot;test.ts&quot; are QUnit tests written in TypeScript. Those which end on &quot;test_plain.js&quot; are QUnit tests written in plain Javascript. The tests in plain Javascript became necessary because some tests couldn&#39;t be described in TypeScript.
-                Each unit test has a corresponding HTML file wich is used to start the test.</p>
+                Each unit test has a corresponding HTML file which is used to start the test.</p>
               <p>
-                Tere is also a HTML file called &quot;TestSuite.html&quot; which runs all the unit tests as a suite.</p>
+                There is also a HTML file called &quot;TestSuite.html&quot; which runs all the unit tests as a suite.</p>
             </div>
           </div>
         </div>

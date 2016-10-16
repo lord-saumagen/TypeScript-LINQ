@@ -1,6 +1,6 @@
-﻿/// <reference path="data.ts" />
+﻿/// <reference path="DATA.ts" />
 /// <reference path="../_references.ts" />
-/// <reference path="./scripts/qunit.d.ts" />
+/// <reference path="./Scripts/qunit.d.ts" />
 
 module TS_Collections_Dictionary_test
 {

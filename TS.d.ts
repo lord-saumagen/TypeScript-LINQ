@@ -1541,13 +1541,14 @@ declare namespace TS {
             function isObject(source: any): boolean;
             /**
             * @description Returns true if the type of argument 'source' is a plain object otherwise false.
+            *
             * @example
             *
             * function Foo() {
             *   this.a = 1;
             * }
             *
-            * isPlainObject(new Foo) => false
+            * isPlainObject(new Foo()) => false
             *
             * isPlainObject([1, 2, 3]) => false
             *
@@ -1561,8 +1562,35 @@ declare namespace TS {
             */
             function isPlainObject(source: any): boolean;
             /**
-            * @description Returns true if the type of argument 'source' is either a boolean value, a number value or a
-            *  string value. Otherwise the result value will be false.
+            * @description Returns true if the type of argument 'source' is a primitive type. A primitive type is a type
+            *  which is boolean | null | undefined | number | string | symbol. Every other type is considered a complex
+            *  type.
+            *
+            * @see { @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures | JavaScript data types and data structures}
+            *
+            * @example
+            *
+            * isPrimitiveType(true) => true
+            *
+            * isPrimitiveType(null) => true
+            *
+            * isPrimitiveType(undefined) => true
+            *
+            * isPrimitiveType(12) => true
+            *
+            * isPrimitiveType(1.2) => true
+            *
+            * isPrimitiveType("One") => true
+            *
+            * isPrimitiveType([1, 2, 3]) => false
+            *
+            * isPrimitiveType({}) => false
+            *
+            * isPrimitiveType(new Boolean(false)) => false
+            *
+            * isPrimitiveType(new Number(13)) => false
+            *
+            * isPrimitiveType(new String("two")) => false
             *
             * @param {any} source
             *
@@ -4383,7 +4411,7 @@ declare namespace TS {
         */
         class DuplicateKeyException extends TS.Exception {
             /**
-            * @overwrite {TS.Exception}
+            * @override {TS.Exception}
             *
             * @get {string} type
             */
@@ -4859,8 +4887,8 @@ declare namespace TS {
             */
             copyTo(targetArray: Array<T>, destIndex?: number): this;
             /**
-            * @description Searches for the specified object and returns the zero - based index of the first occurrence within the entire List<T>.
-            *  Returns -1 if there is no match for the given item.
+            * @description Searches for the specified object and returns the zero - based index of the first occurrence
+            *  within the entire List<T>. Returns -1 if there is no match for the given item.
             *
             * @implements  {TS.Collections.IList<T>}
             *
@@ -4873,9 +4901,9 @@ declare namespace TS {
             */
             indexOf(item: T): number;
             /**
-            * @description Searches for the specified object and returns the zero - based index of the first occurrence within the range of elements
-            *  in the List<T> that extends from the specified index to the last element.
-            *  Returns -1 if there is no match for the given item.
+            * @description Searches for the specified object and returns the zero - based index of the first occurrence
+            *  within the range of elements in the List<T> that extends from the specified index to the last element. Returns
+            * -1 if there is no match for the given item.
             *
             * @implements  {TS.Collections.IList<T>}
             *
@@ -4890,10 +4918,10 @@ declare namespace TS {
             */
             indexOf(item: T, startIndex: number): number;
             /**
-            * @description Searches for the specified object and returns the zero - based index of the first occurrence within the range of elements
-            *  in the List<T> that extends from the specified index to the last element.
-            *  The equalityComparer is used to determine a match with the searched item in the List<T>.
-            *  Returns -1 if there is no match for the given item.
+            * @description Searches for the specified object and returns the zero - based index of the first occurrence
+            *  within the range of elements in the List<T> that extends from the specified index to the last element. The
+            *  equalityComparer is used to determine a match with the searched item in the List<T>. Returns -1 if there is no
+            *  match for the given item.
             *
             * @implements  {TS.Collections.IList<T>}
             *
@@ -4949,11 +4977,11 @@ declare namespace TS {
             /**
             * @constructor
             *
-            * @description This constructor of the List class requires the allowNull flag to be set which determines whether the
-            *  List will accept null values as element or not. The default value for that flag is 'true'.
-            *  In C# you would declare a List<T> to allow null values or not by using a nullable type as concrete type parameter
-            *  or not. Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag in the constructor
-            *  signature.
+            * @description This constructor of the List class requires the allowNull flag to be set which determines whether
+            *  the List will accept null values as element or not. The default value for that flag is 'true'.
+            *  In C# you would declare a List<T> to allow null values or not by using a nullable type as concrete type
+            *  parameter or not. Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag
+            *  in the constructor signature.
             *  The optional generator function will be use to initially fill the list with elements if provided.
             *
             * @param {boolean}, allowNull = true
@@ -4966,10 +4994,10 @@ declare namespace TS {
             /**
             * @constructor
             *
-            * @description Thos constructor of the List class requires the allowNull flag to be set which determines whether the
-            *  List will accept null values as element or not. The default value for that flag is 'true'.
-            *  In C# you would declare a List<T> to allow null values or not by using a nullable type as concrete type parameter
-            *  or not. Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag in the constructor
+            * @description Thos constructor of the List class requires the allowNull flag to be set which determines whether
+            *  the List will accept null values as element or not. The default value for that flag is 'true'. In C# you would
+            *  declare a List<T> to allow null values or not by using a nullable type as concrete type parameter or not.
+            *  Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag in the constructor
             *  signature.
             *  The optional source will be use to initially fill the list with elements if provided.
             *  The optional predicate determines which elements of the source will become elements of the list.

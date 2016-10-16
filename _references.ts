@@ -12,6 +12,6 @@
 /// <reference path="./Collections/KeyValuePair.ts" />
 /// <reference path="./Collections/IDictionary.ts" />
 /// <reference path="./Collections/ICollection.ts" />
-/// <reference path="./Collections/Ilist.ts" />
+/// <reference path="./Collections/IList.ts" />
 /// <reference path="./Collections/List.ts" />
 /// <reference path="./Collections/Dictionary.ts" />

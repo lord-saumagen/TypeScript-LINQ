@@ -1,5 +1,5 @@
-﻿/// <reference path="data.ts" />
-/// <reference path="scripts/qunit.d.ts" />
+﻿/// <reference path="DATA.ts" />
+/// <reference path="Scripts/qunit.d.ts" />
 /// <reference path="../_references.ts" />
 var TS_Collections_List_test;
 (function (TS_Collections_List_test) {

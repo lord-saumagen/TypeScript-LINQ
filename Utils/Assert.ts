@@ -791,13 +791,14 @@
 
       /**
       * @description Returns true if the type of argument 'source' is a plain object otherwise false.
+      *
       * @example
       *
       * function Foo() {
       *   this.a = 1;
       * }
       *
-      * isPlainObject(new Foo) => false
+      * isPlainObject(new Foo()) => false
       *
       * isPlainObject([1, 2, 3]) => false
       *
@@ -828,8 +829,35 @@
 
 
       /**
-      * @description Returns true if the type of argument 'source' is either a boolean value, a number value or a
-      *  string value. Otherwise the result value will be false.
+      * @description Returns true if the type of argument 'source' is a primitive type. A primitive type is a type
+      *  which is boolean | null | undefined | number | string | symbol. Every other type is considered a complex
+      *  type.
+      *
+      * @see { @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures | JavaScript data types and data structures}
+      *
+      * @example
+      *
+      * isPrimitiveType(true) => true
+      *
+      * isPrimitiveType(null) => true
+      *
+      * isPrimitiveType(undefined) => true
+      *
+      * isPrimitiveType(12) => true
+      *
+      * isPrimitiveType(1.2) => true
+      *
+      * isPrimitiveType("One") => true
+      *
+      * isPrimitiveType([1, 2, 3]) => false
+      *
+      * isPrimitiveType({}) => false
+      *
+      * isPrimitiveType(new Boolean(false)) => false
+      *
+      * isPrimitiveType(new Number(13)) => false
+      *
+      * isPrimitiveType(new String("two")) => false
       *
       * @param {any} source
       *
@@ -837,14 +865,14 @@
       */
       export function isPrimitiveType(source: any): boolean
       {
-        if (TS.Utils.Assert.isNullOrUndefined(source))
-        {
-          return false;
-        }//END if
-
         if (TS.Utils.Assert.isBooleanValue(source))
         {
           return true;
+        }//END if
+
+        if (TS.Utils.Assert.isNullOrUndefined(source))
+        {
+          return true
         }//END if
 
         if (TS.Utils.Assert.isNumberValue(source))
@@ -856,6 +884,11 @@
         {
           return true;
         }//END if
+
+        if (TS.Utils.Assert.isSymbol(source))
+        {
+          return true;
+        }
 
         return false;
       }

@@ -1,5 +1,5 @@
 ﻿/// <reference path="../_references.ts" />
-/// <reference path="./scripts/qunit.d.ts" />
+/// <reference path="./Scripts/qunit.d.ts" />
 namespace TS_Exception_test
 {
   "use strict";

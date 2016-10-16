@@ -44,9 +44,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53916</DevelopmentServerPort>
+          <DevelopmentServerPort>59365</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53916/</IISUrl>
+          <IISUrl>http://localhost:59365/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -57,19 +57,256 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Remove all comments except copy-right header comments beginning with /*! 
+    -->
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <!-- 
+    type: string, 
+    default: null, 
+    description: Specifies the location where debugger should locate TypeScript files instead of source locations. 
+                 Use this flag if the sources will be located at run-time in a different location than that at design-time. 
+    			 The location specified will be embedded in the sourceMap to direct the debugger where the source files where be located. 
+    -->
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <!-- 
+    type: string, 
+    default: "ES5", 
+    description: Specify ECMAScript target version: 'es3' (default), 'es5', or 'es6'.
+    -->
     <TypeScriptTarget>ES6</TypeScriptTarget>
+    <!-- 
+    type: string, 
+    default: "Preserve", 
+    description: Support JSX in ‘.tsx’ files: 'React' or 'Preserve'. See JSX. 
+    -->
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Raise error on expressions and declarations with an implied ‘any’ type. 
+    -->
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
+    <!-- 
+    type: string, 
+    default: (target === "ES6" ? "ES6" : "CommonJS"), 
+    description: Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es6', or 'es2015'.
+    * Only 'amd' and 'system' can be used in conjunction with __outFile.
+    * 'es6' and 'es2015' values may not be used when targeting ES5 or lower. 
+    -->
     <TypeScriptModuleKind>None</TypeScriptModuleKind>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir />
+    <!-- 
+    type: string, 
+    default: null, 
+    description: Concatenate and emit output to single file. The order of concatenation is determined by the 
+                 list of files passed to the compiler on the command line along with triple-slash references 
+    			 and imports. See output file order documentation for more details. 
+    -->
+    <TypeScriptOutFile>
+    </TypeScriptOutFile>
+    <!-- 
+    type: string, 
+    default: null, 
+    description: Redirect output structure to the directory. 
+    -->
+    <TypeScriptOutDir>
+    </TypeScriptOutDir>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Generates corresponding ‘.d.ts’ file. 
+    -->
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not emit outputs if any errors were reported. 
+    -->
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
+    <!-- 
+    type: string, 
+    default: null, 
+    description: Specifies the location where debugger should locate map files instead of generated locations. 
+                 Use this flag if the .map files will be located at run-time in a different location than than the .js files. 
+    			 The location specified will be embedded in the sourceMap to direct the debugger where the map files where be loca
+    -->
+    <TypeScriptMapRoot>
+    </TypeScriptMapRoot>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Generates corresponding ‘.map’ file. 
+    -->
+    <TypeScriptSourceRoot>
+    </TypeScriptSourceRoot>
+    <!-- 
+    type: string, 
+    default: "utf8", 
+    description: The character set of the input files. 
+    -->
+    <TypeScriptCharset>UTF8</TypeScriptCharset>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description:  Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
+    -->
+    <TypeScriptEmitBOM>False</TypeScriptEmitBOM>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Emit design-type metadata for decorated declarations in source. See issue #2577 for details. 
+	-->
+    <TypeScriptEmitDecoratorMetadata>False</TypeScriptEmitDecoratorMetadata>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Enables experimental support for ES7 decorators. 
+    -->
+    <TypeScriptExperimentalDecorators>False</TypeScriptExperimentalDecorators>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Emit a single file with source maps instead of having a separate file. 
+    -->
+    <TypeScriptInlineSourceMap>False</TypeScriptInlineSourceMap>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Emit the source alongside the sourcemaps within a single file; requires __inlineSourceMap or __sourceMap to be set. 
+    -->
+    <TypeScriptInlineSources>False</TypeScriptInlineSources>
+    <!-- 
+    type: string, 
+    default: (platform specific), 
+    description: Use the specified end of line sequence to be used when emitting files: 'crlf' (windows) or 'lf' (unix).” 
+    -->
+    <TypeScriptNewLine>CRLF</TypeScriptNewLine>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not generate custom helper functions like __extends in compiled output. 
+    -->
+    <TypeScriptNoEmitHelpers>True</TypeScriptNoEmitHelpers>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not include the default library file (lib.d.ts). 
+    -->
+    <TypeScriptNoLib>
+    </TypeScriptNoLib>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not add triple-slash references or module import targets to the list of compiled files. 
+    -->
+    <TypeScriptNoResolve>
+    </TypeScriptNoResolve>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not erase const enum declarations in generated code. See const enums documentation for more details. 
+    -->
+    <TypeScriptPreserveConstEnums>True</TypeScriptPreserveConstEnums>
+    <!-- 
+    type: string, 
+    default: (common root directory is computed from the list of input files), 
+    description: Specifies the root directory of input files. Only use to control the output directory structure with __outDir. 
+    -->
+    <TypeScriptRootDir>
+    </TypeScriptRootDir>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Unconditionally emit imports for unresolved files. 
+    -->
+    <TypeScriptIsolatedModules>
+    </TypeScriptIsolatedModules>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Suppress excess property checks for object literals. 
+    -->
+    <TypeScriptSuppressImplicitAnyIndexErrors>
+    </TypeScriptSuppressImplicitAnyIndexErrors>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Suppress excess property checks for object literals. 
+    -->
+    <TypeScriptSuppressExcessPropertyErrors>
+    </TypeScriptSuppressExcessPropertyErrors>
+    <!-- 
+    type: string, 
+    default: "Classic", 
+    description: Determine how modules get resolved. Either 'node' for Node.js/io.js style resolution, or 'classic' (default). 
+                 See Module Resolution documentation for more details. 
+    -->
+    <TypeScriptModuleResolution>
+    </TypeScriptModuleResolution>
+    <!-- 
+    type: string, 
+    default: "React", 
+    description: Specifies the object invoked for createElement and __spread when targeting ‘react’ JSX emit. 
+    -->
+    <TypeScriptReactNamespace>
+    </TypeScriptReactNamespace>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Don’t check a user-defined default lib file’s valitidy. 
+    -->
+    <TypeScriptSkipDefaultLibCheck>
+    </TypeScriptSkipDefaultLibCheck>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not report errors on unused labels. 
+    -->
+    <TypeScriptAllowUnusedLabels>
+    </TypeScriptAllowUnusedLabels>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Raise error on expressions and declarations with an implied ‘any’ type. 
+    -->
+    <TypeScriptNoImplicitReturns>
+    </TypeScriptNoImplicitReturns>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Report errors for fallthrough cases in switch statement. 
+    -->
+    <TypeScriptNoFallthroughCasesInSwitch>
+    </TypeScriptNoFallthroughCasesInSwitch>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Do not report errors on unreachable code. 
+    -->
+    <TypeScriptAllowUnreachableCode>
+    </TypeScriptAllowUnreachableCode>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Disallow inconsistently-cased references to the same file. 
+    -->
+    <TypeScriptForceConsistentCasingInFileNames>True</TypeScriptForceConsistentCasingInFileNames>
+    <!-- 
+    type: boolean, 
+    default: (module === "system"), 
+    description:  Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+    -->
+    <TypeScriptAllowSyntheticDefaultImports>
+    </TypeScriptAllowSyntheticDefaultImports>
+    <!-- 
+    type: boolean, 
+    default: false, 
+    description: Raise error on expressions and declarations with an implied ‘any’ type. 
+    -->
+    <TypeScriptNoImplicitUseStrict>True</TypeScriptNoImplicitUseStrict>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

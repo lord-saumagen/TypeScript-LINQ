@@ -21,7 +21,7 @@ namespace TS
     {
 
       /**
-      * @overwrite {TS.Exception}
+      * @override {TS.Exception}
       *
       * @get {string} type
       */

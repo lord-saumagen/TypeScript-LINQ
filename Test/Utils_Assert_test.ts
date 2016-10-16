@@ -1,5 +1,6 @@
-﻿/// <reference path="../_references.ts" />
-/// <reference path="./scripts/qunit.d.ts" />
+﻿/// <reference path="./DATA.ts" />
+/// <reference path="../_references.ts" />
+/// <reference path="./Scripts/qunit.d.ts" />
 module TS_Utils_Assert
 {
   "use strict";
@@ -55,4 +56,19 @@ module TS_Utils_Assert
     assert.equal(TS.Utils.Assert.isPlainObject(undefined), false, "Should return false when called with an undefined argument.");
   });
 
+
+  QUnit.test("isPrimitiveType", (assert) =>
+  {
+    assert.equal(TS.Utils.Assert.isPrimitiveType(true), true, "Should return true for a boolean value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(null), true, "Should return true for a null value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(undefined), true, "Should return true for an undefined value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(12), true, "Should return true for an integer number value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(1.2), true, "Should return true for a floating point number value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(Symbol()), true, "Should return true for a symbol value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(new Boolean(false)), false, "Should return false for a boolean object value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(new Number(12)), false, "Should return false for a number object value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType(new String("two")), false, "Should return false for a string object value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType({}), false, "Should return false for a literal object value.");
+    assert.equal(TS.Utils.Assert.isPrimitiveType([1, 2, 3]), false, "Should return false for an array value.");
+  });
 }

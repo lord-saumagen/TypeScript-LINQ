@@ -1,20 +1,16 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Collections
   {
 
-
     /**
-    * @class Dictionary<TKey, TValue>
+    * @class TS.Collections.Dictionary<TKey, TValue>
     *
-    * @description This class is an implementation of the IDictionary<TKey, TValue> interface and
-    *  TypeScript counterpart of the .NET Dictionary<TKey, TValue> class. Some methods of this class
-    *  behave different than the C# counterpart, some are new and some C# methods are not implemented.
-    *  Those differences are mainly caused by the javascript limitations. Read the method descriptions
-    *  to learn more about the variations.
+    * @description This class is an implementation of the IDictionary<TKey, TValue> interface and TypeScript
+    *  counterpart of the .NET Dictionary<TKey, TValue> class. Some methods of this class behave different than the C#
+    *  counterpart, some are new and some C# methods are not implemented. Those differences are mainly caused by the
+    *  javascript limitations. Read the method descriptions to learn more about the variations.
     *
     * @see {@link https://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx | MSDN}
     *
@@ -44,10 +40,10 @@ namespace TS
       //***********************************************************************
 
       /**
-       * @implements {TS.Linq.BaseEnumerator<KeyValuePair<TKey, TValue>>}
-       *
-       * @returns {Iterator<KeyValuePair<TKey, TValue>>}
-       */
+      * @implements {TS.Linq.BaseEnumerator<KeyValuePair<TKey, TValue>>}
+      *
+      * @returns {Iterator<KeyValuePair<TKey, TValue>>}
+      */
       public [Symbol.iterator](): Iterator<KeyValuePair<TKey, TValue>>
       {
         return this.genFunc();
@@ -60,8 +56,8 @@ namespace TS
       //***********************************************************************
 
       /**
-      * @description Adds an item to the ICollection<T>.
-      *  There is no equivalent function in the C# dictionary implementation.
+      * @description Adds an item to the ICollection<T>. There is no equivalent function in the C# dictionary
+      *  implementation.
       *
       * @implements {TS.Collections.IDictionary<TKey, TValue>}
       *
@@ -161,26 +157,25 @@ namespace TS
 
 
       /**
-      * @description Determines whether the collection contains a specific KeyValuePair.
-      *  Using the default comparer to compare the values.
+      * @description Determines whether the collection contains a specific KeyValuePair. Using the default comparer to
+      *  compare the values.
       *
       * @implements {TS.Collections.IDictionary<TKey, TValue>}
       *
-      * @parem {TS.Collections.KeyValuePair<TKey, TValue>} item
+      * @param {TS.Collections.KeyValuePair<TKey, TValue>} item
       *
       * @returns {boolean}
       */
       contains(item: TS.Collections.KeyValuePair<TKey, TValue>): boolean
       /**
-      * @description Determines whether the collection contains a specific KeyValuePair.
-      *  Using the specified equalityComparer to compare the values.
-      *  There is no equivalent function in the C# dictionary implementation which allows to override the default
-      *  equality comparer for value comaparsion.
+      * @description Determines whether the collection contains a specific KeyValuePair. Using the specified
+      *  equalityComparer to compare the values. There is no equivalent function in the C# dictionary implementation
+      *  which allows to override the default equality comparer for value comaparsion.
       *
       * @implements {TS.Collections.IDictionary<TKey, TValue>}
       *
-      * @parem {TS.Collections.KeyValuePair<TKey, TValue>} item
-      * @parem {(first: TValue, second: TValue) => boolean} equalityComparer
+      * @param {TS.Collections.KeyValuePair<TKey, TValue>} item
+      * @param {(first: TValue, second: TValue) => boolean} equalityComparer
       *
       * @returns {boolean}
       */
@@ -253,9 +248,8 @@ namespace TS
       public containsValue(value: TValue): boolean
       /**
       * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified value.
-      *  Using the specified equalityComparer to compare the values.
-      *  There is no equivalent function in the C# dictionary implementation which allows to override the default
-      *  equality comparer for value comaparsion.
+      *  Using the specified equalityComparer to compare the values. There is no equivalent function in the C#
+      *  dictionary implementation which allows to override the default equality comparer for value comaparsion.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/a63811ah(v=vs.110).aspx  | MSDN }
       *
@@ -320,13 +314,6 @@ namespace TS
         }//END if
 
         TS.Utils.checkUIntNumberParameter("destIndex", destIndex, "TS.Collections.Dictionary.copyTo");
-        //
-        //Javascript arrays don't have a fixed length. There is no need to check the array range.
-        //
-        //if (targetArray.length < destIndex)
-        //{
-        //  throw new TS.ArgumentOutOfRangeException("targetArray.length", targetArray.length, "The value of 'destIndex' exceeded the range of the target array in function 'TS.Collections.Dictionary.copyTo'.");
-        //}//END if
 
         this.forEach((item) => { targetArray[destIndex] = item; destIndex++; });
 
@@ -352,9 +339,9 @@ namespace TS
 
 
       /**
-      * @description Returns the item with the specified key from the Dictionary<TKey, TValue>.
-      *  Returns an undefined value if the dictionary doesn't contain an item with the specified key.
-      *  There is no equivalent method in the C# dictionary implementation.
+      * @description Returns the item with the specified key from the Dictionary<TKey, TValue>. Returns an undefined
+      *  value if the dictionary doesn't contain an item with the specified key. There is no equivalent method in the
+      *  C# dictionary implementation.
       *
       * @implements {TS.Collections.IDictionary<TKey, TValue>}
       *
@@ -374,11 +361,11 @@ namespace TS
 
 
       /**
-      * @description Returns the value of the item with the specified key from the Dictionary<TKey, TValue>.
-      *  Returns an undefined value if the dictionary doesn't contain an item with the specified key.
-      *  This method is a substitute for the index access implemented in the C# dictionary.
-      *  In TypeScript you can only crate indexers for strings or numbers. But a dictionary key can
-      *  have any type. So there is no other way than creating a set and get function as a substitute.
+      * @description Returns the value of the item with the specified key from the Dictionary<TKey, TValue>. Returns an
+      *  undefined value if the dictionary doesn't contain an item with the specified key. This method is a substitute
+      *  for the index access implemented in the C# dictionary. In TypeScript you can only crate indexers for strings
+      *  or numbers. But a dictionary key can have any type. So there is no other way than creating a set and get
+      *  function as a substitute.
       *
       * @see {TS.Collections.Dictionary.setItem}
       * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
@@ -417,10 +404,10 @@ namespace TS
 
       /**
       * @description Removes a key and value from the dictionary.
-      *  This method uses the equality comparer which was set in the constructor or the dictionary to determine equality for the key.
-      *  This method uses either the default equality comparer to determine equality for the value or the one you can specify in the
-      *  optional 'equalityComparer' argument.
-      *  This function differs from the C# implementation in mutiple ways.
+      *  This method uses the equality comparer which was set in the constructor or the dictionary to determine
+      *  equality for the key. This method uses either the default equality comparer to determine equality for the
+      *  value or the one you can specify in the optional 'equalityComparer' argument. This function differs from the
+      *  C# implementation in mutiple ways.
       *  1) This method returns a this reference and not a boolean value.
       *  2) You can specifie an equality comparer for value camparsion to overriede the default behavior.
       *  3) This method fails silent if the specified item can't be located in the dictionary.
@@ -515,10 +502,10 @@ namespace TS
 
 
       /**
-      * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary.
-      *  This method is a substitute for the index access implemented in the C# dictionary.
-      *  In TypeScript you can only crate indexers for strings or numbers. But a dictionary key can
-      *  have any type. So there is no other way than creating a set and get function as a substitute.
+      * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary. This
+      *  method is a substitute for the index access implemented in the C# dictionary. In TypeScript you can only
+      *  create indexers for strings or numbers. But a dictionary key can have any type. So there is no other way than
+      *  creating a set and get function as a substitute.
       *
       * @see {TS.Collections.Dictionary.getValue}
       * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
@@ -534,7 +521,7 @@ namespace TS
       */
       public setItem(key: TKey, newValue: TValue): this
       {
-        TS.Utils.checkParameter("key", key, "TS.TypeCode.setItem");
+        TS.Utils.checkParameter("key", key, "TS.Collections.Dictionary.setItem");
 
         if (this.containsKey(key))
         {
@@ -586,10 +573,9 @@ namespace TS
       /**
       * @constructor
       *
-      * @description Create a new instance of the  TS.Collections.Dictionary<TKey, TValue> class.
-      *  Creates a shallow copy of the iterable 'KeyValuePair' source if provided.
-      *  Uses the default equality comparer (===) for the key comparsion if there isn't a key equality comparer
-      *  provided in argument 'keyEqualityComparer'.
+      * @description Creates a new instance of the  TS.Collections.Dictionary<TKey, TValue> class. Creates a shallow
+      *  copy of the iterable 'KeyValuePair' source if provided. Uses the default equality comparer (===) for the key
+      *  comparsion if there isn't a key equality comparer provided in argument 'keyEqualityComparer'.
       *
       * @param (Iterable<TS.Collections.KeyValuePair<TKey, TValue>>} source?
       * @param {(first: TKey, second: TKey) => boolean} keyEqualityComparer?
@@ -634,7 +620,6 @@ namespace TS
           }
         }
       }
-
 
     }//END class
 

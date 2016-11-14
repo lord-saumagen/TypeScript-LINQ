@@ -1,1750 +1,13 @@
-declare namespace TS {
-    /**
-    * @class Exception
-    *
-    * @description The base class of all exceptions defined in this framework. The Exception class has a public read only property called 'type' which
-    *  returns the fully qualified type name of the exception class. This way you are able to create a finer granular error handling based on the
-    *  exception type. Your are not longer forced to parse the error message string to infer the nature of the excpetion. Each subclass of the
-    *  Exception class has to override the 'type' property to reflect the own type. The exception class has also a read only 'innerException'
-    *  property which allows to create an exception stack which links back to the root exception.
-    *
-    * @implements {Error}
-    */
-    class Exception implements Error {
-        /**
-        * @private
-        */
-        private internalMessage;
-        /**
-        * @private
-        */
-        private internalInnerException;
-        /**
-        * @description Returns the inner exception if available or null.
-        *
-        * @public
-        *
-        * @get {TS.Exception | null} innerException
-        */
-        innerException: TS.Exception;
-        /**
-        * @description The error message.
-        *
-        * @implements {Error}
-        *
-        * @get {string} message
-        */
-        message: string;
-        /**
-        * @description The error name. It's the same as the type.
-        *
-        * @implements {Error}
-        *
-        * @get {string} name
-        */
-        name: string;
-        /**
-        * @description This property returns the fully qualified type name of the exception.
-        *
-        * @public
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: TS.Exception);
-        /**
-        * @description Returns a combination of the 'type' and 'message' of the exception as string.
-        *
-        * @override {Object}
-        *
-        * @returns {string}
-        */
-        toString(): string;
-        /**
-        * @description Returns a string which is the concatenation of the 'toString' call results of the current exception and the inner exceptions.
-        *
-        * @param {TS.Exception} exception
-        * @param {bookean} isInner, Defaults to false
-        * @param {string} offset, Default to 2 spaces. A string which is used to indent inner exception messages.
-        *
-        * @returns {string}
-        */
-        stackTrace(exception?: TS.Exception, isInner?: boolean, offset?: string): string;
-    }
-    /**
-    * @class AmbiguousResultException
-    *
-    * @description This exception signals a an error where an operation which is specified to deliver a single result fails because
-    *  there are multiple possible results available.
-    *
-    * @extends {TS.Exception}
-    */
-    class AmbiguousResultException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @private
-        */
-        private internalArgumentValue;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @description The value of the argument which caused the exception.
-        *
-        * @get {any} argumentValue
-        */
-        argumentValue: any;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {any} argumentValue, The value of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, argumentValue: any, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentException
-    *
-    * @description This exceptions signals a general error caused by an invalid argument.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArgumentException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @private
-        */
-        private internalArgumentValue;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @description The value of the argument which caused the exception.
-        *
-        * @get {any} argumentValue
-        */
-        argumentValue: any;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {any} argumentValue, The value of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, argumentValue: any, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentNullException
-    *
-    * @description This execptions signals an error caused by an unexpecte null value in an argument.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArgumentNullException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentNullOrUndefinedException
-    *
-    * @description This exceptions signals an error caused by an unexpecte undefined or null value in an argument.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArgumentNullOrUndefinedException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentNullUndefOrEmptyException
-    *
-    * @description This excptions signals an error caused by an unexpecte undefined or null value in an argument or
-    *  an unexpected emptyness for an argument like an empty string or array.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArgumentNullUndefOrEmptyException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentNullUndefOrWhiteSpaceException
-    *
-    * @description This exceptions signals an unexpected emptynes of a string.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArgumentNullUndefOrWhiteSpaceException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentOutOfRangeException
-    *
-    * @description This exceptions signals that an argument exceeded the range of allowed values.
-    *
-    * @extends {TS.ArgumentException}
-    */
-    class ArgumentOutOfRangeException extends TS.ArgumentException {
-        /**
-        * @override {TS.ArgumentException}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {any} argumentValue, The value of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, argumentValue: any, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArgumentUndefinedException
-    *
-    * @description This exceptions signals an error caused by an unexpecte undefined value in an argument.
-    *
-    * @extends {TS.ArgumentException}
-    */
-    class ArgumentUndefinedException extends TS.ArgumentException {
-        /**
-        * @override {TS.ArgumentException}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName: string, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class IndexOutOfRangeException
-    *
-    * @description This exceptions signals that an index value exceeded the range of indexable elements.
-    *
-    * @extends {TS.Exception}
-    */
-    class IndexOutOfRangeException extends TS.Exception {
-        /**
-        * @get {string} type
-        * @public
-        * @override {TS.Exception}
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class InvalidInvocationException
-    *
-    * @description This exceptions signals that a function was invoked in an unexpected or invalid way.
-    *
-    * @extends {TS.Exception}
-    */
-    class InvalidInvocationException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class InvalidOperationException
-    *
-    * @description This exceptions signals an attempt to start an operation which was not allowd to start in the current situation.
-    *
-    * @extends {TS.Exception}
-    */
-    class InvalidOperationException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class InvalidCastException
-    *
-    * @description This exceptions signals that a casting operation failed.
-  
-    * @extends {TS.Exception}
-    */
-    class InvalidCastException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class InvalidFormatException
-    *
-    * @description This exceptions signals that an operation failed because of an invalid format of some data.
-    *
-    * @extends {TS.Exception}
-    */
-    class InvalidFormatException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @private
-        */
-        private internalArgumentValue;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @description The value of the argument which caused the exception.
-        *
-        * @get {string} argumentValue
-        */
-        argumentValue: any;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {any} argumentValue, The value of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName?: string, argumentValue?: any, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class InvalidTypeException
-    *
-    * @description This exceptions signals that an argument has an invalid type.
-    *
-    * @extends {TS.Exception}
-    */
-    class InvalidTypeException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @private
-        */
-        private internalArgumentValue;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @description The value of the argument which caused the exception.
-        *
-        * @get {string} argumentValue
-        */
-        argumentValue: any;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception.
-        * @param {any} argumentValue, The value of the argument which caused the exception.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName?: string, argumentValue?: any, message?: string, innerException?: Exception);
-    }
-    /**
-    * @class ArithmeticException
-    *
-    * @description This exception signals an errors in an arithmetic, casting, or conversion operation.
-    *  ArithmeticException is the base class for DivideByZeroException, NotFiniteNumberException, and OverflowException.
-    *  Use one of the derived classes of ArithmeticException if appropriate to the exact nature of the error.
-    *  Throw an ArithmeticException if there is no appropriate subclass to descripte the nature of the error.
-    *
-    * @extends {TS.Exception}
-    */
-    class ArithmeticException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class OverflowException
-    *
-    * @description This exception signals that an arithmetic, casting, or conversion operation results in an overflow.
-    *
-    * @extends {TS.ArithmeticException}
-    */
-    class OverflowException extends ArithmeticException {
-        /**
-        * @override {TS.ArithmeticException}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class DividedByZeroException
-    *
-    * @description This exception signals an attempt to divide a number value by zero.
-    *
-    * @extends {TS.ArithmeticException}
-    */
-    class DividedByZeroException extends ArithmeticException {
-        /**
-        * @override {TS.ArithmeticException}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class NotFiniteNumberException
-    *
-    * @description This exception signals an attempt to execute an arithmetic operation with a number value which is either infinite or Not-a-Number (NaN).
-    *
-    * @extends {TS.ArithmeticException}
-    */
-    class NotFiniteNumberException extends ArithmeticException {
-        /**
-        * @override {TS.ArithmeticException}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class NotImplementedException
-    *
-    * @description This exception signals that a function or class is not or not fully implemented and can't be used.
-    *
-    * @extends {TS.Exception}
-    */
-    class NotImplementedException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class DeprecatedException
-    *
-    * @description This exception signals that a function or class should not longer be used.
-    *
-    * @extends {TS.Exception}
-    */
-    class DeprecatedException extends TS.Exception {
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @constructor
-        *
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(message?: string, innerException?: Exception);
-    }
-    /**
-    * @class DirectoryNotFoundException
-    *
-    * @description This exception signals if the filesystem is not able to locate the requested directory.
-    *
-    * @extends {TS.Exception}
-    */
-    class DirectoryNotFoundException extends TS.Exception {
-        /**
-        * @private
-        */
-        private internalArgumentName;
-        /**
-        * @private
-        */
-        private internalArgumentValue;
-        /**
-        * @override {TS.Exception}
-        *
-        * @get {string} type
-        */
-        type: string;
-        /**
-        * @description The name of the argument which caused the exception.
-        *
-        * @get {string} argumentName
-        */
-        argumentName: string;
-        /**
-        * @description The value of the argument which caused the exception.
-        *
-        * @get {string} argumentValue
-        */
-        argumentValue: any;
-        /**
-        * @constructor
-        *
-        * @param {string} argumentName, The name of the argument which caused the exception. Typically the name of a directory variable.
-        * @param {any} argumentValue, The value of the argument which caused the exception. Typically the value of a directory variable.
-        * @param {string} message?, An optional message string.
-        * @param {Exception} innerException?, An optional inner exception.
-        */
-        constructor(argumentName?: string, argumentValue?: string, message?: string, innerException?: Exception);
-    }
-}
-declare namespace TS {
-    /**
-     * @description The module 'Utils' hosts a collection of funcitons which offer solutions for common problems or
-     *  reoccuring tasks which are not class specific. Since they are not class specific, they are also not part of a
-     *  class. They are simply collected in this file and are part of the namespac. You can consider all of this
-     *  functions as static if you like, because you can call them without a prior instantiation of an object.
-     */
-    namespace Utils {
-        /**
-        * @interface ICurrency
-        */
-        interface ICurrency {
-            Name: string;
-            Code: string;
-            Symbol: string;
-        }
-        /**
-         * @description An array of currencies as defined in ISO 4217
-         *
-         * @see {@link http://www.iso.org/iso/home/standards/currency_codes.htm | ISO}
-         */
-        const currencyArray: Array<ICurrency>;
-        /**
-        * @description Searches for all occurrences of 'searchString' in 'sourceString' and returns an array of the
-        *  indexes where the searchstring occurred in the sourceString.
-        *
-        * @param {string} sourceString
-        * @param {string} searchString
-        *
-        * @returns {Array<number>}, An array of indexes where the searchString occurred in the sourceString.
-        */
-        function allIndexOf(sourceString: string, searchString: string): Array<number>;
-        /**
-        * @description Converts a bit string into an array of byte values. The function throws an exceptions if the
-        *  value of argument 'bitString' is not a valid bit string.
-        *
-        * @param {string} bitString, The bit string to convert.
-        *
-        * @returns {Array<number>}, The resulting byte value array which may be empty.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.ArgumentNullUndefOrEmptyException}
-        * @throws {TS.ArgumentNullUndefOrWhiteSpaceException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function bitStringToByteArray(bitString: string): Array<number>;
-        /**
-        * @description Converts the values of the elements in argument 'byteArray' into a bit string representation.
-        *
-        * @param {Array<number>} byteArray, The array of byte values to convert.
-        *
-        * @returns {string}, The resulting bit string.
-        *
-        * @throws {TS.ArgumentNullUndefOrEmptyException}
-        * @throws {TS.InvalidTypeException }
-        */
-        function byteArrayToBitString(byteArray: Array<number>): string;
-        /**
-        * @description Converts an array of unsigned byte values into an unsinged integer value. The function throws an
-        *  exception if the value in argument 'unsignedByteArray' is not a valid byte array or empty. The function throws
-        *  a 'TS.ArgumentOutOfRangeException' if the conversion exceeds the maximum number range. (Number.MAX_SAFE_INTEGER)
-        *
-        * @params {Array<number>} byteArray, An array of unsigned byte values.
-        *
-        * @returns {number}, The result value as unsingned integer.
-        *
-        * @throws {TS.ArgumentNullUndefOrEmptyException}
-        * @throws {TS.InvalidTypeException }
-        * @throws {TS.ArgumentOutOfRangeException}
-        */
-        function byteArrayToUInt(unsignedByteArray: Array<number>): number;
-        /**
-        * @description Converts the value given in argument 'value' into an 8 character bit string. The result string will be
-        *  padded with leading '0' characters if necessary until the length of 8 characters is reached.
-        *
-        * @param {number} value, Has to be a byte value.
-        *
-        * @returns {string}, The 8 character bit string representation of the value.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function byteToBitString(value: number): string;
-        /**
-        * @description Checks whether the value of argument 'parameter' is an ArrayLike type or not. Trows a
-        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not an 'ArrayLike' type. The exceptions
-        *  message uses the 'pparameterNamearamName' and 'functionName' in its message to signal which parameter failed
-        *  the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkArrayLikeParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
-        *  of argument 'parameter' is an array. Throws a 'TS.InvalidTypeException' if the value is not an array. The
-        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
-        *  the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkArrayParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
-        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
-        *  'parameter' is an empty string or whitespace only. Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  Check whether the argument 'parameter' is a valid binary string. (A string which comprises the characters
-        *  "[0,1]" only, with no white space.) Throws a 'TS.InvalidTypeException' if not. The exceptions message uses the
-        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
-        *  received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {string} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.ArgumentNullUndefOrWhiteSpaceException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkBitStringParameter(parameterName: string, parameter: string, functionName: string): void;
-        /**
-        * @description Checks whether the value of argument 'parameter' is a boolean or not. Throws a
-        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not a boolean. The exceptions message uses the
-        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and  which function
-        *  received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkBooleanParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks whether the 'thisContext' is a valid type for a constructor call or not. Throws a
-        *  'TS.InvalidOperationException' if the value of argument 'thisContext' is either null or undefined or not of the
-        *  required type. Throws a 'TS.ArgumentNullOrUndefinedException' if argument 'requiredType' is not specified.
-        *
-        * @param {any} thisContext
-        * @param {any} requiredType
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidOperationException}
-        */
-        function checkConstructorCall(thisContext: any, requiredType: any): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined.
-        *
-        *  Checks also the type of the argument which must evaluate to 'function' and checks whether the function returns
-        *  an object if it is called with the 'new' operator and an empty argument list.
-        *
-        *  The function throws a 'TS.InvalidTypeException' if the call with the 'new' operator fails for any reason or the
-        *  returned value is not an object, an empty object, null or undefined.
-        *
-        *  Attention, even if the check succeeded, the function specified in the argument 'parameter' may not be supposed
-        *  to be called as a constructor function. (To be called with the new operator.) Since JavaScript allows to call
-        *  every function with the new operator there is no way to tell whether a function was supposed to be used as a
-        *  constructor function or not. But at least that check can tell that a call to that function as constructor
-        *  function won't fail and will return an object of any type when the function passed the check.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkConstructorParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description This function checks whether the value of argument 'parameter' is a function or not. If not, a
-        *  'InvalidTypeException' is thrown. The exceptions message uses the 'parameterName' and 'functionName' in its
-        *  message to signal which parameter failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkFunctionParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
-        *  of argument 'parameter' is an integer number in the range [Number.MIN_SAFE_INTEGER...Number.MAX_SAFE_INTEGER]
-        *  and throws a 'TS.InvalidTypeException' if the value is either not an integer, out of range or not a number at
-        *  all. The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
-        *  failed the check and  which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {number} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkIntNumberParameter(parameterName: string, parameter: number, functionName: string): void;
-        /**
-        * @description Checks whether the value of argument 'parameter' is iterable or not. Throws a
-        *  'TS.InvalidTypeException' if the value of argument 'parameter' is not iterable. The exceptions message uses the
-        *  'parameterName' and 'functionName' in its message to signal which parameter failed the check and which function
-        *   received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkIterableParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks whether the value of argument  'parameter' is an array of unsigned byte values. Throws a
-        *  'TS.InvalidTypeException' if not. Checks whether the value of argument 'parameter' is an array with 16, 24 or
-        *  32 elements. Throws a 'TS.ArgumentOutOfRangeException' if not. The exceptions message uses the 'parameterName'
-        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
-        *  invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        * @throws {TS.ArgumentOutOfRangeException}
-        */
-        function checkKeyByteArray(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description This function checks the argument 'parameter' against null, undefined, an empty string and an empty
-        *  array and throws a 'TS.ArgumentNullUndefOrEmptyException' if the argument is either of this. The exceptions
-        *  message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed the check
-        *  and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullUndefOrEmptyException}
-        */
-        function checkNotEmptyParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against undefined and throws a
-        *  'TS.ArgumentUndefinedException' if the argument is undefined. The exceptions message uses the 'parameterName'
-        *  and 'functionName' in its message to signal which parameter failed the check and which function received the
-        *  invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentUndefinedException}
-        */
-        function checkNotUndefinedParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
-        *  of argument 'parameter' is a number. Throws a 'TS.InvalidTypeException' if the value is either not an number.
-        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkNumberParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. The exceptions message uses
-        *  the 'parameterName' and 'functionName' in its message to signal which parameter failed the check and which
-        *  function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        */
-        function checkParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks whether the argument
-        *  'parameter' is a valid string. Throws a 'TS.InvalidTypeException' if not. Checks whether the argument
-        *  'parameter' is an empty string or whitespace only.Throws a 'TS.ArgumentNullUndefOrWhiteSpaceException' if so.
-        *  The exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter
-        *  failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.ArgumentNullUndefOrWhiteSpaceException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkStringParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks whether the value of argument 'parameter' is a valid array of unsigned bytes and throws a '
-        *  TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
-        *  message to signal which parameter failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkUByteArrayParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks whether the value of argument 'parameter' is a valid unsigned byte value and throws a
-        *  'TS.InvalidTypeException' if not. The exceptions message uses the 'parameterName' and 'functionName' in its
-        *  message to signal which parameter failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkUByteParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
-        *   of argument 'parameter' is a integer number in the range [0..Number.MAX_SAFE_INTEGER] or not and throws a
-        *  'TS.InvalidTypeException' if the value is either not an integer, out of range or not  a number at all. The
-        *  exceptions message uses the 'parameterName' and 'functionName' in its message to signal which parameter failed
-        *  the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkUIntNumberParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Checks the value of argument 'parameter' against null and undefined and throws a
-        *  'TS.ArgumentNullOrUndefinedException' if the argument is either null or undefined. Checks also whether the value
-        *  of argument 'parameter' is a TS.TypeCode.UInt64 number. Throws a 'TS.InvalidTypeException' if the value is not
-        *  a  TS.TypeCode.UInt64 integer. The exceptions message uses the 'parameterName' and 'functionName' in its message
-        *  to signal which parameter failed the check and which function received the invalid parameter.
-        *
-        * @param {string} parameterName
-        * @param {any} parameter
-        * @param {string} functionName
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function checkUInt64NumberParameter(parameterName: string, parameter: any, functionName: string): void;
-        /**
-        * @description Takes a sparse array and returns a new created dense array. That is an array where all elements with
-        *  an 'undefined' value are removed. If 'allowNull' is set to false, the elements with a 'null' value gets also
-        *  removed. That is also the default behavior. Returns an empty array if it is called with an invalid argument.
-        *
-        * @param {Array<any>}, sparseArray
-        * @param {boolean} allowNull,  Default = false
-        *
-        * @returns {Array<any>}
-        */
-        function compactArray(sparseArray: Array<any>, allowNull?: boolean): Array<any>;
-        /**
-        * @description Creates a version 4 random GUID which is returned as string in a canonical representation.
-        *
-        * @see {@link http://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29 | Wikipedia }
-        * @see {@link http://www.ietf.org/rfc/rfc4122.txt | IETF }
-        *
-        * @returns {string}, The new created GUID as string.
-        */
-        function createGUID(): string;
-        /**
-        * @description Finds all currency element which matches with the search pattern given in argument 'currency' and
-        *  returns them in an array. The function returns an empty result array if there is no match for the provided
-        *  search pattern.
-        *
-        * @param {string} currency, the search pattern used to identify a currency.
-        *
-        * @returns {Array<ICurrency>}, all matching currencies.
-        */
-        function findAllCurrencies(currency: string): Array<ICurrency>;
-        /**
-        * @description Finds the currency element which matches with the search pattern given in argument 'currency' and
-        *  returns that currency element. If the search pattern leads to multiple results, a 'TS.AmbiguousResultException'
-        *  exceptions gets thrown. The function returns null if there is no match for the provided search pattern.
-        *
-        * @param {string} currency, the search pattern used to identify a currency.
-        * @returns {ICurrency} | null, the identified currency, or null.
-        * @throws {TS.AmbiguousResultException}
-        */
-        function findSingleCurrency(currency: string): ICurrency;
-        /**
-         * @desciption Returns the corresponding value to a given key from the specified enumeration. If the key of enumObj
-         *  is invalid, the returned value will be undefined. If the key is a string and the enumeration has a name value
-         *  with a machting name, that value will be returned. If the key is a number and the enumeration has a named value
-         *  with a matching value, the name of that value will be returned. This function does not implicitly convert
-         *  number strings to numbers. That differs from the normal enum bahavior and is by design. See example
-         *
-         * @example
-         *
-         *  enum testEnum = { ZERO, ONE, TWO };
-         *
-         *  testEnum[2];     // "TWO"
-         *  testEnum["ONE"]; // 1
-         *  testEnum["2"];   // "TWO"
-         *
-         *  getValueFromEnum[2];     // "TWO"
-         *  getValueFromEnum["ONE"]; // 1
-         *  getValueFromEnum["2"];   // undefined
-         *
-         * @param {string | number} key
-         * @param {any} enumObj
-         *
-         * @returns {string | number | undefined}
-         */
-        function getValueFromEnum(key: string | number, enumObj: any): any;
-        /**
-        * @description Searches for the next occurrence of 'searchString' in 'sourceString' beginning at positon
-        *  'startIndex' and returns the position in the string as number. If argument 'startIndex' isn't provided, search
-        *  begins at the last position in 'sourceString'. The search direction is in reverse order. That means the search
-        *  starts at the provided startIndes and goes down two lower indexes during search. Returns -1 if the
-        *  'searchString' doesn't exist in the 'sourceString'.
-        *
-        * @param {string} sourceString
-        * @param {number} startIndex,
-        * @param {string} searchString
-        *
-        * @returns {number}, The position where the searchString was found or -1.
-        */
-        function nextIndexOfReverse(sourceString: string, searchString: string, startIndex?: number): number;
-        /**
-        * @description Takes the string from argument 'path' and returns a new string which is normalized by the following
-        *  rules:
-        *
-        * 1)  Replace all "\" by "/"
-        * 2)  Replace all "/./ by "/"
-        * 3)  Replace all "//" by "/";
-        * 4)  Navigate up one hierarchy level for all '/../' except for those at the root level.
-        * 5)  Remove trailing "/";
-        *
-        * @param {string} path
-        *
-        * @returns {string}
-        */
-        function normalizePath(path: string): string;
-        /**
-        * @description Returns a string which is padded with leading characters as specified in argument 'fillChar' until
-        *  the length provided in argument 'length'is reached. The function returns a copy of the source string if the
-        *  values of the arguments 'fillChar' or 'length' are invalid. A copy of the 'source' string is also returned if
-        *  the length of the source is greater or equal the value of the 'length' parameter. The function doesn't truncate
-        *  the string. The function returns a string consisting of a concatenation of 'fillChar' up to the length given in
-        *  argument 'length' if the argument value of argument 'source' is invalid, null or empty.
-        *
-        * @param {string} source
-        * @param {string} fillChar
-        * @param {number} length
-        *
-        * @returns {string}
-        */
-        function padLeft(source: string, fillChar: string, length: number): string;
-        /**
-        * @description Removes the BOM from an UTF-8 encoded file.
-        *
-        * @param {string} text
-        *
-        * @returns {string}
-        */
-        function removeUTF8BOM(text: string): string;
-        /**
-        * @description Retuns a string representation in hexadecimal notation of the unsigned 8 bit value provided in
-        *  argument 'value'. The returned string has a fixed lenght of 2 characters. Number values below 16 are padded with
-        *  a leading '0' character.
-        *
-        * @param {number}, value
-        *
-        * @returns {string}, A 2 characters string representing the UByte value.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        * @throws {TS.ArgumentOutOfRangeException}
-        */
-        function UByteToHexString(value: number): string;
-        /**
-        * @description Converts the unsigned 32 bit integer number in argument 'value' into an array of 4 byte values and
-        *  returns that array. The array will be padded with leading 0 byte values for lower numbers until the length of 4
-        *  byte values is reached.
-        *
-        * @param {number} value
-        *
-        * @returns {Array<number>}, An array of 4 byte values.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        * @throws {TS.ArgumentOutOfRangeException}
-        */
-        function UInt32To4ByteArray(value: number): Array<number>;
-        /**
-        * @description Retuns a string representation in hexadecimal notation of the unsingned 32 bit integer value
-        *  provided in arguemnt 'value'. The returned string has a fixed lenght of 8 characters. The returned string will
-        *  be padded with as much leading '0' as necessary to reach the length of 8 characters.
-        *
-        * @param {number}, value
-        *
-        * @returns {string}, A string of 8 characters representing the UInt32 value.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        * @throws {TS.ArgumentOutOfRangeException}
-        */
-        function UInt32ToHexString(value: number): string;
-        /**
-        * @description Converts the unsigned integer number in argument 'value' into an array of byte values and returns
-        *  that array. The array has as much elements as necessary to represent the value given in argument 'value'.
-        *
-        * @param {number} value, Has to be an unsigned integer.
-        *
-        * @returns {Array<number>}, An array of byte values.
-        *
-        * @throws {TS.ArgumentNullOrUndefinedException}
-        * @throws {TS.InvalidTypeException}
-        */
-        function UIntToByteArray(value: number): Array<number>;
-    }
-}
-declare namespace TS {
-    namespace Utils {
-        /**
-        * @description A collection of assertion functions. Those are functions which take on argument and return a boolean value.
-        *  The boolean value describes whether the argument satisfies a specific condition or not.
-        */
-        namespace Assert {
-            /**
-            * @description Returns true if the type of the argument 'source' is an arguments type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isArguments(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is an array type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isArray(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is an array like type, otherwise false. Array
-            *  like types are collections like the arguments collection or DOM collections. They have a length property but
-            *  they are actually not arrays because they have no indexer.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isArrayLike(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a none empty binary string. If the string
-            *  contains other characters than '0' and '1', even white space, the return value will be false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isBinaryString(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a boolean type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isBooleanValue
-            * @see TS.Utils.Assert.isBooleanObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isBoolean(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a boolean object type created with
-            *  'new Boolean()', otherwise false.
-            *
-            * @see TS.Utils.Assert.isBooleanValue
-            * @see TS.Utils.Assert.isBoolean
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isBooleanObject(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a boolean value type (true or false),
-            *  otherwise false.
-            *
-            * @see TS.Utils.Assert.isBoolean
-            * @see TS.Utils.Assert.isBooleanObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isBooleanValue(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an array of byte values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isByteValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isByteArray(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is in the  ranche of signed byte values
-            *  [-127 .. 127], otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isByteValue(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is considered a valid constructor function which
-            *  creates a none empty object, otherwise false.
-            *  An empty object is one which can be created using an object literal like '{}' or calling the Object
-            *  constructor with a null argument 'new Object(null)'. If the constructor function returns such an object the
-            *  constructor will fail the test.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isConstructor(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a date object type created with 'new Date()',
-            *  otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isDate(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a none empty decimal string. If the string
-            *  contains other characters than [0-9], even white space, the return value will be false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isDecimalString(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a dense array type. That means the array
-            *  contains no element which is undefined. Returns false otherwise.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isDenseArray(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an enum type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isEnum(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a function type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isFunction(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a generator object type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isGenerator(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a none empty hexadecimal string. If the
-            *  string contains other characters than [0-9, A-F, a-f], even white space, the return value will be false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isHexString(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an infinite number value type, otherwise
-            *  false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isNumberObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isInfiniteNumber(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is an integer number in the range of
-            *  [Number.MIN_SAFE_INTEGER..Number.MAX_SAFE_INTEGER], otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isPositiveIntegerNumber
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isIntegerNumber(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is an iterable value, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isIterable(source: any): boolean;
-            /**
-            * @description This function is just a wrapper around the 'Number.isNaN' function. It's only purpose is to make
-            *  the assertion functions available in on place.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNaN(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a negative infinite number value type,
-            *  otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isNumberObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNegativInfiniteNumber(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is null, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNull(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is null or undefined, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNullOrUndefined(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is either null or undefined or an empty string
-            *  or array. The function returns false for all argument values which are neither null or undefined nor an empty
-            *  array or empty string.
-            *
-            * @param {Array<any> | string} source
-            *
-            * @returns {boolean}
-            */
-            function isNullUndefOrEmpty(source: Array<any>): boolean;
-            function isNullUndefOrEmpty(source: string): boolean;
-            /**
-            * @description Returns true if the argument value is either null or undefined or is a string wich is either empty
-            *  or contains only white space characters.
-            *
-            * @param {string} source
-            *
-            * @returns {boolean}
-            */
-            function isNullUndefOrWhiteSpace(source: string): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a number type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isIntegerNumber
-            * @see TS.Utils.Assert.isNumberObject
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isPositiveIntegerNumber
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNumber(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a number object type created with
-            *  'new Number()', otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            *
-            * @param {any} source
-            * @returns {boolean}
-            */
-            function isNumberObject(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a number value type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isNumberValue(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an object type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isObject(source: any): boolean;
-            /**
-            * @description Returns true if the type of argument 'source' is a plain object otherwise false.
-            *
-            * @example
-            *
-            * function Foo() {
-            *   this.a = 1;
-            * }
-            *
-            * isPlainObject(new Foo()) => false
-            *
-            * isPlainObject([1, 2, 3]) => false
-            *
-            * isPlainObject({ 'x': 0, 'y': 0 }) => true
-            *
-            * isPlainObject(Object.create(null)) => true
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isPlainObject(source: any): boolean;
-            /**
-            * @description Returns true if the type of argument 'source' is a primitive type. A primitive type is a type
-            *  which is boolean | null | undefined | number | string | symbol. Every other type is considered a complex
-            *  type.
-            *
-            * @see { @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures | JavaScript data types and data structures}
-            *
-            * @example
-            *
-            * isPrimitiveType(true) => true
-            *
-            * isPrimitiveType(null) => true
-            *
-            * isPrimitiveType(undefined) => true
-            *
-            * isPrimitiveType(12) => true
-            *
-            * isPrimitiveType(1.2) => true
-            *
-            * isPrimitiveType("One") => true
-            *
-            * isPrimitiveType([1, 2, 3]) => false
-            *
-            * isPrimitiveType({}) => false
-            *
-            * isPrimitiveType(new Boolean(false)) => false
-            *
-            * isPrimitiveType(new Number(13)) => false
-            *
-            * isPrimitiveType(new String("two")) => false
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isPrimitiveType(source: any): boolean;
-            /**
-            * @description  Returns true if the type of the argument 'source' is a regular expression type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isRegEx(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isStringLiteral
-            * @see TS.Utils.Assert.isStringObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isString(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an array of string values, otherwise false.
-            *
-            * @see TS.Utils.Assert.isStringValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isStringArray(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string object type created with
-            *  'new String()', otherwise false.
-            *
-            * @see TS.Utils.Assert.isString
-            * @see TS.Utils.Assert.isStringLiteral
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isStringObject(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a string value type, otherwise false.
-            *
-            * @see TS.Utils.Assert.isString
-            * @see TS.Utils.Assert.isStringObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isStringValue(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a symbol type, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isSymbol(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is undefined, otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUndefined(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is an array of unsinged byte values, otherwise
-            *  false.
-            *
-            * @see TS.Utils.Assert.isUnsignedByteValue
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedByteArray(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is in the ranche of unsigned byte values
-            *  [0 .. 255], otherwise false.
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedByteValue(source: any): boolean;
-            /**
-            * @description Returns true if the type of the argument 'source' is a positive infinite number value type,
-            *  otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isNumberValue
-            * @see TS.Utils.Assert.isNumberObject
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedInfiniteNumber(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is a valid integer number in the range of
-            *  [0..Number.MAX_SAFE_INTEGER], otherwise false.
-            *
-            * @see TS.Utils.Assert.isNumber
-            * @see TS.Utils.Assert.isIntegerNumber
-            *
-            * @param {any} source
-            *
-            * @returns {boolean}
-            */
-            function isUnsignedIntegerNumber(source: any): boolean;
-            /**
-            * @description Returns true if the value of the argument 'source' is a valid element of the enumeration in
-            *  argument 'enumObj'. This function does not implicitly convert number strings to numbers. That differs from the
-            *  normal enum bahavior and is by design. See example.
-            *
-            * @example
-            *
-            *  enum testEnum = { ZERO, ONE, TWO };
-            *
-            *  testEnum[2];     // "TWO"  -> 2 accepted as valid enum member
-            *  testEnum["ONE"]; // 1      -> "ONE" accepted as valid enum member
-            *  testEnum["2"];   // "TWO"  -> "2" accepted as valid enum member
-            *
-            *  isValueOfEnum[2];     // true   -> 2 accepted as valid enum member
-            *  isValueOfEnum["ONE"]; // true   -> "ONE" accepted as valid enum member
-            *  isValueOfEnum["2"];   // false  -> "2" NOT accepted as valid enum member
-            *
-            * @param {number | string} source
-            * @param {Object} enumObj
-            *
-            * @returns {boolean}
-            */
-            function isValueOfEnum(source: number | string, enumObj: any): boolean;
-        }
-    }
-}
+/// <reference path="../TypeScript-Base/TS-Base.d.ts" />
 declare namespace TS {
     namespace Linq {
         /**
-         * @class
-         *
-         * @description This exceptions signals an error which occured in a selector function for specific value.
-         *
-         * @extends {TS.Exception}
-         */
+        * @class TS.Linq.SelectorException
+        *
+        * @description This exceptions signals an error which occured in a selector function for specific value.
+        *
+        * @extends {TS.Exception}
+        */
         class SelectorException extends TS.Exception {
             /**
             * @private
@@ -1755,7 +18,9 @@ declare namespace TS {
             */
             private internalValue;
             /**
-            * @override {TS.Exception}
+            * @override
+            *
+            * @get {string} type
             */
             type: string;
             /**
@@ -1772,6 +37,7 @@ declare namespace TS {
             value: any;
             /**
             * @constructor
+            *
             * @param {(item: any) => Enumerator<any>} selector
             * @param {any} value
             * @param {string} message?
@@ -1780,6 +46,7 @@ declare namespace TS {
             constructor(selector: (item: any) => Enumerator<any>, value: any, message?: string, innerException?: TS.Exception);
             /**
             * @constructor
+            *
             * @param { (item: any) => Array<any>} selector
             * @param {any} value
             * @param {string} message?
@@ -1788,6 +55,7 @@ declare namespace TS {
             constructor(selector: (item: any) => Array<any>, value: any, message?: string, innerException?: TS.Exception);
             /**
             * @constructor
+            *
             * @param { (item: any) =>any} selector
             * @param {any} value
             * @param {string} message?
@@ -1796,19 +64,21 @@ declare namespace TS {
             constructor(selector: (item: any) => any, value: any, message?: string, innerException?: TS.Exception);
         }
         /**
-         * @class
-         *
-         * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
-         *
-         * @extends {TS.Exception}
-         */
+        * @class TS.Linq.EmptyEnumeratorException
+        *
+        * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
+        *
+        * @extends {TS.Exception}
+        */
         class EmptyEnumeratorException extends TS.Exception {
             /**
             * @private
             */
             private internalEnumerator;
             /**
-            * @override {TS.Exception}
+            * @override
+            *
+            * @get {string} type
             */
             type: string;
             /**
@@ -1818,19 +88,41 @@ declare namespace TS {
             */
             enumerator: Iterable<any>;
             /**
-            *  @constructor
+            * @constructor
+            *
+            * @param {Iterable<any>} enumerator
+            * @param {string}  message?
             */
             constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception);
         }
+        /**
+        * @class TS.Linq.MoreThanOneElementException
+        *
+        * @description This exceptions signals an error in a function where only one element is allowed but multiple
+        *  elements are available.
+        *
+        * @extends {TS.Exception}
+        */
         class MoreThanOneElementException extends TS.Exception {
+            /**
+            * @private
+            */
             private internalEnumerator;
             /**
-            * @overwrite
+            * @override
+            *
+            * @get {string} type
             */
             type: string;
+            /**
+            * @description The enumerator which caused the exception.
+            *
+            * @get {Iterable<any>} enumerator
+            */
             enumerator: Iterable<any>;
             /**
             * @constructor
+            *
             * @param {Iterable<any>} enumerator
             * @param {string} message?
             * @param {TS.Exception} innerException)
@@ -1842,10 +134,10 @@ declare namespace TS {
 declare namespace TS {
     namespace Linq {
         /**
-        * @class  BaseEnumerator<T>
+        * @class TS.Linq.BaseEnumerator<T>
         *
-        * @description  The main purpose of this class is to implement the extension functions defined in 'TS.Linq.Extensions'
-        *  in order to make them available in subclasses.
+        * @description  The main purpose of this class is to implement the extension functions defined in
+        *  'TS.Linq.Extensions' in order to make them available in subclasses.
         *
         * @abstract
         *
@@ -1853,8 +145,10 @@ declare namespace TS {
         */
         abstract class BaseEnumerator<T> implements Iterable<T> {
             /**
-             * @implements {Iterable<T>}
-             */
+            * @abstract
+            *
+            * @implements {Iterable<T>}
+            */
             abstract [Symbol.iterator](): Iterator<T>;
             /**
             * @description Applies an accumulator function over a sequence.
@@ -1872,7 +166,8 @@ declare namespace TS {
             */
             aggregate(accumulator: (first: T, second: T) => T): T;
             /**
-            * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
+            * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial
+            *  accumulator value.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -1957,11 +252,9 @@ declare namespace TS {
             concat(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
             * @description Determines whether a sequence contains a specified element by using the default equality comparer.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in
-            *  the enumeration matches with the specified search element.
-            *  This function may produce results that differ from the C# counterpart,
-            *  because the comparsion operators have different implementations in C#
-            *  and javascript.
+            *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in the
+            *  enumeration matches with the specified search element. This function may produce results that differ from the
+            *  C# counterpart, because the comparsion operators have different implementations in C# and javascript.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2015,16 +308,14 @@ declare namespace TS {
             */
             count(predicate: (item: T) => boolean): number;
             /**
-            * @description This function retuns an endless number of elements from the underlying sequence by running over the
-            *  that sequence in cycles.
-            *  The function enumerates the elements of the base sequence from the start to then end
-            *  and starts over with the first element as soon as the last element is reached.
-            *  This function will never run out of data. There is one exception of that rule. If the underlying
-            *  sequence is an empty sequence, the cycle function will never give a result.
+            * @description This function retuns an endless number of elements from the underlying sequence by running over
+            *  that sequence in cycles. The function enumerates the elements of the base sequence from the start to then end
+            *  and starts over with the first element as soon as the last element is reached. This function will never run
+            *  out of data. There is one exception of that rule. If the underlying sequence is an empty sequence, the cycle
+            *  function will never give a result.
             *
             *  Attention:
-            *  Use this function with a subsequent call to 'take' to limit the output or you will run out
-            *  of memory.
+            *  Use this function with a subsequent call to 'take' to limit the output or you will run out of memory.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2035,12 +326,13 @@ declare namespace TS {
             */
             cycle(): TS.Linq.Enumerator<T>;
             /**
-            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is empty.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is
+            *  empty. That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue'
+            *  in the signature. That argument is needed because javascript doesn't offer reflections or a type system which
+            *  you can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you
+            *  are dealing with a complex type or which default value to use when you are dealing with a primitive type. The
+            *  only way to make sure that you get the right type at runtime is to place the default constructor or value in
+            *  the parameter list of that function.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2101,11 +393,12 @@ declare namespace TS {
             /**
             * @description Returns the element at a specified index in a sequence or a default value
             *  if the index is out of the range of the sequence.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflections or a type system which you
+            *  can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2141,7 +434,8 @@ declare namespace TS {
             */
             except(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
-            * @description Produces the set difference of two sequences by using the specified equality comparer to compare values.
+            * @description Produces the set difference of two sequences by using the specified equality comparer to compare
+            *  values.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2185,11 +479,12 @@ declare namespace TS {
             first(predicate: (item: T) => boolean): T;
             /**
             * @description Returns the first element of a sequence, or a default value if the sequence contains no elements.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflections or a type system which you
+            *  can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2206,12 +501,13 @@ declare namespace TS {
                 new (): T;
             } | T): T;
             /**
-            * @description Returns the first element of the sequence that satisfies a condition or a default value if no element satisfied the condition.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the first element of the sequence that satisfies a condition or a default value if no
+            *  element satisfied the condition. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2229,13 +525,10 @@ declare namespace TS {
                 new (): T;
             } | T, predicate: (item: T) => boolean): T;
             /**
-            * @description Performs the specified action on each element of the underlying sequence.
-            *  This function is not a Linq function.
-            *  I implemented this extension for your convenience. Without that function
-            *  you had to call 'toArray' first before you could use the array method
-            *  for each. Please read the article below from 'Eric Lippert's' blog to
-            *  make sure that you understand all the implications of this extension
-            *  function.
+            * @description Performs the specified action on each element of the underlying sequence. This function is not a
+            *  Linq function. I implemented this extension for your convenience. Without that function you had to call
+            *  'toArray' first before you could use the array method for each. Please read the article below from
+            *  'Eric Lippert's' blog to make sure that you understand all the implications of this extension function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2283,9 +576,9 @@ declare namespace TS {
             */
             groupBy<TKey>(keySelector: (item: T) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<TS.Linq.Grouping<TKey, T>>;
             /**
-            * @description Groups the elements of a sequence according to a specified key selector function and projects the elements
-            *  for each group by using a specified selector function. The keys are compared by using the specified comparer in argument
-            *  'equalityComparer' if provided.
+            * @description Groups the elements of a sequence according to a specified key selector function and projects the
+            *  elements for each group by using a specified selector function. The keys are compared by using the specified
+            *  comparer in argument 'equalityComparer' if provided.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2302,8 +595,8 @@ declare namespace TS {
             */
             groupBy<TKey, TElement>(keySelector: (item: T) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean, elementSelector: (item: T) => TElement): TS.Linq.Enumerator<TS.Linq.Grouping<TKey, TElement>>;
             /**
-            * @description Correlates the elements of two sequences based on equality of keys and groups the results.
-            *  The default equality comparer is used to compare the keys.
+            * @description Correlates the elements of two sequences based on equality of keys and groups the results. The
+            *  default equality comparer is used to compare the keys.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2321,8 +614,8 @@ declare namespace TS {
             */
             groupJoin<TInner, TKey, TResult>(innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: T) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: T, group: Iterable<TInner>) => TResult): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Correlates the elements of two sequences based on key equality and groups the results.
-            *  A specified equalityComparer is used to compare the keys.
+            * @description Correlates the elements of two sequences based on key equality and groups the results. A specified
+            *  equalityComparer is used to compare the keys.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2341,7 +634,8 @@ declare namespace TS {
             */
             groupJoin<TInner, TKey, TResult>(innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: T) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: T, group: Iterable<TInner>) => TResult, equalityComparer: <TKey>(outerKey: TKey, innerKey: TKey) => boolean): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Produces the set intersection of two sequences by using the default equality comparer (===) to compare values.
+            * @description Produces the set intersection of two sequences by using the default equality comparer (===) to
+            *  compare values.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2356,7 +650,8 @@ declare namespace TS {
             */
             intersect(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
-            * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare values.
+            * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare
+            *  values.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2390,8 +685,8 @@ declare namespace TS {
             */
             join<TInner, TKey, TResult>(innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: T) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: T, innerItem: TInner) => TResult): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Returns the last element of a sequence.
-            *  Returns the last element of a sequence that satisfies the predicate function if specified.
+            * @description Returns the last element of a sequence. Returns the last element of a sequence that satisfies the
+            *  predicate function if specified.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2407,11 +702,12 @@ declare namespace TS {
             last(predicate?: (item: T) => boolean): T;
             /**
             * @description Returns the last element of a sequence, or a default value if the sequence contains no elements.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+            *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2428,12 +724,13 @@ declare namespace TS {
                 new (): T;
             } | T): T;
             /**
-            * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if no such element is found.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if
+            *  no such element is found. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2541,17 +838,15 @@ declare namespace TS {
             */
             orderByDescending<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>;
             /**
-            * @description Retuns random elements from the base enumeration.
-            *  This function is not a Linq function.
-            *  The function uses a generator to select the current random element. For that reason the
-            *  function will return as much elements as required, regardless how much elements the underlying
-            *  sequence holds.
+            * @description Retuns random elements from the base enumeration. This function is not a Linq function. The
+            *  function uses a generator to select the current random element. For that reason the function will return as
+            *  much elements as required, regardless how much elements the underlying sequence holds.
             *
             *  The function throws a 'TS.Linq.EmptyEnumeratorException' If the underlying sequence is empty.
             *
             *  Attention:
-            *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-            *  Otherwise you will run out fo memory.
+            *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator. Otherwise
+            *  you will run out fo memory.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2588,7 +883,8 @@ declare namespace TS {
             */
             select<TResult>(selector: (item: T) => TResult): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences into one sequence
+            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences
+            *  into one sequence
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2604,7 +900,8 @@ declare namespace TS {
             */
             selectMany<TResult>(selector: (item: T) => Iterable<TResult>): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Determines whether two sequences are equal by comparing their elements using the default equality comparer (===).
+            * @description Determines whether two sequences are equal by comparing their elements using the default equality
+            *  comparer (===).
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2619,7 +916,8 @@ declare namespace TS {
             */
             sequenceEqual(secondEnumerator: Iterable<T>): boolean;
             /**
-            * @description Determines whether two sequences are equal by comparing their elements using a specified equalityComparer.
+            * @description Determines whether two sequences are equal by comparing their elements using a specified
+            *  equalityComparer.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2635,7 +933,8 @@ declare namespace TS {
             */
             sequenceEqual(secondEnumerator: Iterable<T>, equalityComparer: (first: T, second: T) => boolean): boolean;
             /**
-            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator but in randomized order.
+            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator
+            *  but in randomized order.
             *
             *  This function is not a Linq function.
             * @description Extension function.
@@ -2649,7 +948,8 @@ declare namespace TS {
             */
             shuffle(): TS.Linq.Enumerator<T>;
             /**
-            * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element in the sequence.
+            * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element
+            *  in the sequence.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2664,7 +964,8 @@ declare namespace TS {
             */
             single(): T;
             /**
-            * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception if more than one such elements exists.
+            * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception
+            *  if more than one such elements exists.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2681,13 +982,13 @@ declare namespace TS {
             */
             single(predicate: (item: T) => boolean): T;
             /**
-            * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method throws an
-            *  exception if there is more than one element in the sequence.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method
+            *  throws an exception if there is more than one element in the sequence. That function differs from the .NET
+            *  counterpart in that way that is has a 'defaultConstructorOrValue' in the signature. That argument is needed
+            *  because javascript doesn't offer reflection or a type system which you can rely on at runtime. Hence there is
+            *  no way to tell which constructor to use for the default when you are dealing with a complex type or which
+            *  default value to use when you are dealing with a primitive type. The only way to make sure that you get the
+            *  right type at runtime is to place the default constructor or value in the parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2704,13 +1005,14 @@ declare namespace TS {
                 new (): T;
             } | T): T;
             /**
-            * @description Returns the only element of a sequence that satisfies a specified condition or a default value
-            *  if no such element exists, This method throws an exception if more than one element satisfie the condition.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the only element of a sequence that satisfies a specified condition or a default value if
+            *  no such element exists, This method throws an exception if more than one element satisfie the condition. That
+            *  function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+            *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2744,13 +1046,14 @@ declare namespace TS {
             */
             skip(count: number): TS.Linq.Enumerator<T>;
             /**
-            * @description Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements.
+            * @description Bypasses elements in a sequence as long as a specified condition is true and then returns the
+            *  remaining elements.
             * @description Extension function.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.skipwhile.aspx | MSDN}
             *
-            * @parem {(item: T) => boolean} predicate
+            * @param {(item: T) => boolean} predicate
             *
             * @returns {TS.Linq.Enumerator<Te>}
             *
@@ -2814,7 +1117,8 @@ declare namespace TS {
             */
             toArray(): Array<T>;
             /**
-            * @description Creates a Dictionary<TKey, TSource> from an Iterable<TSource> according to a specified key selector function.
+            * @description Creates a Dictionary<TKey, TSource> from an Iterable<TSource> according to a specified key
+            *  selector function.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb549277(v=vs.110).aspx | MSDN }
@@ -2832,7 +1136,8 @@ declare namespace TS {
              */
             toDictionary<TKey>(keySelector: (item: T) => TKey): TS.Collections.Dictionary<TKey, T>;
             /**
-            * @description Creates a List<TSource> from an Iterable<TSource>. The list will have the 'allowNull' flag set to true.
+            * @description Creates a List<TSource> from an Iterable<TSource>. The list will have the 'allowNull' flag set to
+            *  true.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -2845,9 +1150,9 @@ declare namespace TS {
             */
             toList(): TS.Collections.List<T>;
             /**
-            * @description Produces the set union of two sequences by using the strict comparsion operator (===).
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have different
-            *  implementations in C# and javascript.
+            * @description Produces the set union of two sequences by using the strict comparsion operator (===). This
+            *  function may produce results that differ from the C# counterpart, because the comparsion operators have
+            *  different implementations in C# and javascript.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2862,14 +1167,15 @@ declare namespace TS {
             */
             union(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
-            * @description Produces the set union of two sequences by using the comparsion operator provide in argument 'equalityComparer'.
+            * @description Produces the set union of two sequences by using the comparsion operator provide in argument
+            *  'equalityComparer'.
             * @description Extension function.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb358407.aspx | MSDN}
             *
             * @param {Iterable<T>} secondEnumerator
-            * @parem {(first: T, second: T) => boolean} equalityComparer?
+            * @param {(first: T, second: T) => boolean} equalityComparer?
             *
             * @returns {TS.Linq.Enumerator<T>}
             *
@@ -2893,11 +1199,12 @@ declare namespace TS {
             */
             where(predicate: (item: T) => boolean): TS.Linq.Enumerator<T>;
             /**
-            * @description Applies a specified function to the corresponding elements of two sequences, producing a sequence of the results.
+            * @description Applies a specified function to the corresponding elements of two sequences, producing a sequence
+            *  of the results.
             * @description Extension function.
             * @description Deferred execution.
             *
-            * @see {@linkhttps://msdn.microsoft.com/en-us/library/dd267698(v=vs.110).aspx | MSDN}
+            * @see {@link https://msdn.microsoft.com/en-us/library/dd267698(v=vs.110).aspx | MSDN}
             *
             * @param {Iterable<TSecond>} secondEnum
             * @param {(firt: TFirst, second: TSecond) => TResult} func
@@ -2914,14 +1221,16 @@ declare namespace TS {
 declare namespace TS {
     namespace Linq {
         /**
-        * @class
-    
-        * @descripton  The 'TS.Linq.Enumerator' class is used by the Linq extension functions. The Enumerator class is the TypeScript equivalent to
-        *  the ES6 Iteration protocols.
+        * @class TS.Linq.Enumerator<T>
+        *
+        * @descripton  The 'TS.Linq.Enumerator' class is used by the Linq extension functions. The Enumerator class is the
+        *  TypeScript equivalent to the ES6 Iteration protocols.
         *
         * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols | MDN}
+        *
+        * @extends {TS.Linq.BaseEnumerator<T>}
         */
-        class Enumerator<T> extends BaseEnumerator<T> {
+        class Enumerator<T> extends TS.Linq.BaseEnumerator<T> {
             /**
             * @private
             */
@@ -2933,47 +1242,48 @@ declare namespace TS {
             */
             static Empty: Enumerator<any>;
             /**
-             * @description This function returns the Iterator of the current Enumerator as soon
-             *   as an iteration starts. E.g. when a 'for ( let x of enumerator)' is called.
-             *
-             * @implements {BaseEnumerator<T>}
-             *
-             * @returns {IterableIterator<T>}, an instance of the iterator type.
-             */
+            * @description This function returns the Iterator of the current Enumerator as soon as an iteration starts. E.g.
+            *  when a 'for ( let x of enumerator)' is called.
+            *
+            * @implements {BaseEnumerator<T>}
+            *
+            * @returns {IterableIterator<T>}, An instance of the iterator type.
+            */
             [Symbol.iterator](): Iterator<T>;
             /**
-             * @constructor
-             *
-             * @description This constructor of the 'TS.Linq.Enumerator' class takes a  generator function as source.
-             *  The generator creates the elements which get treated as the underlying collection of this enumerator.
-             *  The constructor throws an expection if the generator is invalid.
-             *
-             * @param {() => IterableIterator<T>} generator
-             *
-             * @throws {TS.InvalidInvocationException}
-             * @throws {TS.ArgumentNullOrUndefinedException}
-             */
+            * @constructor
+            *
+            * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes a  generator function as source. The
+            *  generator creates the elements which get treated as the underlying collection of this enumerator. The
+            *  constructor throws an expection if the generator is invalid.
+            *
+            * @param {() => IterableIterator<T>} generator
+            *
+            * @throws {TS.InvalidInvocationException}
+            * @throws {TS.ArgumentNullOrUndefinedException}
+            */
             constructor(generator: () => IterableIterator<T>);
             /**
-             * @constructor
-             *
-             * @description This constructor of the 'TS.Linq.Enumerator' class takes any iterable object or an array like object as source.
-             *  The predicate function defines which element becomes an element of underlying collection of this enumerator.
-             *  The constructor throws an expection if the source isn't iterable an array like object or if the predicate function is invalid.
-             *
-             * @param {Iterable<T>} source
-             * @param {(item: T) => boolean} predicate
-             *
-             * @throws {TS.InvalidInvocationException}
-             * @throws {TS.ArgumentNullOrUndefinedException}
-             */
+            * @constructor
+            *
+            * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes any iterable object or an array like
+            *  object as source. The predicate function defines which element becomes an element of underlying collection of
+            *  this enumerator. The constructor throws an expection if the source isn't iterable an array like object or if
+            *  the predicate function is invalid.
+            *
+            * @param {Iterable<T>} source
+            * @param {(item: T) => boolean} predicate
+            *
+            * @throws {TS.InvalidInvocationException}
+            * @throws {TS.ArgumentNullOrUndefinedException}
+            */
             constructor(source: Iterable<T> | ArrayLike<T>, predicate?: (item: T) => boolean);
         }
     }
 }
 declare namespace TS {
     namespace Linq {
-        module Extensions {
+        namespace Extensions {
             /**
             * @description Applies an accumulator function over a sequence.
             * @description Immediate execution.
@@ -3389,7 +1699,7 @@ declare namespace TS {
             * @param {Iterable<TSource>} enumerator
             * @param {(item: TSource) => void } action
             *
-            * @retuns {Iterable<TSource>}
+            * @retuns {TS.Linq.Enumerator<TSource>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -3680,7 +1990,7 @@ declare namespace TS {
             * @param {Iterable<TSource>} enumerator
             * @param {(item: TSource) => TKey} keySelector
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -3696,12 +2006,12 @@ declare namespace TS {
             * @param {(item: TSource) => TKey} keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>;
+            function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Sorts the elements of a sequence in descending order according to a key.
             * @description Deferred execution.
@@ -3711,12 +2021,12 @@ declare namespace TS {
             * @param {Iterable<TSource>} enumerator
             * @param {(item: TSource) => TKey} keySelector
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>;
+            function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Sorts the elements of a sequence in descending order by using a specified comparer.
             * @description Deferred execution.
@@ -3727,12 +2037,12 @@ declare namespace TS {
             * @param {(item: TSource) => TKey} keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>;
+            function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Retuns random elements from the base enumeration.
             *  The function uses a generator to select the current random element. For that reason the
@@ -3987,7 +2297,7 @@ declare namespace TS {
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.skipwhile.aspx | MSDN}
             *
             * @param {Iterable<TSource>} enumerator
-            * @parem {(item: TSource) => boolean} predicate
+            * @param {(item: TSource) => boolean} predicate
             *
             * @returns {TS.Linq.Enumerator<TSource>}
             *
@@ -4048,31 +2358,31 @@ declare namespace TS {
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb534743.aspx | MSDN}
             *
-            * @param {IOrderedEnumerator<TSource>} enumerator
+            * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
             * @param { (item: TSource) => TKey } keySelector
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function thenBy<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>;
+            function thenBy<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Performs a subsequent ordering of the elements in a sequence in ascending order by using a specified comparer.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb534500.aspx | MSDN}
             *
-            * @param {IOrderedEnumerator<TSource>} enumerator
+            * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
             * @param { (item: TSource) => TKey } keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function thenBy<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>;
+            function thenBy<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to
             *  the specified key. This function uses a default comparer. The result may differ from the C# counterpart
@@ -4081,31 +2391,31 @@ declare namespace TS {
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb534736.aspx | MSDN}
             *
-            * @param {IOrderedEnumerator<TSource>} enumerator
+            * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
             * @param { (item: TSource) => TKey } keySelector
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function thenByDescending<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>;
+            function thenByDescending<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the specified key and comparer.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb534489.aspx | MSDN}
             *
-            * @param {IOrderedEnumerator<TSource>} enumerator
+            * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
             * @param { (item: TSource) => TKey } keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<TSource, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function thenByDescending<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>;
+            function thenByDescending<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
             * @description Creates an Array<TSource> from an Iterable<TSource>
             * @description Immediate execution.
@@ -4136,7 +2446,7 @@ declare namespace TS {
             * @throws {TS.Collections.DuplicateKeyException}
             * @throws {TS.InvalidTypeException}
             * @throws {TS.InvalidOperationException}
-             */
+            */
             function toDictionary<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): TS.Collections.Dictionary<TKey, TSource>;
             /**
             * @description Creates a List<TSource> from an Iterable<TSource>. The list will have the 'allowNull' flag set to true.
@@ -4176,7 +2486,7 @@ declare namespace TS {
             *
             * @param {Iterable<TSource>} firstEnumerator
             * @param {Iterable<TSource>} secondEnumerator
-            * @parem {(first: TSource, second: TSource) => boolean} equalityComparer?
+            * @param {(first: TSource, second: TSource) => boolean} equalityComparer?
             *
             * @returns {TS.Linq.Enumerator<TSource>}
             *
@@ -4214,14 +2524,14 @@ declare namespace TS {
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
-            function zip<TFirst, TSecond, TResult>(firstEnum: Iterable<TFirst>, secondEnum: Iterable<TSecond>, func: (firt: TFirst, second: TSecond) => TResult): TS.Linq.Enumerator<TResult>;
+            function zip<TFirst, TSecond, TResult>(firstEnum: Iterable<TFirst>, secondEnum: Iterable<TSecond>, func: (first: TFirst, second: TSecond) => TResult): TS.Linq.Enumerator<TResult>;
         }
     }
 }
 declare namespace TS {
     namespace Linq {
         /**
-        * interface IOrderedEnumerator<T>
+        * interface TS.Linq.IOrderedEnumerator<T>
         */
         interface IOrderedEnumerator<T> {
             /**
@@ -4234,7 +2544,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Linq {
         /**
-        * @class OrderedEnumerator<T, TKey>
+        * @class TS.Linq.OrderedEnumerator<T, TKey>
         *
         * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call to a sort function operate on
         *  the partitions of the enumerator elements without changing the order of previous sortings.
@@ -4258,32 +2568,39 @@ declare namespace TS {
             /**
             * @description Property which returns an empty 'OrderedEnumerator'.
             *
-            * @get {TS.Liny.OrderedEnumerator<any, any>}
+            * @get {TS.Liny.OrderedEnumerator<any, any>} Empty
             */
             static Empty: OrderedEnumerator<any, any>;
             /**
-             * @implements {TS.Linq.BaseEnumerator<T>}
-             *
-             * @returns {Iterator<T>}, an instance of the iterator type.
-             */
+            * @implements {TS.Linq.BaseEnumerator<T>}
+            *
+            * @returns {Iterator<T>}, An instance of the iterator type.
+            */
             [Symbol.iterator](): Iterator<T>;
             /**
-             * @implements {TS.Linq.IOrderedEnumerator<T>}
-             *
-             * @returns {Iterator<Iterator<T>}, an instance of the partitioned iterator type.
-             */
+            * @implements {TS.Linq.IOrderedEnumerator<T>}
+            *
+            * @returns {Iterator<Iterator<T>}, An instance of the partitioned iterator type.
+            */
             partitionIterator(): Iterator<Iterator<T>>;
+            /**
+            * @private
+            *
+            * @param { Iterator<Iterator<T>>} partitionIterator
+            *
+            * @returns Array<T>
+            */
             private flatPartitions(partitionIterator);
             /**
-             * @constructor
-             *
-             * @param {Iterable<T> | IOrderedEnumerator<T>} enumerator
-             * @param {(item: T) => TKey} keySelector
-             * @param {(first: TKey, second: TKey) => number} comparer
-             *
-             * @throws {TS.InvalidTypeException}
-             * @throws {TS.ArgumentNullOrUndefinedException}
-             */
+            * @constructor
+            *
+            * @param {Iterable<T> | IOrderedEnumerator<T>} enumerator
+            * @param {(item: T) => TKey} keySelector
+            * @param {(first: TKey, second: TKey) => number} comparer
+            *
+            * @throws {TS.InvalidTypeException}
+            * @throws {TS.ArgumentNullOrUndefinedException}
+            */
             constructor(enumerator: Iterable<T> | IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number);
             /**
             * @description Performs a subsequent ordering of the elements in a sequence in ascending order according to a key.
@@ -4296,7 +2613,7 @@ declare namespace TS {
             *
             * @param { (item: T) => TKey } keySelector
             *
-            * @returns {OrderedEnumerator<T, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -4312,7 +2629,7 @@ declare namespace TS {
             * @param { (item: T) => TKey } keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<T, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -4329,7 +2646,7 @@ declare namespace TS {
             *
             * @param { (item: T) => TKey } keySelector
             *
-            * @returns {OrderedEnumerator<T, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -4345,7 +2662,7 @@ declare namespace TS {
             * @param { (item: T) => TKey } keySelector
             * @param {(first: TKey, second: TKey) => number} comparer
             *
-            * @returns {OrderedEnumerator<T, TKey>}
+            * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -4357,25 +2674,24 @@ declare namespace TS {
 declare namespace TS {
     namespace Linq {
         /**
-        * @interface IGrouping<TKey, T>
+        * @interface TS.Linq.IGrouping<TKey, T>
         */
         interface IGrouping<TKey, T> {
             /**
             * @readonly
-            *
-            * @member {TKey} key
             */
             key: TKey;
         }
         /**
-         * @class Grouping<TKey, T>
-         *
-         * @description This class is an extension of the TS.Linq.Enumerator<T> class and is the returned type of the TS.Linq.Extensions.groupBy function.
-         *
-         * @extends {TS.Linq.Enumerator<T>}
-         *
-         * @implements {IGrouping<TKey, T>}
-         */
+        * @class TS.Linq.Grouping<TKey, T>
+        *
+        * @description This class is an extension of the TS.Linq.Enumerator<T> class and is the returned type of the
+        *  TS.Linq.Extensions.groupBy function.
+        *
+        * @extends {TS.Linq.Enumerator<T>}
+        *
+        * @implements {TS.Linq.IGrouping<TKey, T>}
+        */
         class Grouping<TKey, T> extends TS.Linq.Enumerator<T> implements TS.Linq.IGrouping<TKey, T> {
             private innerKey;
             /**
@@ -4385,17 +2701,17 @@ declare namespace TS {
             */
             key: TKey;
             /**
-             * @constructor
-             *
-             * @param {TKey} key
-             * @param {Iterable<T>} enumerator
-             * @param {(item: T) => TKey} keySelector
-             * @param {(first: TKey, second: TKey) => boolean} equalityComparer
-             * @param {(item: T) => any} elementSelector?
-             *
-             * @throws {TS.InvalidTypeException}
-             * @throws {TS.ArgumentNullOrUndefinedException}
-             */
+            * @constructor
+            *
+            * @param {TKey} key
+            * @param {Iterable<T>} enumerator
+            * @param {(item: T) => TKey} keySelector
+            * @param {(first: TKey, second: TKey) => boolean} equalityComparer
+            * @param {(item: T) => any} elementSelector?
+            *
+            * @throws {TS.InvalidTypeException}
+            * @throws {TS.ArgumentNullOrUndefinedException}
+            */
             constructor(key: TKey, enumerator: Iterable<T>, keySelector: (item: T) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean, elementSelector?: (item: T) => any);
         }
     }
@@ -4403,7 +2719,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @class DuplicateKeyException
+        * @class TS.Collections.DuplicateKeyException
         *
         * @description This exception signals a duplicate key in a collection.
         *
@@ -4425,19 +2741,19 @@ declare namespace TS {
             constructor(message?: string, innerException?: Exception);
         }
         /**
-         *  @class InvalidKeyException
-         *
-         *  @description This exception signals a general problem with a key of a collection.
-         *
-         *  @extends {TS.Exception}
-         */
+        * @class TS.Collections.InvalidKeyException
+        *
+        * @description This exception signals a general problem with a key of a collection.
+        *
+        * @extends {TS.Exception}
+        */
         class InvalidKeyException extends TS.Exception {
             /**
             * @private
             */
             private internalKeyValue;
             /**
-            * @overwrite {TS.Exception}
+            * @override {TS.Exception}
             *
             * @get {string} type
             */
@@ -4460,7 +2776,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @class KeyValuePair<TKey, TValue>
+        * @class TS.Collections.KeyValuePair<TKey, TValue>
         *
         * @description This is the implementation of the key value pair used by the dictionary class.
         *
@@ -4498,7 +2814,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @interface IDictionary<TKey, TValue>
+        * @interface TS.Collections.IDictionary<TKey, TValue>
         *
         * @description Represents a generic collection of key/value pairs.
         *
@@ -4531,7 +2847,8 @@ declare namespace TS {
             */
             add(key: TKey, value: TValue): this;
             /**
-            * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific value.
+            * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific
+            *  value.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx : MSDN }
             *
@@ -4542,6 +2859,7 @@ declare namespace TS {
             contains(item: TS.Collections.KeyValuePair<TKey, TValue>): boolean;
             /**
             * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified key.
+            *
             * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx : MSDN }
             *
             * @param {TKey} key
@@ -4583,10 +2901,9 @@ declare namespace TS {
             */
             copyTo(targetArray: Array<KeyValuePair<TKey, TValue>>, destIndex?: number): this;
             /**
-            * @description Returns the item with the specified key from the IDictionary<TKey, TValue>.
-            *  Returns a undefined value if the dictionary doesn't contain an item with the specified key.
-            *  This function is a substitute for the 'item[key]' property defined in the .NET
-            *  'IDictionary<TKey, TValue> Interface'.
+            * @description Returns the item with the specified key from the IDictionary<TKey, TValue>. Returns a undefined
+            *  value if the dictionary doesn't contain an item with the specified key. This function is a substitute for the
+            *  'item[key]' property defined in the .NET 'IDictionary<TKey, TValue> Interface'.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/s4ys34ea(v=vs.110).aspx | MSDN }
             *
@@ -4596,8 +2913,8 @@ declare namespace TS {
             */
             getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>;
             /**
-            * @description Returns the value associated with the specified key or undefined if there is no match for the specified key.
-            *  This function is a substitute for the 'item[key]' property defined in the .NET
+            * @description Returns the value associated with the specified key or undefined if there is no match for the
+            *  specified key. This function is a substitute for the 'item[key]' property defined in the .NET
             *  'IDictionary<TKey, TValue> Interface'.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/s4ys34ea(v=vs.110).aspx | MSDN }
@@ -4616,8 +2933,8 @@ declare namespace TS {
             */
             keys: TS.Linq.Enumerator<TKey>;
             /**
-            * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>.
-            *  The function fails silent if the dictionary doesn't contain that item.
+            * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>. The function fails
+            *  silent if the dictionary doesn't contain that item.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx : MSDN }
             *
@@ -4629,8 +2946,8 @@ declare namespace TS {
             */
             remove(item: TS.Collections.KeyValuePair<TKey, TValue>): this;
             /**
-            * @description Removes the element with the specified key from the IDictionary<TKey, TValue>.
-            *  The function fails silent if the dictionary doesn't contain an item with specified key.
+            * @description Removes the element with the specified key from the IDictionary<TKey, TValue>. The function fails
+            *  silent if the dictionary doesn't contain an item with specified key.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx : MSDN }
             *
@@ -4640,9 +2957,9 @@ declare namespace TS {
             */
             remove(key: TKey): this;
             /**
-            * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary.
-            *  This function is a substitute for the 'item[key]' property defined in the .NET
-            *  'IDictionary<TKey, TValue> Interface'.
+            * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary. This
+            *  function is a substitute for the 'item[key]' property defined in the .NET 'IDictionary<TKey, TValue>
+            *  Interface'.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx : MSDN }
             *
@@ -4653,8 +2970,8 @@ declare namespace TS {
             */
             setItem(key: TKey, newValue: TValue): this;
             /**
-            * @description Converts the ICollection<T> into an array of type T. (Inherited from ICollection<T>.)
-            *  There is no equivalent function defined in the C# counterpart of the IDictionary interface.
+            * @description Converts the ICollection<T> into an array of type T. (Inherited from ICollection<T>.) There is no
+            *  equivalent function defined in the C# counterpart of the IDictionary interface.
             *
             * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
             *
@@ -4675,7 +2992,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @interface ICollection<T>
+        * @interface TS.Collections.ICollection<T>
         *
         * @description Defines methods to manipulate generic collections.
         *
@@ -4683,8 +3000,8 @@ declare namespace TS {
         */
         interface ICollection<T> {
             /**
-            * @description Adds items to the ICollection<T>.
-            *  Differs from the C# counterpart in that way, that you are allowed to add multiple items at once.
+            * @description Adds items to the ICollection<T>. Differs from the C# counterpart in that way, that you are
+            *  allowed to add multiple items at once.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx | MSND }
             *
@@ -4712,8 +3029,8 @@ declare namespace TS {
             */
             contains(item: T): boolean;
             /**
-            * @description Copies the elements of the ICollection<T> to an Array, starting at
-            *  the specified array index or at positions 0 if no array index is specified.
+            * @description Copies the elements of the ICollection<T> to an Array, starting at the specified array index or at
+            *  positions 0 if no array index is specified.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx | MSND }
             *
@@ -4742,8 +3059,8 @@ declare namespace TS {
             */
             remove(item: T): this;
             /**
-            * @description Converts the ICollection<T> into an array of type T.
-            *  There is no equivalent function defined in the C# counterpart of the ICollection<T> interface.
+            * @description Converts the ICollection<T> into an array of type T. There is no equivalent function defined in
+            *  the C# counterpart of the ICollection<T> interface.
             *
             * @returns {Array<T>}
             */
@@ -4754,7 +3071,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @interface IList<T>
+        * @interface TS.Collections.IList<T>
         *
         * @description Interface which must be implemented by all list classes.
         *
@@ -4764,8 +3081,8 @@ declare namespace TS {
         */
         interface IList<T> extends TS.Collections.ICollection<T> {
             /**
-            * @description Specified wheter null values are allowed in the IList<T> or not. This flag is set during construction and can't be changed during
-            *  the lifetime of the instance.
+            * @description Specified wheter null values are allowed in the IList<T> or not. This flag is set during
+            *  construction and can't be changed during the lifetime of the instance.
             *
             * @readonly
             *
@@ -4773,15 +3090,15 @@ declare namespace TS {
             */
             allowNull: boolean;
             /**
-            * @description Determines the index of a specific item in the IList<T>. If startIndex is set, the search for the item
-            *  starts at the specified startIndex. Otherwise the search starts at the default position 0.
-            *  If a comparer is specified, this comparer is used to decide whether a list element is a macht with the searche element
-            *  or not. If the comparer isn't specified, the default equality comparer '===' is used.
-            *  The function returns -1 if there is no match for the given item.
+            * @description Determines the index of a specific item in the IList<T>. If startIndex is set, the search for the
+            *  item starts at the specified startIndex. Otherwise the search starts at the default position 0. If a comparer
+            *  is specified, this comparer is used to decide whether a list element is a macht with the searche element or
+            *  not. If the comparer isn't specified, the default equality comparer '===' is used. The function returns -1 if
+            *   there is no match for the given item.
             *
             * @param {T} item.
             * @param {number} startIndex?, Default = 0.
-            * @parem {(first: T, second: T) => boolean} equalityComparer, Default = "===".
+            * @param {(first: T, second: T) => boolean} equalityComparer, Default = "===".
             *
             * @returns {number}
             */
@@ -4809,7 +3126,7 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @class List<T>
+        * @class TS.Collections.List<T>
         *
         * @description This class  mimics the .NET counterpart of a List<T> as far as possible in TypeScript.
         *
@@ -4825,22 +3142,22 @@ declare namespace TS {
             */
             private internalAllowNull;
             /**
-             * @implements  {ArrayLike<T>}
-             *
-             * @returns {T}
-             */
+            * @implements  {ArrayLike<T>}
+            *
+            * @returns {T}
+            */
             [index: number]: T;
             /**
-             * @implements  {ArrayLike<T>}
-             *
-             * @returns {number}
-             */
+            * @implements  {ArrayLike<T>}
+            *
+            * @returns {number}
+            */
             length: number;
             /**
-             * @implements  {TS.Linq.BaseEnumerator<T>}
-             *
-             * @returns {Iterator<TSource>}
-             */
+            * @implements  {TS.Linq.BaseEnumerator<T>}
+            *
+            * @returns {Iterator<TSource>}
+            */
             [Symbol.iterator](): Iterator<T>;
             /**
             * @description Adds items to the IList<T>.
@@ -4977,11 +3294,10 @@ declare namespace TS {
             /**
             * @constructor
             *
-            * @description This constructor of the List class requires the allowNull flag to be set which determines whether
-            *  the List will accept null values as element or not. The default value for that flag is 'true'.
-            *  In C# you would declare a List<T> to allow null values or not by using a nullable type as concrete type
-            *  parameter or not. Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag
-            *  in the constructor signature.
+            * @description Creates a new List<T>. Requires the allowNull flag to be set which determines whether the null
+            *  values will be allowed as element or not. In C# you would declare a List<T> to allow null by choosing a
+            *  nullable type as concrete type parameter. Since all types in JavaScript nullable per default, I had to
+            *  introduce the 'allowNull' flag in the constructor signature.
             *  The optional generator function will be use to initially fill the list with elements if provided.
             *
             * @param {boolean}, allowNull = true
@@ -4994,11 +3310,10 @@ declare namespace TS {
             /**
             * @constructor
             *
-            * @description Thos constructor of the List class requires the allowNull flag to be set which determines whether
-            *  the List will accept null values as element or not. The default value for that flag is 'true'. In C# you would
-            *  declare a List<T> to allow null values or not by using a nullable type as concrete type parameter or not.
-            *  Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag in the constructor
-            *  signature.
+            * @description Creates a new List<T>. Requires the allowNull flag to be set which determines whether the null
+            *  values will be allowed as element or not. In C# you would declare a List<T> to allow null by choosing a
+            *  nullable type as concrete type parameter. Since all types in JavaScript nullable per default, I had to
+            *  introduce the 'allowNull' flag in the constructor signature.
             *  The optional source will be use to initially fill the list with elements if provided.
             *  The optional predicate determines which elements of the source will become elements of the list.
             *
@@ -5023,13 +3338,12 @@ declare namespace TS {
 declare namespace TS {
     namespace Collections {
         /**
-        * @class Dictionary<TKey, TValue>
+        * @class TS.Collections.Dictionary<TKey, TValue>
         *
-        * @description This class is an implementation of the IDictionary<TKey, TValue> interface and
-        *  TypeScript counterpart of the .NET Dictionary<TKey, TValue> class. Some methods of this class
-        *  behave different than the C# counterpart, some are new and some C# methods are not implemented.
-        *  Those differences are mainly caused by the javascript limitations. Read the method descriptions
-        *  to learn more about the variations.
+        * @description This class is an implementation of the IDictionary<TKey, TValue> interface and TypeScript
+        *  counterpart of the .NET Dictionary<TKey, TValue> class. Some methods of this class behave different than the C#
+        *  counterpart, some are new and some C# methods are not implemented. Those differences are mainly caused by the
+        *  javascript limitations. Read the method descriptions to learn more about the variations.
         *
         * @see {@link https://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx | MSDN}
         *
@@ -5052,14 +3366,14 @@ declare namespace TS {
             */
             private genFunc;
             /**
-             * @implements {TS.Linq.BaseEnumerator<KeyValuePair<TKey, TValue>>}
-             *
-             * @returns {Iterator<KeyValuePair<TKey, TValue>>}
-             */
+            * @implements {TS.Linq.BaseEnumerator<KeyValuePair<TKey, TValue>>}
+            *
+            * @returns {Iterator<KeyValuePair<TKey, TValue>>}
+            */
             [Symbol.iterator](): Iterator<KeyValuePair<TKey, TValue>>;
             /**
-            * @description Adds an item to the ICollection<T>.
-            *  There is no equivalent function in the C# dictionary implementation.
+            * @description Adds an item to the ICollection<T>. There is no equivalent function in the C# dictionary
+            *  implementation.
             *
             * @implements {TS.Collections.IDictionary<TKey, TValue>}
             *
@@ -5103,26 +3417,25 @@ declare namespace TS {
             */
             clear(): this;
             /**
-            * @description Determines whether the collection contains a specific KeyValuePair.
-            *  Using the default comparer to compare the values.
+            * @description Determines whether the collection contains a specific KeyValuePair. Using the default comparer to
+            *  compare the values.
             *
             * @implements {TS.Collections.IDictionary<TKey, TValue>}
             *
-            * @parem {TS.Collections.KeyValuePair<TKey, TValue>} item
+            * @param {TS.Collections.KeyValuePair<TKey, TValue>} item
             *
             * @returns {boolean}
             */
             contains(item: TS.Collections.KeyValuePair<TKey, TValue>): boolean;
             /**
-            * @description Determines whether the collection contains a specific KeyValuePair.
-            *  Using the specified equalityComparer to compare the values.
-            *  There is no equivalent function in the C# dictionary implementation which allows to override the default
-            *  equality comparer for value comaparsion.
+            * @description Determines whether the collection contains a specific KeyValuePair. Using the specified
+            *  equalityComparer to compare the values. There is no equivalent function in the C# dictionary implementation
+            *  which allows to override the default equality comparer for value comaparsion.
             *
             * @implements {TS.Collections.IDictionary<TKey, TValue>}
             *
-            * @parem {TS.Collections.KeyValuePair<TKey, TValue>} item
-            * @parem {(first: TValue, second: TValue) => boolean} equalityComparer
+            * @param {TS.Collections.KeyValuePair<TKey, TValue>} item
+            * @param {(first: TValue, second: TValue) => boolean} equalityComparer
             *
             * @returns {boolean}
             */
@@ -5154,9 +3467,8 @@ declare namespace TS {
             containsValue(value: TValue): boolean;
             /**
             * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified value.
-            *  Using the specified equalityComparer to compare the values.
-            *  There is no equivalent function in the C# dictionary implementation which allows to override the default
-            *  equality comparer for value comaparsion.
+            *  Using the specified equalityComparer to compare the values. There is no equivalent function in the C#
+            *  dictionary implementation which allows to override the default equality comparer for value comaparsion.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/a63811ah(v=vs.110).aspx  | MSDN }
             *
@@ -5199,9 +3511,9 @@ declare namespace TS {
             */
             count(): number;
             /**
-            * @description Returns the item with the specified key from the Dictionary<TKey, TValue>.
-            *  Returns an undefined value if the dictionary doesn't contain an item with the specified key.
-            *  There is no equivalent method in the C# dictionary implementation.
+            * @description Returns the item with the specified key from the Dictionary<TKey, TValue>. Returns an undefined
+            *  value if the dictionary doesn't contain an item with the specified key. There is no equivalent method in the
+            *  C# dictionary implementation.
             *
             * @implements {TS.Collections.IDictionary<TKey, TValue>}
             *
@@ -5211,11 +3523,11 @@ declare namespace TS {
             */
             getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>;
             /**
-            * @description Returns the value of the item with the specified key from the Dictionary<TKey, TValue>.
-            *  Returns an undefined value if the dictionary doesn't contain an item with the specified key.
-            *  This method is a substitute for the index access implemented in the C# dictionary.
-            *  In TypeScript you can only crate indexers for strings or numbers. But a dictionary key can
-            *  have any type. So there is no other way than creating a set and get function as a substitute.
+            * @description Returns the value of the item with the specified key from the Dictionary<TKey, TValue>. Returns an
+            *  undefined value if the dictionary doesn't contain an item with the specified key. This method is a substitute
+            *  for the index access implemented in the C# dictionary. In TypeScript you can only crate indexers for strings
+            *  or numbers. But a dictionary key can have any type. So there is no other way than creating a set and get
+            *  function as a substitute.
             *
             * @see {TS.Collections.Dictionary.setItem}
             * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
@@ -5239,10 +3551,10 @@ declare namespace TS {
             keys: TS.Linq.Enumerator<TKey>;
             /**
             * @description Removes a key and value from the dictionary.
-            *  This method uses the equality comparer which was set in the constructor or the dictionary to determine equality for the key.
-            *  This method uses either the default equality comparer to determine equality for the value or the one you can specify in the
-            *  optional 'equalityComparer' argument.
-            *  This function differs from the C# implementation in mutiple ways.
+            *  This method uses the equality comparer which was set in the constructor or the dictionary to determine
+            *  equality for the key. This method uses either the default equality comparer to determine equality for the
+            *  value or the one you can specify in the optional 'equalityComparer' argument. This function differs from the
+            *  C# implementation in mutiple ways.
             *  1) This method returns a this reference and not a boolean value.
             *  2) You can specifie an equality comparer for value camparsion to overriede the default behavior.
             *  3) This method fails silent if the specified item can't be located in the dictionary.
@@ -5277,10 +3589,10 @@ declare namespace TS {
             */
             remove(key: TKey): this;
             /**
-            * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary.
-            *  This method is a substitute for the index access implemented in the C# dictionary.
-            *  In TypeScript you can only crate indexers for strings or numbers. But a dictionary key can
-            *  have any type. So there is no other way than creating a set and get function as a substitute.
+            * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary. This
+            *  method is a substitute for the index access implemented in the C# dictionary. In TypeScript you can only
+            *  create indexers for strings or numbers. But a dictionary key can have any type. So there is no other way than
+            *  creating a set and get function as a substitute.
             *
             * @see {TS.Collections.Dictionary.getValue}
             * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
@@ -5318,10 +3630,9 @@ declare namespace TS {
             /**
             * @constructor
             *
-            * @description Create a new instance of the  TS.Collections.Dictionary<TKey, TValue> class.
-            *  Creates a shallow copy of the iterable 'KeyValuePair' source if provided.
-            *  Uses the default equality comparer (===) for the key comparsion if there isn't a key equality comparer
-            *  provided in argument 'keyEqualityComparer'.
+            * @description Creates a new instance of the  TS.Collections.Dictionary<TKey, TValue> class. Creates a shallow
+            *  copy of the iterable 'KeyValuePair' source if provided. Uses the default equality comparer (===) for the key
+            *  comparsion if there isn't a key equality comparer provided in argument 'keyEqualityComparer'.
             *
             * @param (Iterable<TS.Collections.KeyValuePair<TKey, TValue>>} source?
             * @param {(first: TKey, second: TKey) => boolean} keyEqualityComparer?

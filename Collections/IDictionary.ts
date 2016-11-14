@@ -1,13 +1,11 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Collections
   {
 
     /**
-    * @interface IDictionary<TKey, TValue>
+    * @interface TS.Collections.IDictionary<TKey, TValue>
     *
     * @description Represents a generic collection of key/value pairs.
     *
@@ -46,7 +44,8 @@ namespace TS
 
 
       /**
-      * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific value.
+      * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific
+      *  value.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx : MSDN }
       *
@@ -59,6 +58,7 @@ namespace TS
 
       /**
       * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified key.
+      *
       * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx : MSDN }
       *
       * @param {TKey} key
@@ -113,10 +113,9 @@ namespace TS
 
 
       /**
-      * @description Returns the item with the specified key from the IDictionary<TKey, TValue>.
-      *  Returns a undefined value if the dictionary doesn't contain an item with the specified key.
-      *  This function is a substitute for the 'item[key]' property defined in the .NET
-      *  'IDictionary<TKey, TValue> Interface'.
+      * @description Returns the item with the specified key from the IDictionary<TKey, TValue>. Returns a undefined
+      *  value if the dictionary doesn't contain an item with the specified key. This function is a substitute for the
+      *  'item[key]' property defined in the .NET 'IDictionary<TKey, TValue> Interface'.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/s4ys34ea(v=vs.110).aspx | MSDN }
       *
@@ -128,8 +127,8 @@ namespace TS
 
 
       /**
-      * @description Returns the value associated with the specified key or undefined if there is no match for the specified key.
-      *  This function is a substitute for the 'item[key]' property defined in the .NET
+      * @description Returns the value associated with the specified key or undefined if there is no match for the
+      *  specified key. This function is a substitute for the 'item[key]' property defined in the .NET
       *  'IDictionary<TKey, TValue> Interface'.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/s4ys34ea(v=vs.110).aspx | MSDN }
@@ -159,8 +158,8 @@ namespace TS
 
 
       /**
-      * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>.
-      *  The function fails silent if the dictionary doesn't contain that item.
+      * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>. The function fails
+      *  silent if the dictionary doesn't contain that item.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx : MSDN }
       *
@@ -174,8 +173,8 @@ namespace TS
 
 
       /**
-      * @description Removes the element with the specified key from the IDictionary<TKey, TValue>.
-      *  The function fails silent if the dictionary doesn't contain an item with specified key.
+      * @description Removes the element with the specified key from the IDictionary<TKey, TValue>. The function fails
+      *  silent if the dictionary doesn't contain an item with specified key.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx : MSDN }
       *
@@ -187,9 +186,9 @@ namespace TS
 
 
       /**
-      * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary.
-      *  This function is a substitute for the 'item[key]' property defined in the .NET
-      *  'IDictionary<TKey, TValue> Interface'.
+      * @description Sets the value of argument 'newValue' to the item with the specified key in the dictionary. This
+      *  function is a substitute for the 'item[key]' property defined in the .NET 'IDictionary<TKey, TValue>
+      *  Interface'.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx : MSDN }
       *
@@ -205,8 +204,8 @@ namespace TS
       //
 
       /**
-      * @description Converts the ICollection<T> into an array of type T. (Inherited from ICollection<T>.)
-      *  There is no equivalent function defined in the C# counterpart of the IDictionary interface.
+      * @description Converts the ICollection<T> into an array of type T. (Inherited from ICollection<T>.) There is no
+      *  equivalent function defined in the C# counterpart of the IDictionary interface.
       *
       * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
       *

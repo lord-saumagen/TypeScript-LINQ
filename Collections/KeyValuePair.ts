@@ -1,14 +1,11 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
-
   export namespace Collections
   {
 
     /**
-    * @class KeyValuePair<TKey, TValue>
+    * @class TS.Collections.KeyValuePair<TKey, TValue>
     *
     * @description This is the implementation of the key value pair used by the dictionary class.
     *
@@ -41,17 +38,6 @@ namespace TS
       {
         return this.internalValue;
       }
-
-      ///**
-      //* @set {TValue} value
-      //*/
-      //public set value(newValue: TValue)
-      //{
-      //  if (this.internalValue != newValue)
-      //  {
-      //    this.internalValue = newValue;
-      //  }
-      //}
 
       /**
       * @constructor

@@ -1,18 +1,16 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Linq
   {
 
     /**
-     * @class
-     *
-     * @description This exceptions signals an error which occured in a selector function for specific value.
-     *
-     * @extends {TS.Exception}
-     */
+    * @class TS.Linq.SelectorException
+    *
+    * @description This exceptions signals an error which occured in a selector function for specific value.
+    *
+    * @extends {TS.Exception}
+    */
     export class SelectorException extends TS.Exception
     {
       /**
@@ -26,7 +24,9 @@ namespace TS
       private internalValue: any = null;
 
       /**
-      * @override {TS.Exception}
+      * @override
+      *
+      * @get {string} type
       */
       get type(): string
       {
@@ -55,6 +55,7 @@ namespace TS
 
       /**
       * @constructor
+      *
       * @param {(item: any) => Enumerator<any>} selector
       * @param {any} value
       * @param {string} message?
@@ -63,6 +64,7 @@ namespace TS
       constructor(selector: (item: any) => Enumerator<any>, value: any, message?: string, innerException?: TS.Exception)
       /**
       * @constructor
+      *
       * @param { (item: any) => Array<any>} selector
       * @param {any} value
       * @param {string} message?
@@ -71,6 +73,7 @@ namespace TS
       constructor(selector: (item: any) => Array<any>, value: any, message?: string, innerException?: TS.Exception)
       /**
       * @constructor
+      *
       * @param { (item: any) =>any} selector
       * @param {any} value
       * @param {string} message?
@@ -85,13 +88,14 @@ namespace TS
       }
     }//END class
 
+
     /**
-     * @class
-     *
-     * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
-     *
-     * @extends {TS.Exception}
-     */
+    * @class TS.Linq.EmptyEnumeratorException
+    *
+    * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
+    *
+    * @extends {TS.Exception}
+    */
     export class EmptyEnumeratorException extends TS.Exception
     {
       /**
@@ -100,7 +104,9 @@ namespace TS
       private internalEnumerator: Iterable<any> = null;
 
       /**
-      * @override {TS.Exception}
+      * @override
+      *
+      * @get {string} type
       */
       get type(): string
       {
@@ -118,7 +124,10 @@ namespace TS
       }
 
       /**
-      *  @constructor
+      * @constructor
+      *
+      * @param {Iterable<any>} enumerator
+      * @param {string}  message?
       */
       constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception)
       {
@@ -128,18 +137,37 @@ namespace TS
 
     }//END class
 
+
+    /**
+    * @class TS.Linq.MoreThanOneElementException
+    *
+    * @description This exceptions signals an error in a function where only one element is allowed but multiple
+    *  elements are available.
+    *
+    * @extends {TS.Exception}
+    */
     export class MoreThanOneElementException extends TS.Exception
     {
+      /**
+      * @private
+      */
       private internalEnumerator: Iterable<any> = null;
 
       /**
-      * @overwrite
+      * @override
+      *
+      * @get {string} type
       */
       get type(): string
       {
         return "TS.Linq.MoreThanOneElementException";
       }
 
+      /**
+      * @description The enumerator which caused the exception.
+      *
+      * @get {Iterable<any>} enumerator
+      */
       get enumerator(): Iterable<any>
       {
         return this.internalEnumerator;
@@ -147,6 +175,7 @@ namespace TS
 
       /**
       * @constructor
+      *
       * @param {Iterable<any>} enumerator
       * @param {string} message?
       * @param {TS.Exception} innerException)
@@ -159,6 +188,5 @@ namespace TS
 
     }//END class
 
-  }
-
-}
+  }//END namespace
+}//END namespace

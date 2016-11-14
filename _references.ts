@@ -1,6 +1,4 @@
-﻿/// <reference path="./Exception/Exception.ts" />
-/// <reference path="./Utils/Utils.ts" />
-/// <reference path="./Utils/Assert.ts" />
+﻿/// <reference path="../TypeScript-Base/TS-Base.d.ts" />
 /// <reference path="./Linq/Exception.ts" />
 /// <reference path="./Linq/BaseEnumerator.ts" />
 /// <reference path="./Linq/Enumerator.ts" />

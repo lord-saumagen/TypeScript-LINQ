@@ -1,8 +1,6 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Collections
   {
 
@@ -10,13 +8,13 @@ namespace TS
     // Duplicate key exception
     //********************************************************************************
 
-   /**
-   * @class DuplicateKeyException
-   *
-   * @description This exception signals a duplicate key in a collection.
-   *
-   * @extends {TS.Exception}
-   */
+    /**
+    * @class TS.Collections.DuplicateKeyException
+    *
+    * @description This exception signals a duplicate key in a collection.
+    *
+    * @extends {TS.Exception}
+    */
     export class DuplicateKeyException extends TS.Exception
     {
 
@@ -49,12 +47,12 @@ namespace TS
     // Invalid key exception
     //********************************************************************************
 
-   /**
-    *  @class InvalidKeyException
+    /**
+    * @class TS.Collections.InvalidKeyException
     *
-    *  @description This exception signals a general problem with a key of a collection.
+    * @description This exception signals a general problem with a key of a collection.
     *
-    *  @extends {TS.Exception}
+    * @extends {TS.Exception}
     */
     export class InvalidKeyException extends TS.Exception
     {
@@ -64,7 +62,7 @@ namespace TS
       private internalKeyValue: any;
 
       /**
-      * @overwrite {TS.Exception}
+      * @override {TS.Exception}
       *
       * @get {string} type
       */

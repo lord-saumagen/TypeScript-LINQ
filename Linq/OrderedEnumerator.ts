@@ -1,13 +1,11 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Linq
   {
 
     /**
-    * @class OrderedEnumerator<T, TKey>
+    * @class TS.Linq.OrderedEnumerator<T, TKey>
     *
     * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call to a sort function operate on
     *  the partitions of the enumerator elements without changing the order of previous sortings.
@@ -35,7 +33,7 @@ namespace TS
       /**
       * @description Property which returns an empty 'OrderedEnumerator'.
       *
-      * @get {TS.Liny.OrderedEnumerator<any, any>}
+      * @get {TS.Liny.OrderedEnumerator<any, any>} Empty
       */
       public static get Empty(): OrderedEnumerator<any, any>
       {
@@ -43,10 +41,10 @@ namespace TS
       }
 
       /**
-       * @implements {TS.Linq.BaseEnumerator<T>}
-       *
-       * @returns {Iterator<T>}, an instance of the iterator type.
-       */
+      * @implements {TS.Linq.BaseEnumerator<T>}
+      *
+      * @returns {Iterator<T>}, An instance of the iterator type.
+      */
       public [Symbol.iterator](): Iterator<T>
       {
         let flatArray: Array<T> = this.flatPartitions(this.partitionIterator());
@@ -54,10 +52,10 @@ namespace TS
       }
 
       /**
-       * @implements {TS.Linq.IOrderedEnumerator<T>}
-       *
-       * @returns {Iterator<Iterator<T>}, an instance of the partitioned iterator type.
-       */
+      * @implements {TS.Linq.IOrderedEnumerator<T>}
+      *
+      * @returns {Iterator<Iterator<T>}, An instance of the partitioned iterator type.
+      */
       public partitionIterator(): Iterator<Iterator<T>>
       {
         return new PartitionIterator(this.orderedEnumerator, this.keySelector, this.comparer);
@@ -87,6 +85,13 @@ namespace TS
       //}
 
 
+      /**
+      * @private
+      * 
+      * @param { Iterator<Iterator<T>>} partitionIterator
+      *
+      * @returns Array<T>
+      */
       private flatPartitions(partitionIterator: Iterator<Iterator<T>>): Array<T>
       {
         let resultArray: Array<T>;
@@ -117,22 +122,19 @@ namespace TS
       }
 
       /**
-       * @constructor
-       *
-       * @param {Iterable<T> | IOrderedEnumerator<T>} enumerator
-       * @param {(item: T) => TKey} keySelector
-       * @param {(first: TKey, second: TKey) => number} comparer
-       *
-       * @throws {TS.InvalidTypeException}
-       * @throws {TS.ArgumentNullOrUndefinedException}
-       */
-      constructor(enumerator: Iterable<T> | IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number)
+      * @constructor
+      *
+      * @param {Iterable<T> | IOrderedEnumerator<T>} enumerator
+      * @param {(item: T) => TKey} keySelector
+      * @param {(first: TKey, second: TKey) => number} comparer
+      *
+      * @throws {TS.InvalidTypeException}
+      * @throws {TS.ArgumentNullOrUndefinedException}
+      */
+      constructor(enumerator: Iterable<T> | IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number) 
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.OrderedEnumerator constructor");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.OrderedEnumerator constructor");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.OrderedEnumerator constructor");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.OrderedEnumerator constructor");
-        TS.Utils.checkParameter("comparer", comparer, "TS.Linq.OrderedEnumerator constructor");
         TS.Utils.checkFunctionParameter("comparer", comparer, "TS.Linq.OrderedEnumerator constructor");
 
         super();
@@ -168,7 +170,7 @@ namespace TS
       *
       * @param { (item: T) => TKey } keySelector
       *
-      * @returns {OrderedEnumerator<T, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -184,7 +186,7 @@ namespace TS
       * @param { (item: T) => TKey } keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<T, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -207,7 +209,7 @@ namespace TS
       *
       * @param { (item: T) => TKey } keySelector
       *
-      * @returns {OrderedEnumerator<T, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -223,7 +225,7 @@ namespace TS
       * @param { (item: T) => TKey } keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<T, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<T, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -243,50 +245,61 @@ namespace TS
 
 
 
-
-
     /*************************************************************************/
-    /* Inner class: BaseOrderedEnumerator<T>                           */
+    /* Inner class: BaseOrderedEnumerator<T>                                 */
     /*************************************************************************/
 
     /**
     * @class BaseOrderedEnumerator<T>
     *
+    * @implements {TS.Linq.IOrderedEnumerator<T>}
+    *
     * @internal
     */
-    class BaseOrderedEnumerator<T> implements IOrderedEnumerator<T>
+    class BaseOrderedEnumerator<T> implements TS.Linq.IOrderedEnumerator<T>
     {
       private enumerator: Iterable<T>;
       private done: boolean;
 
+      /**
+      * @constructor
+      *
+      * @param {Iterable<T>} enumerator
+      */
       constructor(enumerator: Iterable<T>)
       {
         this.enumerator = enumerator;
         this.done = false;
       }
 
+      /**
+      * @imploements {TS.Linq.IOrderedEnumerator<T>}
+      *
+      * @returns {Iterator<Iterator<T>>}
+      */
       public partitionIterator(): Iterator<Iterator<T>>
       {
         return new ArrayIterator([this.enumerator[Symbol.iterator]()]);
       }
 
-    }
+    }//END class
 
     /*************************************************************************/
-    /* Inner class: PartitionIterator                                       */
+    /* Inner class: PartitionIterator<T, TKey>                               */
     /*************************************************************************/
 
     /**
-     * @class PartitionIterator<T, TKey>
-     * The 'PartitionIterator<T>' class is returned by the 'OrderedEnumerator' class and all
-     * derived classes in order to iterate over the class elements. During iteration the 'next' function
-     * of this class is called. If the iteration passed the end of the result set, every subsequent
-     * call to next will return a 'IteratorResult<T>' object which has the 'done' flag set.
-     *
-     * @implements {Iterator<Iterator<T>>}
-     *
-     * @internal
-     */
+    * @class PartitionIterator<T, TKey>
+    *
+    * @description The 'PartitionIterator<T>' class is returned by the 'OrderedEnumerator' class and all derived
+    *  classes in order to iterate over the class elements. During iteration the 'next' function of this class is
+    *  called. If the iteration passed the end of the result set, every subsequent call to next will return a
+    *  'IteratorResult<T>' object which has the 'done' flag set.
+    *
+    * @implements {Iterator<Iterator<T>>}
+    *
+    * @internal
+    */
     class PartitionIterator<T, TKey> implements Iterator<Iterator<T>>
     {
       private orderedEnumerator: IOrderedEnumerator<T>
@@ -296,10 +309,11 @@ namespace TS
       private resultArray: Array<Array<T>>;
 
       /**
-       * 
-       * @param source, the source object or collection used in this iterator.
-       * @param selector, a selector function which determines the result set.
-       */
+      * @constructor
+      *
+      * @param source, the source object or collection used in this iterator.
+      * @param selector, a selector function which determines the result set.
+      */
       constructor(orderedEnumerator: IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number)
       {
         this.orderedEnumerator = orderedEnumerator;
@@ -308,13 +322,25 @@ namespace TS
         this.initalized = false;
       }
 
+      /**
+      * @private
+      */
       private init()
       {
         this.resultArray = this.createPartions(this.orderedEnumerator, this.keySelector, this.comparer);
         this.initalized = true;
       }
 
-      private createPartions(orderedEnumerator: IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): Array<Array<T>>
+      /**
+      * @private
+      *
+      * @param {TS.Linq.IOrderedEnumerator<T>} orderedEnumerator
+      * @param {(item: T) => TKey} keySelector
+      * @param {(first: TKey, second: TKey) => number} comparer
+      *
+      * @returns {Array<Array<T>>}
+      */
+      private createPartions(orderedEnumerator: TS.Linq.IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): Array<Array<T>>
       {
         let partitionedArray: Array<Array<T>>;
         let orderedIterator: Iterator<Iterator<T>>;
@@ -373,12 +399,13 @@ namespace TS
 
           return resultArray;
         }
-
       }
 
       /**
-       * @description This is the implementation of the 'Iterator<Iterator<T>>' interface.
-       */
+      * @description This is the implementation of the 'Iterator<Iterator<T>>' interface.
+      *
+      * @returns {IteratorResult<Iterator<T>>}
+      */
       public next(): IteratorResult<Iterator<T>>
       {
         if (!this.initalized)
@@ -393,17 +420,20 @@ namespace TS
 
         return { done: true, value: null };
       }
-    }//END class TPartitionIterator
+    }//END class
 
 
     ///*************************************************************************/
-    ///* Inner class: ArrayIterator                                            */
+    ///* Inner class: ArrayIterator<T>                                         */
     ///*************************************************************************/
 
     /**
-     * @class ArrayIterator<T>
-     * @internal
-     */
+    * @class ArrayIterator<T>
+    *
+    * @implements {Iterator<T>}
+    *
+    * @internal
+    */
     class ArrayIterator<T> implements Iterator<T>
     {
       private innerArray: Array<T>;
@@ -411,17 +441,24 @@ namespace TS
       private index: number = -1;
 
       /**
-       * 
-       * @param source, the source object or collection used in this iterator.
-       * @param selector, a selector function which determines the result set.
-       * @throws {TS.ArgumentNullOrUndefinedException}
-       */
+      * @constructor
+      *
+      * @param { Array<T>} source, The source object or collection used in this iterator.
+      *
+      * @throws {TS.ArgumentNullOrUndefinedException}
+      * @throws {TS.InvalidTypeException}
+      */
       constructor(source: Array<T>)
       {
         TS.Utils.checkArrayParameter("source", source, "TS.Linq.OrderedEnumerator.TArrayIterator.constructor");
         this.innerArray = TS.Utils.compactArray(source);
       }
 
+      /**
+      * @implements {Iterator<T>}
+      *
+      * @returns {IteratorResult<T>}
+      */
       public next(): IteratorResult<T>
       {
         if (this.innerArray.length > 0)
@@ -433,5 +470,5 @@ namespace TS
       }
     }//END class
 
-  }
-}
+  }//END namespace
+}//END namespace

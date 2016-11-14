@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProjectGuid>{AA0F9A81-F7B0-490C-82A2-E821B5288CA2}</ProjectGuid>
+    <ProjectGuid>{E742E734-B0AF-4FBF-9532-8B5FA6D570C7}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <OutputPath>bin</OutputPath>
@@ -22,13 +22,39 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Exception.ts" />
+    <TypeScriptCompile Include="Collections\Dictionary.ts" />
+    <TypeScriptCompile Include="Collections\Exception.ts" />
+    <TypeScriptCompile Include="Collections\ICollection.ts" />
+    <TypeScriptCompile Include="Collections\IDictionary.ts" />
+    <TypeScriptCompile Include="Collections\IList.ts" />
+    <TypeScriptCompile Include="Collections\KeyValuePair.ts" />
+    <TypeScriptCompile Include="Collections\List.ts" />
+    <TypeScriptCompile Include="Linq\BaseEnumerator.ts" />
+    <TypeScriptCompile Include="Linq\Enumerator.ts" />
+    <TypeScriptCompile Include="Linq\Exception.ts" />
+    <TypeScriptCompile Include="Linq\Extensions.ts" />
+    <TypeScriptCompile Include="Linq\Grouping.ts" />
+    <TypeScriptCompile Include="Linq\IOrderedEnumerator.ts" />
+    <TypeScriptCompile Include="Linq\OrderedEnumerator.ts" />
+    <TypeScriptCompile Include="_references.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>Exception</RootNamespace>
+    <RootNamespace>TS_Linq</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
@@ -36,11 +62,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55226</DevelopmentServerPort>
+          <DevelopmentServerPort>58656</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55226/</IISUrl>
+          <IISUrl>http://localhost:58656/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -56,7 +82,7 @@
     default: false, 
     description: Generates corresponding ‘.d.ts’ file. 
     -->
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
     <!-- 
     type: string, 
     default: (target === "ES6" ? "ES6" : "CommonJS"), 
@@ -159,8 +185,7 @@
     default: null, 
     description: Redirect output structure to the directory. 
     -->
-    <TypeScriptOutDir>
-    </TypeScriptOutDir>
+    <TypeScriptOutDir>./</TypeScriptOutDir>
     <!-- 
     type: string, 
     default: null, 
@@ -168,8 +193,7 @@
                  list of files passed to the compiler on the command line along with triple-slash references 
     			 and imports. See output file order documentation for more details. 
     -->
-    <TypeScriptOutFile>
-    </TypeScriptOutFile>
+    <TypeScriptOutFile>./TS-Linq.js</TypeScriptOutFile>
     <!-- 
     type: boolean, 
     default: false, 
@@ -203,7 +227,7 @@
                  Use this flag if the sources will be located at run-time in a different location than that at design-time. 
     			 The location specified will be embedded in the sourceMap to direct the debugger where the source files where be located. 
     -->
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
     <!-- 
     type: boolean, 
     default: false, 
@@ -302,6 +326,12 @@
     <TypeScriptNoImplicitUseStrict>True</TypeScriptNoImplicitUseStrict>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
+  <!--
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  -->
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>

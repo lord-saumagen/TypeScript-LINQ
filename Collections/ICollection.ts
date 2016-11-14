@@ -1,13 +1,11 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Collections
   {
 
     /**
-    * @interface ICollection<T>
+    * @interface TS.Collections.ICollection<T>
     *
     * @description Defines methods to manipulate generic collections.
     *
@@ -16,8 +14,8 @@ namespace TS
     export interface ICollection<T>
     {
       /**
-      * @description Adds items to the ICollection<T>.
-      *  Differs from the C# counterpart in that way, that you are allowed to add multiple items at once.
+      * @description Adds items to the ICollection<T>. Differs from the C# counterpart in that way, that you are
+      *  allowed to add multiple items at once.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx | MSND }
       *
@@ -51,8 +49,8 @@ namespace TS
 
 
       /**
-      * @description Copies the elements of the ICollection<T> to an Array, starting at 
-      *  the specified array index or at positions 0 if no array index is specified.
+      * @description Copies the elements of the ICollection<T> to an Array, starting at the specified array index or at
+      *  positions 0 if no array index is specified.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx | MSND }
       *
@@ -96,8 +94,8 @@ namespace TS
 
 
       /**
-      * @description Converts the ICollection<T> into an array of type T.
-      *  There is no equivalent function defined in the C# counterpart of the ICollection<T> interface.
+      * @description Converts the ICollection<T> into an array of type T. There is no equivalent function defined in
+      *  the C# counterpart of the ICollection<T> interface.
       *
       * @returns {Array<T>}
       */

@@ -1,13 +1,11 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Collections
   {
 
     /**
-    * @class List<T>
+    * @class TS.Collections.List<T>
     *
     * @description This class  mimics the .NET counterpart of a List<T> as far as possible in TypeScript.
     *
@@ -29,17 +27,17 @@ namespace TS
       //***********************************************************************
 
       /**
-       * @implements  {ArrayLike<T>}
-       *
-       * @returns {T}
-       */
+      * @implements  {ArrayLike<T>}
+      *
+      * @returns {T}
+      */
       [index: number]: T;
 
       /**
-       * @implements  {ArrayLike<T>}
-       *
-       * @returns {number}
-       */
+      * @implements  {ArrayLike<T>}
+      *
+      * @returns {number}
+      */
       public length: number;
 
       //***********************************************************************
@@ -47,10 +45,10 @@ namespace TS
       //***********************************************************************
 
       /**
-       * @implements  {TS.Linq.BaseEnumerator<T>}
-       *
-       * @returns {Iterator<TSource>}
-       */
+      * @implements  {TS.Linq.BaseEnumerator<T>}
+      *
+      * @returns {Iterator<TSource>}
+      */
       public [Symbol.iterator](): Iterator<T>
       {
         return new Generator<T>(this);
@@ -409,11 +407,10 @@ namespace TS
       /**
       * @constructor
       *
-      * @description This constructor of the List class requires the allowNull flag to be set which determines whether
-      *  the List will accept null values as element or not. The default value for that flag is 'true'.
-      *  In C# you would declare a List<T> to allow null values or not by using a nullable type as concrete type
-      *  parameter or not. Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag
-      *  in the constructor signature.
+      * @description Creates a new List<T>. Requires the allowNull flag to be set which determines whether the null
+      *  values will be allowed as element or not. In C# you would declare a List<T> to allow null by choosing a
+      *  nullable type as concrete type parameter. Since all types in JavaScript nullable per default, I had to
+      *  introduce the 'allowNull' flag in the constructor signature.
       *  The optional generator function will be use to initially fill the list with elements if provided.
       *
       * @param {boolean}, allowNull = true
@@ -426,11 +423,10 @@ namespace TS
       /**
       * @constructor
       *
-      * @description Thos constructor of the List class requires the allowNull flag to be set which determines whether
-      *  the List will accept null values as element or not. The default value for that flag is 'true'. In C# you would
-      *  declare a List<T> to allow null values or not by using a nullable type as concrete type parameter or not.
-      *  Since all types in JavaScript nullable per default, I had to introduce the 'allowNull' flag in the constructor
-      *  signature.
+      * @description Creates a new List<T>. Requires the allowNull flag to be set which determines whether the null
+      *  values will be allowed as element or not. In C# you would declare a List<T> to allow null by choosing a
+      *  nullable type as concrete type parameter. Since all types in JavaScript nullable per default, I had to
+      *  introduce the 'allowNull' flag in the constructor signature.
       *  The optional source will be use to initially fill the list with elements if provided.
       *  The optional predicate determines which elements of the source will become elements of the list.
       *
@@ -441,13 +437,14 @@ namespace TS
       * @throws {TS.InvalidInvocationException}
       */
       constructor(allowNull: boolean, source?: Iterable<T> | ArrayLike<T>, predicate?: (item: T) => boolean)
-      constructor(allowNull: boolean = true, sourceOrGenerator: any, predicate?: (item: T) => boolean)
+      constructor(allowNull: boolean, sourceOrGenerator: any, predicate?: (item: T) => boolean)
       {
         super();
         this.length = 0;
         this.internalAllowNull = allowNull;
 
-        TS.Utils.checkBooleanParameter("allowNull", allowNull, "constructor of TS.Collections.List");
+        TS.Utils.checkBooleanParameter("allowNull", allowNull, "TS.Collections.List.constructor");
+
         if (!TS.Utils.Assert.isNullOrUndefined(sourceOrGenerator))
         {
           //
@@ -529,7 +526,6 @@ namespace TS
         return returnValue;
       }
 
-
     }//END class
 
     //*************************************************************************
@@ -537,12 +533,12 @@ namespace TS
     //*************************************************************************
 
     /**
-     * @class Generator<T>
-     *
-     * @implements {Iterator<T>}
-     *
-     * @internal
-     */
+    * @class Generator<T>
+    *
+    * @implements {Iterator<T>}
+    *
+    * @internal
+    */
     class Generator<T> implements Iterator<T>
     {
       private innerCollection: ArrayLike<T>;
@@ -557,13 +553,13 @@ namespace TS
       }
 
       /**
-       * @constructor
-       *
-       * @param {genFunc: () => IterableIterator<TSource>} genFunc
-       *
-       * @throws {TS.ArgumentNullOrUndefinedException}
-       * @throws {TS.InvalidTypeException}
-       */
+      * @constructor
+      *
+      * @param {genFunc: () => IterableIterator<TSource>} genFunc
+      *
+      * @throws {TS.ArgumentNullOrUndefinedException}
+      * @throws {TS.InvalidTypeException}
+      */
       constructor(collection: ArrayLike<T>)
       {
         this.initalized = false;
@@ -574,10 +570,10 @@ namespace TS
       }
 
       /**
-       * @description This function returns a 'IteratorResult<TSource>' result for each invocation.
-       *
-       * @returns {IteratorResult<TSource>}
-       */
+      * @description This function returns a 'IteratorResult<TSource>' result for each invocation.
+      *
+      * @returns {IteratorResult<TSource>}
+      */
       public next(): IteratorResult<T>
       {
         if (!this.initalized)

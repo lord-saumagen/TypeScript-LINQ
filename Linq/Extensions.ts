@@ -1,12 +1,9 @@
 ﻿/// <reference path="../_references.ts" />
 namespace TS
 {
-  "use strict";
-
   export namespace Linq
   {
-
-    export module Extensions
+    export namespace Extensions
     {
 
       // -------------------------------------
@@ -57,9 +54,7 @@ namespace TS
         let isFirst: boolean = true;
         let useSeed: boolean = false;
 
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.aggregate");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.aggregate");
-        TS.Utils.checkParameter("accumulator", accumulator, "TS.Linq.Extensions.aggregate");
         TS.Utils.checkFunctionParameter("accumulator", accumulator, "TS.Linq.Extensions.aggregate");
 
         useSeed = !TS.Utils.Assert.isNullOrUndefined(seed);
@@ -116,12 +111,9 @@ namespace TS
       */
       export function all<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): boolean
       {
-
         let resultValue = true;
 
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.all");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.all");
-        TS.Utils.checkParameter("predicate", predicate, "TS.Linq.Extensions.all");
         TS.Utils.checkFunctionParameter("predicate", predicate, "TS.Linq.Extensions.all");
 
         for (let item of enumerator)
@@ -167,9 +159,7 @@ namespace TS
       export function any<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): boolean
       export function any<TSource>(enumerator: Iterable<TSource>, predicate?: (item: TSource) => boolean): boolean
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.any");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.any");
-
 
         if (!TS.Utils.Assert.isNullOrUndefined(predicate))
         {
@@ -210,7 +200,6 @@ namespace TS
       */
       export function average(enumerator: Iterable<number>): number
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.average");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.average");
 
         let sum = 0;
@@ -262,13 +251,10 @@ namespace TS
       */
       export function concat<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
-
-        TS.Utils.checkParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.concat");
         TS.Utils.checkIterableParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.concat");
-        TS.Utils.checkParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.concat");
         TS.Utils.checkIterableParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.concat");
 
-        var _arr: Array<TSource>;
+        let arr: Array<TSource>;
         let resultEnumerator: Enumerator<TSource>
 
         let generatorFunc = function* ()
@@ -338,7 +324,6 @@ namespace TS
       export function contains<TSource>(enumerator: Iterable<TSource>, element: TSource, equalityComparer: (first: TSource, second: TSource) => boolean): boolean
       export function contains<TSource>(enumerator: Iterable<TSource>, element: TSource, equalityComparer?: (first: TSource, second: TSource) => boolean): boolean
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.contains");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.contains");
         TS.Utils.checkParameter("element", element, "TS.Linq.Extensions.contains");
 
@@ -394,7 +379,6 @@ namespace TS
       export function count<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): number
       export function count<TSource>(enumerator: Iterable<TSource>, predicate?: (item: TSource) => boolean): number
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.count");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.count");
 
         if (!TS.Utils.Assert.isNullOrUndefined(predicate))
@@ -444,7 +428,6 @@ namespace TS
       */
       export function cycle<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.cycle");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.cycle");
 
         let generatorFunction = function* ()
@@ -488,7 +471,6 @@ namespace TS
       */
       export function defaultIfEmpty<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.defaultIfEmpty");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.defaultIfEmpty");
         TS.Utils.checkParameter("defaultConstructorOrValue", defaultConstructorOrValue, "TS.Linq.Extensions.defaultIfEmpty");
 
@@ -553,9 +535,7 @@ namespace TS
       export function distinct<TSource>(enumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       export function distinct<TSource>(enumerator: Iterable<TSource>, equalityComparer?: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.distinct");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.distinct");
-
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
         {
@@ -603,7 +583,6 @@ namespace TS
       */
       export function elementAt<TSource>(enumerator: Iterable<TSource>, index: number): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.elementAt");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.elementAt");
         TS.Utils.checkUIntNumberParameter("index", index, "TS.Linq.Extensions.elementAt");
 
@@ -641,7 +620,6 @@ namespace TS
       */
       export function elementAtOrDefault<TSource>(enumerator: Iterable<TSource>, index: number, defaultConstructorOrValue: { new (): TSource; } | TSource): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.elementAtOrDefault");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.elementAtOrDefault");
         TS.Utils.checkUIntNumberParameter("index", index, "TS.Linq.Extensions.elementAtOrDefault");
         TS.Utils.checkParameter("defaultConstructorOrValue", defaultConstructorOrValue, "TS.Linq.Extensions.elementAtOrDefault");
@@ -700,9 +678,7 @@ namespace TS
       export function except<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       export function except<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer?: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.except");
         TS.Utils.checkIterableParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.except");
-        TS.Utils.checkParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.except");
         TS.Utils.checkIterableParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.except");
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
@@ -770,7 +746,6 @@ namespace TS
       export function first<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource
       export function first<TSource>(enumerator: Iterable<TSource>, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.first");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.first");
 
         if (!TS.Utils.Assert.isNullOrUndefined(predicate))
@@ -837,7 +812,6 @@ namespace TS
       export function firstOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate: (item: TSource) => boolean): TSource
       export function firstOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.firstOrDefault");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.firstOrDefault");
         TS.Utils.checkParameter("defaultConstructorOrValue", defaultConstructorOrValue, "TS.Linq.Extensions.firstOrDefault");
 
@@ -885,16 +859,14 @@ namespace TS
       * @param {Iterable<TSource>} enumerator
       * @param {(item: TSource) => void } action
       *
-      * @retuns {Iterable<TSource>}
+      * @retuns {TS.Linq.Enumerator<TSource>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
       export function forEach<TSource>(enumerator: Iterable<TSource>, action: (item: TSource) => void): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.forEach");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.forEach");
-        TS.Utils.checkParameter("action", action, "TS.Linq.Extensions.foreach");
         TS.Utils.checkFunctionParameter("action", action, "TS.Linq.Extensions.forEach");
 
         for (let item of enumerator)
@@ -959,9 +931,7 @@ namespace TS
       export function groupBy<TSource, TKey, TElement>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean, elementSelector: (item: TSource) => TElement): TS.Linq.Enumerator<Grouping<TKey, TElement>>
       export function groupBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, equalityComparer?: (first: TKey, second: TKey) => boolean, elementSelector?: (item: TSource) => any): TS.Linq.Enumerator<any>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.groupBy");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.groupBy");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.groupBy");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.groupBy");
 
 
@@ -1038,15 +1008,10 @@ namespace TS
       export function groupJoin<TOuter, TInner, TKey, TResult>(outerEnumerator: Iterable<TOuter>, innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: TOuter) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: TOuter, group: Iterable<TInner>) => TResult, equalityComparer: <TKey>(first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<TResult>
       export function groupJoin<TOuter, TInner, TKey, TResult>(outerEnumerator: Iterable<TOuter>, innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: TOuter) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: TOuter, group: Iterable<TInner>) => TResult, equalityComparer?: (first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<TResult>
       {
-        TS.Utils.checkParameter("outerEnumerator", outerEnumerator, "TS.Linq.Extensions.groupJoin");
         TS.Utils.checkIterableParameter("outerEnumerator", outerEnumerator, "TS.Linq.Extensions.groupJoin");
-        TS.Utils.checkParameter("innerEnumerator", innerEnumerator, "TS.Linq.Extensions.groupJoin");
         TS.Utils.checkIterableParameter("innerEnumerator", innerEnumerator, "TS.Linq.Extensions.groupJoin");
-        TS.Utils.checkParameter("outerKeySelector", outerKeySelector, "TS.Linq.Extensions.groupJoin");
         TS.Utils.checkFunctionParameter("outerKeySelector", outerKeySelector, "TS.Linq.Extensions.groupJoin");
-        TS.Utils.checkParameter("innerKeySelector", innerKeySelector, "TS.Linq.Extensions.groupJoin");
         TS.Utils.checkFunctionParameter("innerKeySelector", innerKeySelector, "TS.Linq.Extensions.groupJoin");
-        TS.Utils.checkParameter("resultSelector", resultSelector, "TS.Linq.Extensions.groupJoin");
         TS.Utils.checkFunctionParameter("resultSelector", resultSelector, "TS.Linq.Extensions.groupJoin");
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
@@ -1116,9 +1081,7 @@ namespace TS
       export function intersect<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       export function intersect<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer?: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.intersect");
         TS.Utils.checkIterableParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.intersect");
-        TS.Utils.checkParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.intersect");
         TS.Utils.checkIterableParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.intersect");
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
@@ -1167,15 +1130,10 @@ namespace TS
       */
       export function join<TOuter, TInner, TKey, TResult>(outerEnumerator: Iterable<TOuter>, innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: TOuter) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: TOuter, innerItem: TInner) => TResult): TS.Linq.Enumerator<TResult>
       {
-        TS.Utils.checkParameter("outerEnumerator", outerEnumerator, "TS.Linq.Extensions.join");
         TS.Utils.checkIterableParameter("outerEnumerator", outerEnumerator, "TS.Linq.Extensions.join");
-        TS.Utils.checkParameter("innerEnumerator", innerEnumerator, "TS.Linq.Extensions.join");
         TS.Utils.checkIterableParameter("innerEnumerator", innerEnumerator, "TS.Linq.Extensions.join");
-        TS.Utils.checkParameter("outerKeySelector", outerKeySelector, "TS.Linq.Extensions.join");
         TS.Utils.checkFunctionParameter("outerKeySelector", outerKeySelector, "TS.Linq.Extensions.join");
-        TS.Utils.checkParameter("innerKeySelector", innerKeySelector, "TS.Linq.Extensions.join");
         TS.Utils.checkFunctionParameter("innerKeySelector", innerKeySelector, "TS.Linq.Extensions.join");
-        TS.Utils.checkParameter("resultSelector", resultSelector, "TS.Linq.Extensions.join");
         TS.Utils.checkFunctionParameter("resultSelector", resultSelector, "TS.Linq.Extensions.join");
 
 
@@ -1228,7 +1186,6 @@ namespace TS
       export function last<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource
       export function last<TSource>(enumerator: Iterable<TSource>, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.last");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.last");
 
         if (!TS.Utils.Assert.isNullOrUndefined(predicate))
@@ -1302,7 +1259,6 @@ namespace TS
       export function lastOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate: (item: TSource) => boolean): TSource
       export function lastOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.lastOrDefault");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.lastOrDefault");
         TS.Utils.checkParameter("defaultConstructorOrValue", defaultConstructorOrValue, "TS.Linq.Extensions.lastOrDefault");
 
@@ -1374,7 +1330,6 @@ namespace TS
       export function max<TSource, Number>(enumerator: Iterable<TSource>, selector: (item: TSource) => number): number
       export function max<TSource, Number>(enumerator: Iterable<TSource>, selector?: (item: TSource) => number): number
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.max");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.max");
 
         if (!TS.Utils.Assert.isNullOrUndefined(selector))
@@ -1455,7 +1410,6 @@ namespace TS
       export function min<TSource, Number>(enumerator: Iterable<TSource>, selector: (item: TSource) => number): number
       export function min<TSource, Number>(enumerator: Iterable<TSource>, selector?: (item: TSource) => number): number
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.min");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.min");
 
         if (!TS.Utils.Assert.isNullOrUndefined(selector))
@@ -1511,7 +1465,7 @@ namespace TS
       * @param {Iterable<TSource>} enumerator
       * @param {(item: TSource) => TKey} keySelector
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -1527,17 +1481,15 @@ namespace TS
       * @param {(item: TSource) => TKey} keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
-      export function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
+      export function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
+      export function orderBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.orderBy");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.orderBy");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.orderBy");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.orderBy");
 
         if (!TS.Utils.Assert.isNullOrUndefined(comparer))
@@ -1565,12 +1517,12 @@ namespace TS
       * @param {Iterable<TSource>} enumerator
       * @param {(item: TSource) => TKey} keySelector
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>
+      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>
       /**
       * @description Sorts the elements of a sequence in descending order by using a specified comparer.
       * @description Deferred execution.
@@ -1581,17 +1533,15 @@ namespace TS
       * @param {(item: TSource) => TKey} keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
-      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
+      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
+      export function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.orderByDescending");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.orderByDescending");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.orderByDescending");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.orderByDescending");
 
 
@@ -1647,7 +1597,6 @@ namespace TS
       */
       export function random<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.random");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.random");
 
 
@@ -1764,7 +1713,6 @@ namespace TS
       */
       export function reverse<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.reverse");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.reverse");
 
         let generatorFunction = function* ()
@@ -1798,9 +1746,7 @@ namespace TS
       */
       export function select<TSource, TResult>(enumerator: Iterable<TSource>, selector: (item: TSource) => TResult): TS.Linq.Enumerator<TResult>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.select");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.select");
-        TS.Utils.checkParameter("selector", selector, "TS.Linq.Extensions.select");
         TS.Utils.checkFunctionParameter("selector", selector, "TS.Linq.Extensions.select");
 
         let generatorFunction = function* ()
@@ -1837,11 +1783,8 @@ namespace TS
       */
       export function selectMany<TSource, TResult>(enumerator: Iterable<TSource>, selector: (item: TSource) => Iterable<TResult>): TS.Linq.Enumerator<TResult>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.selectMany");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.selectMany");
-        TS.Utils.checkParameter("selector", selector, "TS.Linq.Extensions.selectMany");
         TS.Utils.checkFunctionParameter("selector", selector, "TS.Linq.Extensions.selectMany");
-
 
         let generatorFunction = function* ()
         {
@@ -1906,9 +1849,7 @@ namespace TS
       export function sequenceEqual<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): boolean
       export function sequenceEqual<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer?: (first: TSource, second: TSource) => boolean): boolean
       {
-        TS.Utils.checkParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.sequenceEqual");
         TS.Utils.checkIterableParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.sequenceEqual");
-        TS.Utils.checkParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.sequenceEqual");
         TS.Utils.checkIterableParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.sequenceEqual");
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
@@ -1957,7 +1898,6 @@ namespace TS
       */
       export function shuffle<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.shuffle");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.shuffle");
 
 
@@ -2022,7 +1962,6 @@ namespace TS
       export function single<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource
       export function single<TSource>(enumerator: Iterable<TSource>, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.single");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.single");
 
         if (!TS.Utils.Assert.isNullOrUndefined(predicate))
@@ -2053,7 +1992,6 @@ namespace TS
             }
           }
         }
-
 
         if (!gotOne)
         {
@@ -2111,7 +2049,6 @@ namespace TS
       export function singleOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate: (item: TSource) => boolean): TSource
       export function singleOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource, predicate?: (item: TSource) => boolean): TSource
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.singleOrDefault");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.singleOrDefault");
         TS.Utils.checkParameter("defaultConstructorOrValue", defaultConstructorOrValue, "TS.Linq.Extensions.singleOrDefault");
 
@@ -2176,7 +2113,6 @@ namespace TS
       */
       export function skip<TSource>(enumerator: Iterable<TSource>, count: number): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.skip");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.skip");
         TS.Utils.checkUIntNumberParameter("count", count, "TS.Linq.Extensions.skip");
 
@@ -2205,7 +2141,7 @@ namespace TS
       * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.skipwhile.aspx | MSDN}
       *
       * @param {Iterable<TSource>} enumerator
-      * @parem {(item: TSource) => boolean} predicate
+      * @param {(item: TSource) => boolean} predicate
       *
       * @returns {TS.Linq.Enumerator<TSource>}
       *
@@ -2214,9 +2150,7 @@ namespace TS
       */
       export function skipWhile<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.skipWhile");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.skipWhile");
-        TS.Utils.checkParameter("predicate", predicate, "TS.Linq.Extensions.skipWhile");
         TS.Utils.checkFunctionParameter("predicate", predicate, "TS.Linq.Extensions.skipWhile");
 
 
@@ -2252,7 +2186,6 @@ namespace TS
       */
       export function sum(enumerator: Iterable<number>): number
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.sum");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.sum");
 
         if (count(enumerator) == 0)
@@ -2294,7 +2227,6 @@ namespace TS
       */
       export function take<TSource>(enumerator: Iterable<TSource>, count: number): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.take");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.take");
         TS.Utils.checkUIntNumberParameter("count", count, "TS.Linq.Extensions.take");
 
@@ -2336,9 +2268,7 @@ namespace TS
       */
       export function takeWhile<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.takeWhile");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.takeWhile");
-        TS.Utils.checkParameter("predicate", predicate, "TS.Linq.Extensions.takeWhile");
         TS.Utils.checkFunctionParameter("predicate", predicate, "TS.Linq.Extensions.takeWhile");
 
         let generatorFunction = function* ()
@@ -2368,36 +2298,34 @@ namespace TS
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb534743.aspx | MSDN}
       *
-      * @param {IOrderedEnumerator<TSource>} enumerator
+      * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
       * @param { (item: TSource) => TKey } keySelector
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function thenBy<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>
+      export function thenBy<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>
       /**
       * @description Performs a subsequent ordering of the elements in a sequence in ascending order by using a specified comparer.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb534500.aspx | MSDN}
       *
-      * @param {IOrderedEnumerator<TSource>} enumerator
+      * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
       * @param { (item: TSource) => TKey } keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function thenBy<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
-      export function thenBy<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
+      export function thenBy<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
+      export function thenBy<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.orderBy");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.orderBy");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.orderBy");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.orderBy");
 
         if (TS.Utils.Assert.isNullOrUndefined(enumerator.partitionIterator))
@@ -2417,7 +2345,7 @@ namespace TS
           TS.Utils.checkFunctionParameter("comparer", comparer, "TS.Linq.Extensions.orderBy");
         }//END else
 
-        return new OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer);
+        return new TS.Linq.OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer);
       }
 
 
@@ -2429,36 +2357,34 @@ namespace TS
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb534736.aspx | MSDN}
       *
-      * @param {IOrderedEnumerator<TSource>} enumerator
+      * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
       * @param { (item: TSource) => TKey } keySelector
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function thenByDescending<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey): OrderedEnumerator<TSource, TKey>
+      export function thenByDescending<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator< TSource >, keySelector: (item: TSource) => TKey): TS.Linq.OrderedEnumerator<TSource, TKey>
       /**
       * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the specified key and comparer.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb534489.aspx | MSDN}
       *
-      * @param {IOrderedEnumerator<TSource>} enumerator
+      * @param {TS.Linq.IOrderedEnumerator<TSource>} enumerator
       * @param { (item: TSource) => TKey } keySelector
       * @param {(first: TKey, second: TKey) => number} comparer
       *
-      * @returns {OrderedEnumerator<TSource, TKey>}
+      * @returns {TS.Linq.OrderedEnumerator<TSource, TKey>}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function thenByDescending<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
-      export function thenByDescending<TSource, TKey>(enumerator: IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): OrderedEnumerator<TSource, TKey>
+      export function thenByDescending<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator< TSource, TKey >
+      export function thenByDescending<TSource, TKey>(enumerator: TS.Linq.IOrderedEnumerator<TSource>, keySelector: (item: TSource) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.thenByDescending");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.thenByDescending");
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.thenByDescending");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.thenByDescending");
 
 
@@ -2485,7 +2411,7 @@ namespace TS
           return -1 * comparer(first, second);
         }
 
-        return new OrderedEnumerator<TSource, TKey>(enumerator, keySelector, reverseComparer);
+        return new TS.Linq.OrderedEnumerator<TSource, TKey>(enumerator, keySelector, reverseComparer);
       }
 
 
@@ -2504,7 +2430,6 @@ namespace TS
       */
       export function toArray<TSource>(enumerator: Iterable<TSource>): Array<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.toArray");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.toArray");
 
         return Array.from(enumerator);
@@ -2526,13 +2451,10 @@ namespace TS
       * @throws {TS.Collections.DuplicateKeyException}
       * @throws {TS.InvalidTypeException}
       * @throws {TS.InvalidOperationException}
-       */
+      */
       export function toDictionary<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey): TS.Collections.Dictionary<TKey, TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.toDictionary");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.toDictionary");
-
-        TS.Utils.checkParameter("keySelector", keySelector, "TS.Linq.Extensions.toDictionary");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.toDictionary");
 
         let resultDictionary: TS.Collections.Dictionary<TKey, TSource>;
@@ -2540,7 +2462,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-            resultDictionary.add(keySelector(item), item);
+          resultDictionary.add(keySelector(item), item);
         }
 
         return resultDictionary;
@@ -2561,7 +2483,6 @@ namespace TS
       */
       export function toList<TSource>(enumerator: Iterable<TSource>): TS.Collections.List<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.toList");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.toList");
 
         return new TS.Collections.List(true, enumerator);
@@ -2593,7 +2514,7 @@ namespace TS
       *
       * @param {Iterable<TSource>} firstEnumerator
       * @param {Iterable<TSource>} secondEnumerator
-      * @parem {(first: TSource, second: TSource) => boolean} equalityComparer?
+      * @param {(first: TSource, second: TSource) => boolean} equalityComparer?
       *
       * @returns {TS.Linq.Enumerator<TSource>}
       *
@@ -2603,9 +2524,7 @@ namespace TS
       export function union<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       export function union<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer?: (first: TSource, second: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.union");
         TS.Utils.checkIterableParameter("firstEnumerator", firstEnumerator, "TS.Linq.Extensions.union");
-        TS.Utils.checkParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.union");
         TS.Utils.checkIterableParameter("secondEnumerator", secondEnumerator, "TS.Linq.Extensions.union");
 
         if (!TS.Utils.Assert.isNullOrUndefined(equalityComparer))
@@ -2658,9 +2577,7 @@ namespace TS
       */
       export function where<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TS.Linq.Enumerator<TSource>
       {
-        TS.Utils.checkParameter("enumerator", enumerator, "TS.Linq.Extensions.where");
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.where");
-        TS.Utils.checkParameter("predicate", predicate, "TS.Linq.Extensions.selectMany");
         TS.Utils.checkFunctionParameter("predicate", predicate, "TS.Linq.Extensions.selectMany");
 
 
@@ -2694,13 +2611,10 @@ namespace TS
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
-      export function zip<TFirst, TSecond, TResult>(firstEnum: Iterable<TFirst>, secondEnum: Iterable<TSecond>, func: (firt: TFirst, second: TSecond) => TResult): TS.Linq.Enumerator<TResult>
+      export function zip<TFirst, TSecond, TResult>(firstEnum: Iterable<TFirst>, secondEnum: Iterable<TSecond>, func: (first: TFirst, second: TSecond) => TResult): TS.Linq.Enumerator<TResult>
       {
-        TS.Utils.checkParameter("firstEnum", firstEnum, "TS.Linq.Extensions.zip");
         TS.Utils.checkIterableParameter("firstEnum", firstEnum, "TS.Linq.Extensions.zip");
-        TS.Utils.checkParameter("secondEnum", secondEnum, "TS.Linq.Extensions.zip");
         TS.Utils.checkIterableParameter("secondEnum", secondEnum, "TS.Linq.Extensions.zip");
-        TS.Utils.checkParameter("func", func, "TS.Linq.Extensions.zip");
         TS.Utils.checkFunctionParameter("func", func, "TS.Linq.Extensions.zip");
 
         let generatorFunction = function* ()
@@ -2720,8 +2634,7 @@ namespace TS
 
         return new TS.Linq.Enumerator<TResult>(generatorFunction);
       }
-    }//END module
 
-  }
-}
-
+    }//END namespace
+  }//END namespace
+}//END namespace

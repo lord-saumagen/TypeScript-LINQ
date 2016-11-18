@@ -102,6 +102,12 @@ A short introduction on how to use this LINQ library on your own project is also
 
 See: [LINQ HowTo](http://lord-saumagen.byethost14.com/home/TypeScript-LINQ/LINQ_HowTo.html)
 
+The API documentation for the complete project can be viewed online and is also available for download.
+
+See: [API documentation online](http://lord-saumagen.byethost14.com/home/TypeScript-Documentation/)   
+See: [API documentation download](http://lord-saumagen.byethost14.com/home/TypeScript-Documentation.zip) (Use right click -> Save link as...)   
+
+
 
 
 
@@ -115,7 +121,6 @@ This software is licensed under the "Microsoft Public License".
 
 
 See: [MS-PL](https://opensource.org/licenses/MS-PL")
-
 
 
 The full license text is also available in the "Docs" directory in file "Microsoft\_Public\_License\_(MS-PL).txt".

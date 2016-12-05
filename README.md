@@ -1,14 +1,8 @@
 #TypeScript - LINQ for ECMAScript 2015
 
-
-
 This is an implementation of the standard LINQ operators defined by Microsoft, in TypeScript.
 
-
-
 See: [Classification of Standard Query Operators by Manner of Execution (C#)](https://msdn.microsoft.com/en-us/library/mt693095.aspx)
-
-
 
 This project is the successor of an earlier LINQ project in TypeScript. The earlier project used it's own implementation of the iterator pattern. This project uses the so called "iteration protocols" which are new in ECMAScript 2015. By the time of this writing, there is no Microsoft browser available which supports ECMAScript 2015. Therefore the project code is only tested with Chrome (Version 52.0.2741) and Firefox (Version 48.0.2).
 
@@ -29,9 +23,9 @@ Please be aware that this library is intentionally compiled into ECMAScript 2015
 
 See: [typescript-linq V1.0.X](https://www.npmjs.com/package/typescript-linq) (npm package at npmjs.com)   
 
-See: [TypeScript-LINQ](https://github.com/lord-saumagen/TypeScript-LINQ) (This project as github)
+See: [TypeScript-LINQ](https://github.com/lord-saumagen/TypeScript-LINQ) (This project at github)
 
-See: [TypeScript-LINQ-Node-Test](https://github.com/lord-saumagen/TypeScript-LINQ-Node-Test) (Node.js test project as github)
+See: [TypeScript-LINQ-Node-Test](https://github.com/lord-saumagen/TypeScript-LINQ-Node-Test) (Node.js test project at github)
 
 See: [TypeScript-LINQ-Test](https://github.com/lord-saumagen/TypeScript-LINQ-Test) (qunit test project at github)
 
@@ -67,14 +61,9 @@ See: [TS-Linq and TS-Base download](http://lord-saumagen.byethost14.com/home/TS.
 
 There is also a complete list of all extension functions implemented in this LINQ library.
 
-
 See: [Extension functions](http://lord-saumagen.byethost14.com/home/TypeScript-LINQ/ExtensionFunctions.html)
 
-
-
 A short introduction on how to use this LINQ library on your own project is also available.
-
-
 
 See: [LINQ HowTo](http://lord-saumagen.byethost14.com/home/TypeScript-LINQ/LINQ_HowTo.html)
 
@@ -83,24 +72,10 @@ The API documentation for the complete project can be viewed online and is also 
 See: [API documentation online](http://lord-saumagen.byethost14.com/home/TypeScript-LINQ-Documentation/)   
 See: [API documentation download](http://lord-saumagen.byethost14.com/home/TypeScript-LINQ-Documentation.zip)   
 
-
-
-
-
-
 ##License
-
-
 
 This software is licensed under the "Microsoft Public License".
 
-
-
 See: [MS-PL](https://opensource.org/licenses/MS-PL")
-
-
-The full license text is also available in the "Docs" directory in file "Microsoft\_Public\_License\_(MS-PL).txt".
-
-
 
 &copy; lord.saumagen@gmail.com, 2016

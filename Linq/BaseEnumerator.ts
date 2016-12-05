@@ -12,7 +12,7 @@ namespace TS
     *
     * @abstract
     *
-    * @implements Iterable<T>
+    * @implements {Iterable<T>}
     */
     export abstract class BaseEnumerator<T> implements Iterable<T>
     {
@@ -62,7 +62,7 @@ namespace TS
       public aggregate<TAccumulate>(accumulator: (first: TAccumulate, second: T) => TAccumulate, seed: TAccumulate): TAccumulate
       public aggregate<TAccumulate>(accumulator: (first: any, second: T) => any, seed?: TAccumulate): any
       {
-        return TS.Linq.Extensions.aggregate<T, TAccumulate>(this, accumulator, seed);
+        return TS.Linq.Extensions.aggregate<T, TAccumulate>(this, accumulator, seed as TAccumulate);
       }
 
 
@@ -119,7 +119,7 @@ namespace TS
           TS.Utils.checkFunctionParameter("predicate", predicate, "TS.Collections.CollectionBase.any");
         }//END if
 
-        return TS.Linq.Extensions.any(this, predicate);
+        return TS.Linq.Extensions.any(this, predicate as (item: T) => boolean);
       }
 
 
@@ -169,9 +169,9 @@ namespace TS
 
       /**
       * @description Determines whether a sequence contains a specified element by using the default equality comparer.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in the
+      *  Uses javascript strict comparison operator 'strict equality (===)' to determine whether an elements in the
       *  enumeration matches with the specified search element. This function may produce results that differ from the
-      *  C# counterpart, because the comparsion operators have different implementations in C# and javascript.
+      *  C# counterpart, because the comparison operators have different implementations in C# and javascript.
       * @description Extension function.
       * @description Immediate execution.
       *
@@ -179,7 +179,7 @@ namespace TS
       *
       * @param {T} element
       *
-      * @returns {boolen}
+      * @returns {boolean}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       */
@@ -194,7 +194,7 @@ namespace TS
       * @param {T} element
       * @param {(first: TSource, second: TSource) => boolean}  equalityComparer
       *
-      * @returns {boolen}
+      * @returns {boolean}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -202,7 +202,7 @@ namespace TS
       public contains(element: T, equalityComparer: (first: T, second: T) => boolean): boolean
       public contains(element: T, equalityComparer?: (first: T, second: T) => boolean): boolean
       {
-        return TS.Linq.Extensions.contains(this, element, equalityComparer);
+        return TS.Linq.Extensions.contains(this, element, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -232,12 +232,12 @@ namespace TS
       public count(predicate: (item: T) => boolean): number
       public count(predicate?: (item: T) => boolean): number
       {
-        return TS.Linq.Extensions.count(this, predicate);
+        return TS.Linq.Extensions.count(this, predicate as (item: T) => boolean);
       }
 
 
       /**
-      * @description This function retuns an endless number of elements from the underlying sequence by running over
+      * @description This function returns an endless number of elements from the underlying sequence by running over
       *  that sequence in cycles. The function enumerates the elements of the base sequence from the start to then end
       *  and starts over with the first element as soon as the last element is reached. This function will never run
       *  out of data. There is one exception of that rule. If the underlying sequence is an empty sequence, the cycle
@@ -286,8 +286,8 @@ namespace TS
 
       /**
       * @description Returns distinct elements from a sequence by using the default equality comparer to compare values.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-      *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
+      *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction.
+      *  This function may produce results that differ from the C# counterpart, because the comparison operators have
       *  different implementations in C# and javascript.
       * @description Extension function.
       * @description Deferred execution.
@@ -313,7 +313,7 @@ namespace TS
       public distinct(equalityComparer: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       public distinct(equalityComparer?: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       {
-        return TS.Linq.Extensions.distinct(this, equalityComparer);
+        return TS.Linq.Extensions.distinct(this, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -368,8 +368,8 @@ namespace TS
 
       /**
       * @description Produces the set difference of two sequences.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-      *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
+      *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction.
+      *  This function may produce results that differ from the C# counterpart, because the comparison operators have
       *  different implementations in C# and javascript.
       * @description Extension function.
       * @description Deferred execution.
@@ -403,7 +403,7 @@ namespace TS
       public except(secondEnumerator: Iterable<T>, equalityComparer: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       public except(secondEnumerator: Iterable<T>, equalityComparer?: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       {
-        return TS.Linq.Extensions.except(this, secondEnumerator, equalityComparer);
+        return TS.Linq.Extensions.except(this, secondEnumerator, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -436,7 +436,7 @@ namespace TS
       public first(predicate: (item: T) => boolean): T
       public first(predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.first(this, predicate);
+        return TS.Linq.Extensions.first(this, predicate as (item: T) => boolean);
       }
 
 
@@ -485,7 +485,7 @@ namespace TS
       public firstOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate: (item: T) => boolean): T
       public firstOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.firstOrDefault(this, defaultConstructorOrValue, predicate);
+        return TS.Linq.Extensions.firstOrDefault(this, defaultConstructorOrValue, predicate as (item: T) => boolean);
       }
 
 
@@ -566,7 +566,7 @@ namespace TS
       public groupBy<TKey, TElement>(keySelector: (item: T) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean, elementSelector: (item: T) => TElement): TS.Linq.Enumerator<TS.Linq.Grouping<TKey, TElement>>
       public groupBy<TKey>(keySelector: (item: T) => TKey, equalityComparer?: (first: TKey, second: TKey) => boolean, elementSelector?: (item: T) => any): TS.Linq.Enumerator<any>
       {
-        return TS.Linq.Extensions.groupBy(this, keySelector, equalityComparer, elementSelector);
+        return TS.Linq.Extensions.groupBy(this, keySelector, equalityComparer as (first: TKey, second: TKey) => boolean, elementSelector as (item: T) => any);
       }
 
 
@@ -611,7 +611,7 @@ namespace TS
       public groupJoin<TInner, TKey, TResult>(innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: T) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: T, group: Iterable<TInner>) => TResult, equalityComparer: <TKey>(outerKey: TKey, innerKey: TKey) => boolean): TS.Linq.Enumerator<TResult>
       public groupJoin<TInner, TKey, TResult>(innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: T) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: T, group: Iterable<TInner>) => TResult, equalityComparer?: (outerKey: TKey, innerKey: TKey) => boolean): TS.Linq.Enumerator<TResult>
       {
-        return TS.Linq.Extensions.groupJoin<T, TInner, TKey, TResult>(this, innerEnumerator, outerKeySelector, innerKeySelector, resultSelector, equalityComparer);
+        return TS.Linq.Extensions.groupJoin<T, TInner, TKey, TResult>(this, innerEnumerator, outerKeySelector, innerKeySelector, resultSelector, equalityComparer as (outerKey: TKey, innerKey: TKey) => boolean);
       }
 
 
@@ -650,7 +650,7 @@ namespace TS
       public intersect(secondEnumerator: Iterable<T>, equalityComparer: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       public intersect(secondEnumerator: Iterable<T>, equalityComparer?: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       {
-        return TS.Linq.Extensions.intersect(this, secondEnumerator, equalityComparer);
+        return TS.Linq.Extensions.intersect(this, secondEnumerator, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -694,7 +694,7 @@ namespace TS
       */
       public last(predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.last(this, predicate);
+        return TS.Linq.Extensions.last(this, predicate as (item: T) => boolean);
       }
 
 
@@ -743,7 +743,7 @@ namespace TS
       public lastOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate: (item: T) => boolean): T
       public lastOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.lastOrDefault(this, defaultConstructorOrValue, predicate);
+        return TS.Linq.Extensions.lastOrDefault(this, defaultConstructorOrValue, predicate as (item: T) => boolean);
       }
 
 
@@ -818,7 +818,7 @@ namespace TS
       public orderBy<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       public orderBy<TKey>(keySelector: (item: T) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       {
-        return TS.Linq.Extensions.orderBy(this, keySelector, comparer);
+        return TS.Linq.Extensions.orderBy(this, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
@@ -855,12 +855,12 @@ namespace TS
       public orderByDescending<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       public orderByDescending<TKey>(keySelector: (item: T) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       {
-        return TS.Linq.Extensions.orderByDescending(this, keySelector, comparer);
+        return TS.Linq.Extensions.orderByDescending(this, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
       /**
-      * @description Retuns random elements from the base enumeration. This function is not a Linq function. The
+      * @description Returns random elements from the base enumeration. This function is not a Linq function. The
       *  function uses a generator to select the current random element. For that reason the function will return as
       *  much elements as required, regardless how much elements the underlying sequence holds.
       *
@@ -868,7 +868,7 @@ namespace TS
       *
       *  Attention:
       *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator. Otherwise
-      *  you will run out fo memory.
+      *  you will run out of memory.
       * @description Extension function.
       * @description Deferred execution.
       *
@@ -982,7 +982,7 @@ namespace TS
       public sequenceEqual(secondEnumerator: Iterable<T>, equalityComparer: (first: T, second: T) => boolean): boolean
       public sequenceEqual(secondEnumerator: Iterable<T>, equalityComparer?: (first: T, second: T) => boolean): boolean
       {
-        return TS.Linq.Extensions.sequenceEqual(this, secondEnumerator, equalityComparer);
+        return TS.Linq.Extensions.sequenceEqual(this, secondEnumerator, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -1042,7 +1042,7 @@ namespace TS
       public single(predicate: (item: T) => boolean): T
       public single(predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.single(this, predicate);
+        return TS.Linq.Extensions.single(this, predicate as (item: T) => boolean);
       }
 
 
@@ -1069,7 +1069,7 @@ namespace TS
       public singleOrDefault(defaultConstructorOrValue: { new (): T; } | T): T
       /**
       * @description Returns the only element of a sequence that satisfies a specified condition or a default value if
-      *  no such element exists, This method throws an exception if more than one element satisfie the condition. That
+      *  no such element exists, This method throws an exception if more than one element satisfies the condition. That
       *  function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
       *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
       *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
@@ -1079,7 +1079,7 @@ namespace TS
       * @description Extension function.
       * @description Immediate execution.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx | MSDN }
       *
       * @param {{ new (): T; } | T} defaultConstructorOrValue
       * @param {item: TSource) => boolean} predicate
@@ -1093,7 +1093,7 @@ namespace TS
       public singleOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate: (item: T) => boolean): T
       public singleOrDefault(defaultConstructorOrValue: { new (): T; } | T, predicate?: (item: T) => boolean): T
       {
-        return TS.Linq.Extensions.singleOrDefault(this, defaultConstructorOrValue, predicate);
+        return TS.Linq.Extensions.singleOrDefault(this, defaultConstructorOrValue, predicate as (item: T) => boolean);
       }
 
 
@@ -1264,8 +1264,8 @@ namespace TS
 
 
       /**
-      * @description Produces the set union of two sequences by using the strict comparsion operator (===). This
-      *  function may produce results that differ from the C# counterpart, because the comparsion operators have
+      * @description Produces the set union of two sequences by using the strict comparison operator (===). This
+      *  function may produce results that differ from the C# counterpart, because the comparison operators have
       *  different implementations in C# and javascript.
       * @description Extension function.
       * @description Deferred execution.
@@ -1281,7 +1281,7 @@ namespace TS
       */
       public union(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>
       /**
-      * @description Produces the set union of two sequences by using the comparsion operator provide in argument
+      * @description Produces the set union of two sequences by using the comparison operator provide in argument
       *  'equalityComparer'.
       * @description Extension function.
       * @description Deferred execution.
@@ -1299,7 +1299,7 @@ namespace TS
       public union(secondEnumerator: Iterable<T>, equalityComparer: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       public union(secondEnumerator: Iterable<T>, equalityComparer?: (first: T, second: T) => boolean): TS.Linq.Enumerator<T>
       {
-        return TS.Linq.Extensions.union(this, secondEnumerator, equalityComparer);
+        return TS.Linq.Extensions.union(this, secondEnumerator, equalityComparer as (first: T, second: T) => boolean);
       }
 
 
@@ -1331,7 +1331,7 @@ namespace TS
       * @see {@link https://msdn.microsoft.com/en-us/library/dd267698(v=vs.110).aspx | MSDN}
       *
       * @param {Iterable<TSecond>} secondEnum
-      * @param {(firt: TFirst, second: TSecond) => TResult} func
+      * @param {(first: TFirst, second: TSecond) => TResult} func
       *
       * @retuns {TS.Linq.Enumerator<TResult>}
       *

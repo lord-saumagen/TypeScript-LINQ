@@ -32,7 +32,7 @@ namespace TS
       /**
       * @private
       */
-      private genFunc: () => IterableIterator<KeyValuePair<TKey, TValue>> = null;
+      private genFunc: (() => IterableIterator<KeyValuePair<TKey, TValue>>) | null = null;
 
 
       //***********************************************************************
@@ -46,7 +46,7 @@ namespace TS
       */
       public [Symbol.iterator](): Iterator<KeyValuePair<TKey, TValue>>
       {
-        return this.genFunc();
+        return (this.genFunc as () => IterableIterator<KeyValuePair<TKey, TValue>>)();
       }
 
 
@@ -92,7 +92,7 @@ namespace TS
       public add(key: TKey, value: TValue): this;
       public add(): this
       {
-        let pair: KeyValuePair<TKey, TValue>;
+        let pair: KeyValuePair<TKey, TValue> | null = null;
 
         if (arguments.length == 2)
         {
@@ -129,12 +129,12 @@ namespace TS
           throw new TS.ArgumentNullOrUndefinedException("(key, value) or item", "The arguments must not be null or undefined in function 'TS.Collections.Dictionary.add'.");
         }//END if
 
-        if (this.containsKey(pair.key))
+        if (this.containsKey((pair as KeyValuePair<TKey, TValue>).key))
         {
           throw new TS.Collections.DuplicateKeyException();
         }//END if
 
-        this.dictionaryMap.set(pair.key, pair.value);
+        this.dictionaryMap.set((pair as KeyValuePair<TKey, TValue>).key, (pair as KeyValuePair<TKey, TValue>).value);
 
         return this;
       }
@@ -170,7 +170,7 @@ namespace TS
       /**
       * @description Determines whether the collection contains a specific KeyValuePair. Using the specified
       *  equalityComparer to compare the values. There is no equivalent function in the C# dictionary implementation
-      *  which allows to override the default equality comparer for value comaparsion.
+      *  which allows to override the default equality comparer for value comparison.
       *
       * @implements {TS.Collections.IDictionary<TKey, TValue>}
       *
@@ -206,7 +206,7 @@ namespace TS
           return false;
         }
 
-        return equalityComparer(this.single(currItem => this.keyEqualityComparer(currItem.key, item.key)).value, item.value);
+        return (equalityComparer as (first: TValue, second: TValue) => boolean)(this.single(currItem => this.keyEqualityComparer(currItem.key, item.key)).value, item.value);
       }
 
 
@@ -249,7 +249,7 @@ namespace TS
       /**
       * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified value.
       *  Using the specified equalityComparer to compare the values. There is no equivalent function in the C#
-      *  dictionary implementation which allows to override the default equality comparer for value comaparsion.
+      *  dictionary implementation which allows to override the default equality comparer for value comparison.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/a63811ah(v=vs.110).aspx  | MSDN }
       *
@@ -280,7 +280,7 @@ namespace TS
           return false;
         }//END if
 
-        return this.any(item => equalityComparer(item.value, value));
+        return this.any(item => (equalityComparer as (first: TValue, second: TValue) => boolean)(item.value, value));
       }
 
 
@@ -349,7 +349,7 @@ namespace TS
       *
       * @returns {TS.Collections.KeyValuePair<TKey, TValue> | undefined}
       */
-      public getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>
+      public getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue> | undefined
       {
         if (this.containsKey(key))
         {
@@ -376,11 +376,11 @@ namespace TS
       *
       * @returns {TValue | undefined}
       */
-      public getValue(key: TKey): TValue
+      public getValue(key: TKey): TValue | undefined
       {
         if (this.containsKey(key))
         {
-          return this.getItem(key).value;
+          return (this.getItem(key) as TS.Collections.KeyValuePair<TKey, TValue>).value;
         }//END if
 
         return undefined;
@@ -407,9 +407,12 @@ namespace TS
       *  This method uses the equality comparer which was set in the constructor or the dictionary to determine
       *  equality for the key. This method uses either the default equality comparer to determine equality for the
       *  value or the one you can specify in the optional 'equalityComparer' argument. This function differs from the
-      *  C# implementation in mutiple ways.
+      *  C# implementation in multiple ways.
+      *
       *  1) This method returns a this reference and not a boolean value.
-      *  2) You can specifie an equality comparer for value camparsion to overriede the default behavior.
+      *
+      *  2) You can specify an equality comparer for value comparison to override the default behavior.
+      *
       *  3) This method fails silent if the specified item can't be located in the dictionary.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/cc672341(v=vs.110).aspx | MSDN }
@@ -427,7 +430,10 @@ namespace TS
       public remove(item: TS.Collections.KeyValuePair<TKey, TValue>, equalityComparer?: (first: TValue, second: TValue) => boolean): this
       /**
       * @description Removes the element with the specified key from the IDictionary<TKey, TValue>.
+      *  This function differs from the C# implementation in multiple ways.
+      *
       *  1) This method returns a this reference and not a boolean value.
+      *
       *  2) This method fails silent if the specified key can't be located in the dictionary.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb356469(v=vs.110).aspx | MSDN }
@@ -443,8 +449,8 @@ namespace TS
       public remove(key: TKey): this
       public remove(ItemOrKey: TS.Collections.KeyValuePair<TKey, TValue> | TKey, equalityComparer?: (first: TValue, second : TValue) => boolean): this
       {
-        let key: TKey = null;
-        let item: TS.Collections.KeyValuePair<TKey, TValue> = null;
+        let key: TKey | null = null;
+        let item: TS.Collections.KeyValuePair<TKey, TValue> | null = null;
 
         if (this.count() == 0)
         {
@@ -490,7 +496,7 @@ namespace TS
         {
           if (this.containsKey(item.key))
           {
-            if (equalityComparer(this.getItem(item.key).value, item.value))
+            if ((equalityComparer as (first: TValue, second: TValue) => boolean)((this.getItem(item.key) as TS.Collections.KeyValuePair<TKey, TValue>).value, item.value))
             {
               this.dictionaryMap.delete(item.key);
             }
@@ -591,7 +597,7 @@ namespace TS
         if (!TS.Utils.Assert.isNullOrUndefined(keyEqualityComparer))
         {
           TS.Utils.checkFunctionParameter("keyEqualityComparer", keyEqualityComparer, "constructor of TS.Collections.Dictionary");
-          this.keyEqualityComparer = keyEqualityComparer;
+          this.keyEqualityComparer = keyEqualityComparer as (first: TKey, second: TKey) => boolean;
         }//END if
         else
         {
@@ -610,7 +616,7 @@ namespace TS
         if (!TS.Utils.Assert.isNullOrUndefined(source))
         {
           TS.Utils.checkIterableParameter("source", source, "TS.Collections.Dictionary.constructor");
-          for (let KV of source)
+          for (let KV of source as Iterable<TS.Collections.KeyValuePair<TKey, TValue>>)
           {
             if ((TS.Utils.Assert.isNullOrUndefined(KV.key) || TS.Utils.Assert.isUndefined(KV.value)))
             {

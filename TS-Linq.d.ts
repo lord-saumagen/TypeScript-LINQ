@@ -2,138 +2,6 @@
 declare namespace TS {
     namespace Linq {
         /**
-        * @class TS.Linq.SelectorException
-        *
-        * @description This exceptions signals an error which occured in a selector function for specific value.
-        *
-        * @extends {TS.Exception}
-        */
-        class SelectorException extends TS.Exception {
-            /**
-            * @private
-            */
-            private internalSelector;
-            /**
-            * @private
-            */
-            private internalValue;
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            type: string;
-            /**
-            * @description The selector which caused the exception.
-            *
-            * @get {(item: any) => Enumerator<any>} selector
-            */
-            selector: (item: any) => Enumerator<any>;
-            /**
-            * @description The value which caused the exception.
-            *
-            * @get {any} value
-            */
-            value: any;
-            /**
-            * @constructor
-            *
-            * @param {(item: any) => Enumerator<any>} selector
-            * @param {any} value
-            * @param {string} message?
-            * @param {TS.Exception} innerException)
-            */
-            constructor(selector: (item: any) => Enumerator<any>, value: any, message?: string, innerException?: TS.Exception);
-            /**
-            * @constructor
-            *
-            * @param { (item: any) => Array<any>} selector
-            * @param {any} value
-            * @param {string} message?
-            * @param {TS.Exception} innerException)
-            */
-            constructor(selector: (item: any) => Array<any>, value: any, message?: string, innerException?: TS.Exception);
-            /**
-            * @constructor
-            *
-            * @param { (item: any) =>any} selector
-            * @param {any} value
-            * @param {string} message?
-            * @param {TS.Exception} innerException)
-            */
-            constructor(selector: (item: any) => any, value: any, message?: string, innerException?: TS.Exception);
-        }
-        /**
-        * @class TS.Linq.EmptyEnumeratorException
-        *
-        * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
-        *
-        * @extends {TS.Exception}
-        */
-        class EmptyEnumeratorException extends TS.Exception {
-            /**
-            * @private
-            */
-            private internalEnumerator;
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            type: string;
-            /**
-            * @description The enumerator which caused the exception.
-            *
-            * @get {Iterable<any>} enumerator
-            */
-            enumerator: Iterable<any>;
-            /**
-            * @constructor
-            *
-            * @param {Iterable<any>} enumerator
-            * @param {string}  message?
-            */
-            constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception);
-        }
-        /**
-        * @class TS.Linq.MoreThanOneElementException
-        *
-        * @description This exceptions signals an error in a function where only one element is allowed but multiple
-        *  elements are available.
-        *
-        * @extends {TS.Exception}
-        */
-        class MoreThanOneElementException extends TS.Exception {
-            /**
-            * @private
-            */
-            private internalEnumerator;
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            type: string;
-            /**
-            * @description The enumerator which caused the exception.
-            *
-            * @get {Iterable<any>} enumerator
-            */
-            enumerator: Iterable<any>;
-            /**
-            * @constructor
-            *
-            * @param {Iterable<any>} enumerator
-            * @param {string} message?
-            * @param {TS.Exception} innerException)
-            */
-            constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception);
-        }
-    }
-}
-declare namespace TS {
-    namespace Linq {
-        /**
         * @class TS.Linq.BaseEnumerator<T>
         *
         * @description  The main purpose of this class is to implement the extension functions defined in
@@ -141,7 +9,7 @@ declare namespace TS {
         *
         * @abstract
         *
-        * @implements Iterable<T>
+        * @implements {Iterable<T>}
         */
         abstract class BaseEnumerator<T> implements Iterable<T> {
             /**
@@ -252,9 +120,9 @@ declare namespace TS {
             concat(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
             * @description Determines whether a sequence contains a specified element by using the default equality comparer.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in the
+            *  Uses javascript strict comparison operator 'strict equality (===)' to determine whether an elements in the
             *  enumeration matches with the specified search element. This function may produce results that differ from the
-            *  C# counterpart, because the comparsion operators have different implementations in C# and javascript.
+            *  C# counterpart, because the comparison operators have different implementations in C# and javascript.
             * @description Extension function.
             * @description Immediate execution.
             *
@@ -262,7 +130,7 @@ declare namespace TS {
             *
             * @param {T} element
             *
-            * @returns {boolen}
+            * @returns {boolean}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             */
@@ -277,7 +145,7 @@ declare namespace TS {
             * @param {T} element
             * @param {(first: TSource, second: TSource) => boolean}  equalityComparer
             *
-            * @returns {boolen}
+            * @returns {boolean}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -308,7 +176,7 @@ declare namespace TS {
             */
             count(predicate: (item: T) => boolean): number;
             /**
-            * @description This function retuns an endless number of elements from the underlying sequence by running over
+            * @description This function returns an endless number of elements from the underlying sequence by running over
             *  that sequence in cycles. The function enumerates the elements of the base sequence from the start to then end
             *  and starts over with the first element as soon as the last element is reached. This function will never run
             *  out of data. There is one exception of that rule. If the underlying sequence is an empty sequence, the cycle
@@ -349,8 +217,8 @@ declare namespace TS {
             } | T): TS.Linq.Enumerator<T>;
             /**
             * @description Returns distinct elements from a sequence by using the default equality comparer to compare values.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
+            *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction.
+            *  This function may produce results that differ from the C# counterpart, because the comparison operators have
             *  different implementations in C# and javascript.
             * @description Extension function.
             * @description Deferred execution.
@@ -417,8 +285,8 @@ declare namespace TS {
             } | T): T;
             /**
             * @description Produces the set difference of two sequences.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
+            *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction.
+            *  This function may produce results that differ from the C# counterpart, because the comparison operators have
             *  different implementations in C# and javascript.
             * @description Extension function.
             * @description Deferred execution.
@@ -838,7 +706,7 @@ declare namespace TS {
             */
             orderByDescending<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>;
             /**
-            * @description Retuns random elements from the base enumeration. This function is not a Linq function. The
+            * @description Returns random elements from the base enumeration. This function is not a Linq function. The
             *  function uses a generator to select the current random element. For that reason the function will return as
             *  much elements as required, regardless how much elements the underlying sequence holds.
             *
@@ -846,7 +714,7 @@ declare namespace TS {
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator. Otherwise
-            *  you will run out fo memory.
+            *  you will run out of memory.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -1006,7 +874,7 @@ declare namespace TS {
             } | T): T;
             /**
             * @description Returns the only element of a sequence that satisfies a specified condition or a default value if
-            *  no such element exists, This method throws an exception if more than one element satisfie the condition. That
+            *  no such element exists, This method throws an exception if more than one element satisfies the condition. That
             *  function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
             *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
             *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
@@ -1016,7 +884,7 @@ declare namespace TS {
             * @description Extension function.
             * @description Immediate execution.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx | MSDN }
             *
             * @param {{ new (): T; } | T} defaultConstructorOrValue
             * @param {item: TSource) => boolean} predicate
@@ -1150,8 +1018,8 @@ declare namespace TS {
             */
             toList(): TS.Collections.List<T>;
             /**
-            * @description Produces the set union of two sequences by using the strict comparsion operator (===). This
-            *  function may produce results that differ from the C# counterpart, because the comparsion operators have
+            * @description Produces the set union of two sequences by using the strict comparison operator (===). This
+            *  function may produce results that differ from the C# counterpart, because the comparison operators have
             *  different implementations in C# and javascript.
             * @description Extension function.
             * @description Deferred execution.
@@ -1167,7 +1035,7 @@ declare namespace TS {
             */
             union(secondEnumerator: Iterable<T>): TS.Linq.Enumerator<T>;
             /**
-            * @description Produces the set union of two sequences by using the comparsion operator provide in argument
+            * @description Produces the set union of two sequences by using the comparison operator provide in argument
             *  'equalityComparer'.
             * @description Extension function.
             * @description Deferred execution.
@@ -1207,7 +1075,7 @@ declare namespace TS {
             * @see {@link https://msdn.microsoft.com/en-us/library/dd267698(v=vs.110).aspx | MSDN}
             *
             * @param {Iterable<TSecond>} secondEnum
-            * @param {(firt: TFirst, second: TSecond) => TResult} func
+            * @param {(first: TFirst, second: TSecond) => TResult} func
             *
             * @retuns {TS.Linq.Enumerator<TResult>}
             *
@@ -1240,7 +1108,7 @@ declare namespace TS {
             *
             * @get {Enumerator<any>}
             */
-            static Empty: Enumerator<any>;
+            static readonly Empty: Enumerator<any>;
             /**
             * @description This function returns the Iterator of the current Enumerator as soon as an iteration starts. E.g.
             *  when a 'for ( let x of enumerator)' is called.
@@ -1255,7 +1123,7 @@ declare namespace TS {
             *
             * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes a  generator function as source. The
             *  generator creates the elements which get treated as the underlying collection of this enumerator. The
-            *  constructor throws an expection if the generator is invalid.
+            *  constructor throws an exception if the generator is invalid.
             *
             * @param {() => IterableIterator<T>} generator
             *
@@ -1268,7 +1136,7 @@ declare namespace TS {
             *
             * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes any iterable object or an array like
             *  object as source. The predicate function defines which element becomes an element of underlying collection of
-            *  this enumerator. The constructor throws an expection if the source isn't iterable an array like object or if
+            *  this enumerator. The constructor throws an exception if the source isn't iterable an array like object or if
             *  the predicate function is invalid.
             *
             * @param {Iterable<T>} source
@@ -1301,7 +1169,8 @@ declare namespace TS {
             */
             function aggregate<TSource>(enumerator: Iterable<TSource>, accumulator: (first: TSource, second: TSource) => TSource): TSource;
             /**
-            * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
+            * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial
+            *  accumulator value.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb549218.aspx | MSDN}
@@ -1393,11 +1262,9 @@ declare namespace TS {
             function concat<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
             * @description Determines whether a sequence contains a specified element by using the default equality comparer.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in
-            *  the enumeration matches with the specified search element.
-            *  This function may produce results that differ from the C# counterpart,
-            *  because the comparsion operators have different implementations in C#
-            *  and javascript.
+            *  Uses javascript strict comparison operator 'strict equality (===)' to determine whether an elements in the
+            *  enumeration matches with the specified search element. This function may produce results that differ from the
+            *  C# counterpart, because the comparison operators have different implementations in C# and javascript.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb352880.aspx | MSDN}
@@ -1405,14 +1272,14 @@ declare namespace TS {
             * @param {Iterable<TSource>} enumerator
             * @param {TSource} element
             *
-            * @returns {boolen}
+            * @returns {boolean}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
             */
             function contains<TSource>(enumerator: Iterable<TSource>, element: TSource): boolean;
             /**
-            * @description Determines whether a sequence contains a specified element by using a specified equality comparer.
+            * @description Determines whether a sequence contains a specified element by using the specified equality comparer.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb339118.aspx | MSDN}
@@ -1421,7 +1288,7 @@ declare namespace TS {
             * @param {TSource} element
             * @param {(first: TSource, second: TSource) => boolean} equalityComparer
             *
-            * @returns {boolen}
+            * @returns {boolean}
             *
             * @throws {TS.ArgumentNullOrUndefinedException}
             * @throws {TS.InvalidTypeException}
@@ -1457,16 +1324,15 @@ declare namespace TS {
             */
             function count<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): number;
             /**
-            * @description This function retuns an endless number of elements from the underlying sequence by running over the
-            *  that sequence in cycles.
-            *  The function enumerates the elements of the base sequence from the start to then end
-            *  and starts over with the first element as soon as the last element is reached.
-            *  This function will never run out of data. There is one exception of that rule. If the underlying
-            *  sequence is an empty sequence, the cycle function will never give a result.
+            * @description This function returns an endless number of elements from the underlying sequence by running over
+            *  the that sequence in cycles. The function enumerates the elements of the base sequence from the start to then
+            *  end and starts over with the first element. This function will never run out of elements. There is one
+            *  exception of that rule. If the underlying sequence is an empty sequence, the cycle function will never give a
+            *  result.
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-            *  Otherwise you will run out fo memory.
+            *  Otherwise you will run out of memory.
             *
             *  This function is not a Linq function.
             * @description Deferred execution.
@@ -1480,12 +1346,13 @@ declare namespace TS {
             */
             function cycle<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
-            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is empty.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is
+            *  empty. That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue'
+            *  in the signature. That argument is needed because javascript doesn't offer reflection or a type system which
+            *  you can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you
+            *  are dealing with a complex type or which default value to use when you are dealing with a primitive type. The
+            *  only way to make sure that you get the right type at runtime is to place the default constructor or value in
+            *  the parameter list of that function.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.defaultifempty.aspx | MSDN}
@@ -1503,9 +1370,9 @@ declare namespace TS {
             } | TSource): TS.Linq.Enumerator<TSource>;
             /**
             * @description Returns distinct elements from a sequence by using the default equality comparer to compare values.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
-            *  different implementations in C# and javascript.
+            *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction. This function may
+            *  produce results that differ from the C# counterpart, because the comparison operators have different
+            *  implementations in C# and javascript.
             * @description Deferred execution
             *
             * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.distinct.aspx | MSDN}
@@ -1550,13 +1417,13 @@ declare namespace TS {
             */
             function elementAt<TSource>(enumerator: Iterable<TSource>, index: number): TSource;
             /**
-            * @description Returns the element at a specified index in a sequence or a default value
-            *  if the index is out of the range of the sequence.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the element at a specified index in a sequence or a default value if the index is out of
+            *  the range of the sequence. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb494386(v=vs.110).aspx | MSDN}
@@ -1574,10 +1441,9 @@ declare namespace TS {
                 new (): TSource;
             } | TSource): TSource;
             /**
-            * @description Produces the set difference of two sequences.
-            *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
-            *  different implementations in C# and javascript.
+            * @description Produces the set difference of two sequences. Uses javascript strict comparison operator
+            *  'strict equality (===)' to achieve distinction. This function may produce results that differ from the C#
+            *  counterpart, because the comparison operators have different implementations in C# and javascript.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb300779.aspx | MSDN}
@@ -1592,7 +1458,8 @@ declare namespace TS {
             */
             function except<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
-            * @description Produces the set difference of two sequences by using the specified equality comparer to compare values.
+            * @description Produces the set difference of two sequences by using the specified equality comparer to compare
+            *  values.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb336390.aspx | MSDN}
@@ -1640,11 +1507,12 @@ declare namespace TS {
             function first<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource;
             /**
             * @description Returns the first element of a sequence, or a default value if the sequence contains no elements.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  singnature. That argument is needed because javascript doesn't offer reflection or a type system which you
+            *  can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.firstordefault.aspx | MSDN}
@@ -1661,12 +1529,13 @@ declare namespace TS {
                 new (): TSource;
             } | TSource): TSource;
             /**
-            * @description Returns the first element of the sequence that satisfies a condition or a default value if no element satisfied the condition.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the first element of the sequence that satisfies a condition or a default value if no
+            *  element satisfied the condition. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.firstordefault.aspx | MSDN}
@@ -1684,12 +1553,10 @@ declare namespace TS {
                 new (): TSource;
             } | TSource, predicate: (item: TSource) => boolean): TSource;
             /**
-            * @description Performs the specified action on each element of the underlying sequence.
-            *  I implemented this extension for your convenience. Without that function
-            *  you had to call 'toArray' first before you could use the array method
-            *  for each. Please read the article below from 'Eric Lippert's' blog to
-            *  make sure that you understand all the implications of this extension
-            *  function.
+            * @description Performs the specified action on each element of the underlying sequence. I implemented this
+            *  extension for your convenience. Without that function you had to call 'toArray' first before you could
+            *  use the array method for each. Please read the article below from 'Eric Lippert's' blog to make sure that you
+            *  fully understand all the implications of this extension function.
             *
             *  This function is not a Linq function.
             * @description Immediate execution.
@@ -1738,9 +1605,9 @@ declare namespace TS {
             */
             function groupBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<Grouping<TKey, TSource>>;
             /**
-            * @description Groups the elements of a sequence according to a specified key selector function and projects the elements
-            *  for each group by using a specified selector function. The keys are compared by using the specified comparer in argument
-            *  'equalityComparer' if provided.
+            * @description Groups the elements of a sequence according to a specified key selector function and projects the
+            *  elements for each group by using a specified selector function. The keys are compared by using the specified
+            *  comparer in argument 'equalityComparer' if provided.
             * @description Deferred execution.
             *
             * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.groupby.aspx | MSDN}
@@ -1796,7 +1663,8 @@ declare namespace TS {
             */
             function groupJoin<TOuter, TInner, TKey, TResult>(outerEnumerator: Iterable<TOuter>, innerEnumerator: Iterable<TInner>, outerKeySelector: (outerItem: TOuter) => TKey, innerKeySelector: (innerItem: TInner) => TKey, resultSelector: (outerItem: TOuter, group: Iterable<TInner>) => TResult, equalityComparer: <TKey>(first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Produces the set intersection of two sequences by using the default equality comparer (===) to compare values.
+            * @description Produces the set intersection of two sequences by using the default equality comparer (===) to
+            *  compare values.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb460136.aspx | MSDN}
@@ -1811,7 +1679,8 @@ declare namespace TS {
             */
             function intersect<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
-            * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare values.
+            * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare
+            *  values.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb355408.aspx | MSDN}
@@ -1876,11 +1745,12 @@ declare namespace TS {
             function last<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource;
             /**
             * @description Returns the last element of a sequence, or a default value if the sequence contains no elements.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+            *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb301849.aspx | MSDN}
@@ -1897,12 +1767,13 @@ declare namespace TS {
                 new (): TSource;
             } | TSource): TSource;
             /**
-            * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if no such element is found.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if
+            *  no such element is found. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb548915.aspx | MSDN}
@@ -2044,16 +1915,15 @@ declare namespace TS {
             */
             function orderByDescending<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<TSource, TKey>;
             /**
-            * @description Retuns random elements from the base enumeration.
-            *  The function uses a generator to select the current random element. For that reason the
-            *  function will return as much elements as required, regardless how much elements the underlying
-            *  sequence holds.
+            * @description Returns random elements from the base enumeration. The function uses a generator to select the
+            *  current random element. For that reason the function will return as much elements as required, regardless
+            *  how much elements the underlying sequence holds.
             *
             *  The function throws a 'TS.Linq.EmptyEnumeratorException' If the underlying sequence is empty.
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-            *  Otherwise you will run out fo memory.
+            *  Otherwise you will run out of memory.
             *
             *
             *  This function is not a Linq function.
@@ -2131,7 +2001,8 @@ declare namespace TS {
             */
             function select<TSource, TResult>(enumerator: Iterable<TSource>, selector: (item: TSource) => TResult): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences into one sequence
+            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences
+            *  into one sequence
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.selectmany(v=vs.110).aspx | MSDN}
@@ -2147,7 +2018,8 @@ declare namespace TS {
             */
             function selectMany<TSource, TResult>(enumerator: Iterable<TSource>, selector: (item: TSource) => Iterable<TResult>): TS.Linq.Enumerator<TResult>;
             /**
-            * @description Determines whether two sequences are equal by comparing their elements using the default equality comparer (===).
+            * @description Determines whether two sequences are equal by comparing their elements using the default equality
+            *  comparer (===).
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb348567.aspx | MSDN}
@@ -2162,7 +2034,8 @@ declare namespace TS {
             */
             function sequenceEqual<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): boolean;
             /**
-            * @description Determines whether two sequences are equal by comparing their elements using a specified equalityComparer.
+            * @description Determines whether two sequences are equal by comparing their elements using a specified
+            *  equalityComparer.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb342073(v=vs.110).aspx | MSDN}
@@ -2178,12 +2051,13 @@ declare namespace TS {
             */
             function sequenceEqual<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>, equalityComparer: (first: TSource, second: TSource) => boolean): boolean;
             /**
-            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator but in randomized order.
+            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator
+            *  but in randomized order.
             *
             *  This function is not a Linq function.
             * @description Deferred execution.
             *
-            * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle}
+            * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle : fisher-yates-shuffle @ dotnetperls.com}
             *
             * @param {Iterable<TSource>} enumerator
             *
@@ -2194,7 +2068,8 @@ declare namespace TS {
             */
             function shuffle<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
-            * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element in the sequence.
+            * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element
+            *  in the sequence.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb155325.aspx | MSDN }
@@ -2210,7 +2085,8 @@ declare namespace TS {
             */
             function single<TSource>(enumerator: Iterable<TSource>): TSource;
             /**
-            * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception if more than one such elements exists.
+            * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception
+            *  if more than one such elements exists.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb535118.aspx | MSDN }
@@ -2227,13 +2103,13 @@ declare namespace TS {
             */
             function single<TSource>(enumerator: Iterable<TSource>, predicate: (item: TSource) => boolean): TSource;
             /**
-            * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method throws an
-            *  exception if there is more than one element in the sequence.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method
+            *  throws an exception if there is more than one element in the sequence. That function differs from the .NET
+            *  counterpart in that way that is has a 'defaultConstructorOrValue' in the signature. That argument is needed
+            *  because javascript doesn't offer reflection or a type system which you can rely on at runtime. Hence there is
+            *  no way to tell which constructor to use for the default when you are dealing with a complex type or which
+            *  default value to use when you are dealing with a primitive type. The only way to make sure that you get the
+            *  right type at runtime is to place the default constructor or value in the parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb342451.aspx | MSDN }
@@ -2251,16 +2127,17 @@ declare namespace TS {
                 new (): TSource;
             } | TSource): TSource;
             /**
-            * @description Returns the only element of a sequence that satisfies a specified condition or a default value
-            *  if no such element exists, This method throws an exception if more than one element satisfie the condition.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the only element of a sequence that satisfies a specified condition or a default value if
+            *  no such element exists, This method throws an exception if more than one element satisfies the condition. That
+            *  function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+            *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+            *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+            *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+            *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+            *  parameter list of that function.
             * @description Immediate execution.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx | MSDN }
             *
             * @param {Iterable<TSource>} enumerator
             * @param {{ new (): TSource; } | TSource} defaultConstructorOrValue
@@ -2462,8 +2339,8 @@ declare namespace TS {
             */
             function toList<TSource>(enumerator: Iterable<TSource>): TS.Collections.List<TSource>;
             /**
-            * @description Produces the set union of two sequences by using the strict comparsion operator (===).
-            *  This function may produce results that differ from the C# counterpart, because the comparsion operators have different
+            * @description Produces the set union of two sequences by using the strict comparison operator (===).
+            *  This function may produce results that differ from the C# counterpart, because the comparison operators have different
             *  implementations in C# and javascript.
             * @description Deferred execution.
             *
@@ -2479,7 +2356,7 @@ declare namespace TS {
             */
             function union<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>;
             /**
-            * @description Produces the set union of two sequences by using the comparsion operator provide in argument 'equalityComparer'.
+            * @description Produces the set union of two sequences by using the comparison operator provide in argument 'equalityComparer'.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb358407.aspx | MSDN}
@@ -2517,7 +2394,7 @@ declare namespace TS {
             *
             * @param {Iterable<TFirst>} firstEnum
             * @param {Iterable<TSecond>} secondEnum
-            * @param {(firt: TFirst, second: TSecond) => TResult} func
+            * @param {(first: TFirst, second: TSecond) => TResult} func
             *
             * @retuns {TS.Linq.Enumerator<TResult>}
             *
@@ -2546,8 +2423,9 @@ declare namespace TS {
         /**
         * @class TS.Linq.OrderedEnumerator<T, TKey>
         *
-        * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call to a sort function operate on
-        *  the partitions of the enumerator elements without changing the order of previous sortings.
+        * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call
+        *  to a sort function operate on the partitions of the enumerator elements without changing the order of previous
+        *  sorting.
         *
         * @implements {BaseEnumerator<T}
         * @implements {TS.Linq.IOrderedEnumerator<T>}
@@ -2570,7 +2448,7 @@ declare namespace TS {
             *
             * @get {TS.Liny.OrderedEnumerator<any, any>} Empty
             */
-            static Empty: OrderedEnumerator<any, any>;
+            static readonly Empty: OrderedEnumerator<any, any>;
             /**
             * @implements {TS.Linq.BaseEnumerator<T>}
             *
@@ -2653,7 +2531,8 @@ declare namespace TS {
             */
             thenByDescending<TKey>(keySelector: (item: T) => TKey): TS.Linq.OrderedEnumerator<T, TKey>;
             /**
-            * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the specified key and comparer.
+            * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the
+            *  specified key and comparer.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -2699,7 +2578,7 @@ declare namespace TS {
             *
             * @get {TKey} key
             */
-            key: TKey;
+            readonly key: TKey;
             /**
             * @constructor
             *
@@ -2731,7 +2610,7 @@ declare namespace TS {
             *
             * @get {string} type
             */
-            type: string;
+            readonly type: string;
             /**
             * @constructor
             *
@@ -2757,11 +2636,11 @@ declare namespace TS {
             *
             * @get {string} type
             */
-            type: string;
+            readonly type: string;
             /**
             * @get {any} keyValue
             */
-            keyValue: any;
+            readonly keyValue: any;
             /**
             * @constructor
             *
@@ -2794,11 +2673,11 @@ declare namespace TS {
             /**
             * @get {TKey} key
             */
-            key: TKey;
+            readonly key: TKey;
             /**
             * @get {TValue} value
             */
-            value: TValue;
+            readonly value: TValue;
             /**
             * @constructor
             *
@@ -2826,7 +2705,7 @@ declare namespace TS {
             /**
             * @description Adds an item to the ICollection<T>.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx | MSDN }
             *
             * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
             *
@@ -2838,7 +2717,7 @@ declare namespace TS {
             /**
             * @description Adds an element with the provided key and value to the IDictionary<TKey, TValue>.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/cy7xta5e(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/cy7xta5e(v=vs.110).aspx | MSDN }
             *
             * @param {TKey} key
             * @param {TValue} value
@@ -2850,7 +2729,7 @@ declare namespace TS {
             * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific
             *  value.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx | MSDN }
             *
             * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
             *
@@ -2860,7 +2739,7 @@ declare namespace TS {
             /**
             * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified key.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx | MSDN }
             *
             * @param {TKey} key
             *
@@ -2890,7 +2769,7 @@ declare namespace TS {
             /**
             * @description Copies the elements of the ICollection<T> to an Array, starting at the specified array index.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx | MSDN }
             *
             * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
             *
@@ -2911,7 +2790,7 @@ declare namespace TS {
             *
             * @returns {TS.Collections.KeyValuePair<TKey, TValue> | undefined}
             */
-            getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>;
+            getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue> | undefined;
             /**
             * @description Returns the value associated with the specified key or undefined if there is no match for the
             *  specified key. This function is a substitute for the 'item[key]' property defined in the .NET
@@ -2923,11 +2802,11 @@ declare namespace TS {
             *
             * @returns {TValue | undefined}
             */
-            getValue(key: TKey): TValue;
+            getValue(key: TKey): TValue | undefined;
             /**
             * @description Returns a TS.Linq.Enumerable<TKey> containing the keys of the IDictionary<TKey, TValue>.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/1ebzfbyx(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/1ebzfbyx(v=vs.110).aspx | MSDN }
             *
             * @get {TS.Linq.Enumerator<TKey>} keys
             */
@@ -2936,7 +2815,7 @@ declare namespace TS {
             * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>. The function fails
             *  silent if the dictionary doesn't contain that item.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx | MSDN }
             *
             * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
             *
@@ -2949,7 +2828,7 @@ declare namespace TS {
             * @description Removes the element with the specified key from the IDictionary<TKey, TValue>. The function fails
             *  silent if the dictionary doesn't contain an item with specified key.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx | MSDN }
             *
             * @param {TKey} key
             *
@@ -2961,7 +2840,7 @@ declare namespace TS {
             *  function is a substitute for the 'item[key]' property defined in the .NET 'IDictionary<TKey, TValue>
             *  Interface'.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
             *
             * @param {TKey} key
             * @param {TValue} newValue
@@ -2981,7 +2860,7 @@ declare namespace TS {
             /**
             * @description Returns a TS.Linq.Enumerable<TValue> containing the values in the IDictionary<TKey, TValue>.
             *
-            * @see {@link https://msdn.microsoft.com/en-us/library/0yxt5h4s(v=vs.110).aspx : MSDN }
+            * @see {@link https://msdn.microsoft.com/en-us/library/0yxt5h4s(v=vs.110).aspx | MSDN }
             *
             * @get {TS.Linq.Enumerator<TValue>} values
             */
@@ -3077,11 +2956,11 @@ declare namespace TS {
         *
         * @extends {TS.Collections.ICollection<T>}
         *
-        * @see {https://msdn.microsoft.com/en-us/library/5y536ey6(v=vs.110).aspx} MSDN
+        * @see {@link https://msdn.microsoft.com/en-us/library/5y536ey6(v=vs.110).aspx | MSDN}
         */
         interface IList<T> extends TS.Collections.ICollection<T> {
             /**
-            * @description Specified wheter null values are allowed in the IList<T> or not. This flag is set during
+            * @description Specified whether null values are allowed in the IList<T> or not. This flag is set during
             *  construction and can't be changed during the lifetime of the instance.
             *
             * @readonly
@@ -3092,7 +2971,7 @@ declare namespace TS {
             /**
             * @description Determines the index of a specific item in the IList<T>. If startIndex is set, the search for the
             *  item starts at the specified startIndex. Otherwise the search starts at the default position 0. If a comparer
-            *  is specified, this comparer is used to decide whether a list element is a macht with the searche element or
+            *  is specified, this comparer is used to decide whether a list element is a match with the search element or
             *  not. If the comparer isn't specified, the default equality comparer '===' is used. The function returns -1 if
             *   there is no match for the given item.
             *
@@ -3133,8 +3012,8 @@ declare namespace TS {
         * @see {@link https://msdn.microsoft.com/en-us/library/s6hkc2c4(v=vs.110).aspx | MSDN}
         *
         * @implements {TS.Collections.IList<T>}
-        * @implements {Iterable<T>}
         * @implements {ArrayLike<T>}
+        * @extends {TS.Linq.BaseEnumerator<T>}
         */
         class List<T> extends TS.Linq.BaseEnumerator<T> implements TS.Collections.IList<T>, ArrayLike<T> {
             /**
@@ -3179,7 +3058,7 @@ declare namespace TS {
             *
             * @get {boolean} allowNull
             */
-            allowNull: boolean;
+            readonly allowNull: boolean;
             /**
             * @description Removes all items from the IList<T>.
             *
@@ -3270,7 +3149,7 @@ declare namespace TS {
             */
             insert(index: number, item: T): this;
             /**
-            * @description Removes the first occurrence of the specific object from the IList<T>.
+            * @description Removes the first occurrence of the specified item from the IList<T>.
             *
             * @implements {TS.Collections.IList<T>}
             *
@@ -3282,7 +3161,7 @@ declare namespace TS {
             */
             remove(item: T): this;
             /**
-            * @description Removes the element at the specified index of the List<T>.
+            * @description Removes the element at the specified index from the IList<T>.
             *
             * @implements {TS.Collections.IList<T>}
             *
@@ -3325,11 +3204,17 @@ declare namespace TS {
             */
             constructor(allowNull: boolean, source?: Iterable<T> | ArrayLike<T>, predicate?: (item: T) => boolean);
             /**
+            * @descriptions Adds the element provided in argument 'item' to the end of the list.
+            *
             * @private
             */
             private push(item);
             /**
+            * @description Returns the last element in the list or undefined if the list is empty.
+            *
             * @private
+            *
+            * @returns {T | undefined}
             */
             private pop();
         }
@@ -3430,7 +3315,7 @@ declare namespace TS {
             /**
             * @description Determines whether the collection contains a specific KeyValuePair. Using the specified
             *  equalityComparer to compare the values. There is no equivalent function in the C# dictionary implementation
-            *  which allows to override the default equality comparer for value comaparsion.
+            *  which allows to override the default equality comparer for value comparison.
             *
             * @implements {TS.Collections.IDictionary<TKey, TValue>}
             *
@@ -3468,7 +3353,7 @@ declare namespace TS {
             /**
             * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified value.
             *  Using the specified equalityComparer to compare the values. There is no equivalent function in the C#
-            *  dictionary implementation which allows to override the default equality comparer for value comaparsion.
+            *  dictionary implementation which allows to override the default equality comparer for value comparison.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/a63811ah(v=vs.110).aspx  | MSDN }
             *
@@ -3521,7 +3406,7 @@ declare namespace TS {
             *
             * @returns {TS.Collections.KeyValuePair<TKey, TValue> | undefined}
             */
-            getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>;
+            getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue> | undefined;
             /**
             * @description Returns the value of the item with the specified key from the Dictionary<TKey, TValue>. Returns an
             *  undefined value if the dictionary doesn't contain an item with the specified key. This method is a substitute
@@ -3538,7 +3423,7 @@ declare namespace TS {
             *
             * @returns {TValue | undefined}
             */
-            getValue(key: TKey): TValue;
+            getValue(key: TKey): TValue | undefined;
             /**
             * @description Gets a TS.Linq.Enumerator<TKey> containing the keys of the IDictionary<TKey, TValue>.
             *
@@ -3548,15 +3433,18 @@ declare namespace TS {
             *
             * @get {TS.Linq.Enumerator<TKey>} keys
             */
-            keys: TS.Linq.Enumerator<TKey>;
+            readonly keys: TS.Linq.Enumerator<TKey>;
             /**
             * @description Removes a key and value from the dictionary.
             *  This method uses the equality comparer which was set in the constructor or the dictionary to determine
             *  equality for the key. This method uses either the default equality comparer to determine equality for the
             *  value or the one you can specify in the optional 'equalityComparer' argument. This function differs from the
-            *  C# implementation in mutiple ways.
+            *  C# implementation in multiple ways.
+            *
             *  1) This method returns a this reference and not a boolean value.
-            *  2) You can specifie an equality comparer for value camparsion to overriede the default behavior.
+            *
+            *  2) You can specify an equality comparer for value comparison to override the default behavior.
+            *
             *  3) This method fails silent if the specified item can't be located in the dictionary.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/cc672341(v=vs.110).aspx | MSDN }
@@ -3574,7 +3462,10 @@ declare namespace TS {
             remove(item: TS.Collections.KeyValuePair<TKey, TValue>, equalityComparer?: (first: TValue, second: TValue) => boolean): this;
             /**
             * @description Removes the element with the specified key from the IDictionary<TKey, TValue>.
+            *  This function differs from the C# implementation in multiple ways.
+            *
             *  1) This method returns a this reference and not a boolean value.
+            *
             *  2) This method fails silent if the specified key can't be located in the dictionary.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb356469(v=vs.110).aspx | MSDN }
@@ -3626,7 +3517,7 @@ declare namespace TS {
             *
             * @get {TS.Linq.Enumerator<TValue>} values
             */
-            values: TS.Linq.Enumerator<TValue>;
+            readonly values: TS.Linq.Enumerator<TValue>;
             /**
             * @constructor
             *
@@ -3642,6 +3533,138 @@ declare namespace TS {
             * @throws {TS.InvalidTypeException}
             */
             constructor(source?: Iterable<TS.Collections.KeyValuePair<TKey, TValue>>, keyEqualityComparer?: (first: TKey, second: TKey) => boolean);
+        }
+    }
+}
+declare namespace TS {
+    namespace Linq {
+        /**
+        * @class TS.Linq.SelectorException
+        *
+        * @description This exceptions signals an error which occurred in a selector function for specific value.
+        *
+        * @extends {TS.Exception}
+        */
+        class SelectorException extends TS.Exception {
+            /**
+            * @private
+            */
+            private internalSelector;
+            /**
+            * @private
+            */
+            private internalValue;
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            readonly type: string;
+            /**
+            * @description The selector which caused the exception.
+            *
+            * @get {(item: any) => Enumerator<any>} selector
+            */
+            readonly selector: (item: any) => Enumerator<any>;
+            /**
+            * @description The value which caused the exception.
+            *
+            * @get {any} value
+            */
+            readonly value: any;
+            /**
+            * @constructor
+            *
+            * @param {(item: any) => Enumerator<any>} selector
+            * @param {any} value
+            * @param {string} message?
+            * @param {TS.Exception} innerException)
+            */
+            constructor(selector: (item: any) => Enumerator<any>, value: any, message?: string, innerException?: TS.Exception);
+            /**
+            * @constructor
+            *
+            * @param { (item: any) => Array<any>} selector
+            * @param {any} value
+            * @param {string} message?
+            * @param {TS.Exception} innerException)
+            */
+            constructor(selector: (item: any) => Array<any>, value: any, message?: string, innerException?: TS.Exception);
+            /**
+            * @constructor
+            *
+            * @param { (item: any) =>any} selector
+            * @param {any} value
+            * @param {string} message?
+            * @param {TS.Exception} innerException)
+            */
+            constructor(selector: (item: any) => any, value: any, message?: string, innerException?: TS.Exception);
+        }
+        /**
+        * @class TS.Linq.EmptyEnumeratorException
+        *
+        * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
+        *
+        * @extends {TS.Exception}
+        */
+        class EmptyEnumeratorException extends TS.Exception {
+            /**
+            * @private
+            */
+            private internalEnumerator;
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            readonly type: string;
+            /**
+            * @description The enumerator which caused the exception.
+            *
+            * @get {Iterable<any>} enumerator
+            */
+            readonly enumerator: Iterable<any>;
+            /**
+            * @constructor
+            *
+            * @param {Iterable<any>} enumerator
+            * @param {string}  message?
+            */
+            constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception);
+        }
+        /**
+        * @class TS.Linq.MoreThanOneElementException
+        *
+        * @description This exceptions signals an error in a function where only one element is allowed but multiple
+        *  elements are available.
+        *
+        * @extends {TS.Exception}
+        */
+        class MoreThanOneElementException extends TS.Exception {
+            /**
+            * @private
+            */
+            private internalEnumerator;
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            readonly type: string;
+            /**
+            * @description The enumerator which caused the exception.
+            *
+            * @get {Iterable<any>} enumerator
+            */
+            readonly enumerator: Iterable<any>;
+            /**
+            * @constructor
+            *
+            * @param {Iterable<any>} enumerator
+            * @param {string} message?
+            * @param {TS.Exception} innerException)
+            */
+            constructor(enumerator: Iterable<any>, message?: string, innerException?: TS.Exception);
         }
     }
 }

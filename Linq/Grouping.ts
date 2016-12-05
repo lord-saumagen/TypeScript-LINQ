@@ -69,7 +69,7 @@ namespace TS
 
         let generatorFunction = function* ()
         {
-          let result: TS.Linq.Enumerator<any> = TS.Linq.Extensions.select(TS.Linq.Extensions.where(enumerator, item => equalityComparer(keySelector(item), key)), item => elementSelector(item));
+          let result: TS.Linq.Enumerator<any> = TS.Linq.Extensions.select(TS.Linq.Extensions.where(enumerator, item => equalityComparer(keySelector(item), key)), item => (elementSelector as (item: T) => any)(item));
           for (let item of result)
           {
             yield item;

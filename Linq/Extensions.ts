@@ -32,7 +32,8 @@ namespace TS
       */
       export function aggregate<TSource>(enumerator: Iterable<TSource>, accumulator: (first: TSource, second: TSource) => TSource): TSource
       /**
-      * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
+      * @description Applies an accumulator function over a sequence. The specified seed value is used as the initial
+      *  accumulator value.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb549218.aspx | MSDN}
@@ -65,7 +66,7 @@ namespace TS
           {
             if (useSeed)
             {
-              resultValue = accumulator(seed, current);
+              resultValue = accumulator((seed as TAccumulate), current);
             }
             else
             {
@@ -173,7 +174,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             return true;
           }
@@ -223,7 +224,7 @@ namespace TS
 
         if (TS.Utils.Assert.isInfiniteNumber(sum))
         {
-          throw new TS.OverflowException("An arrithmetic overflow occured during the execution of 'TS.Extensions.average'.");
+          throw new TS.OverflowException("An arithmetic overflow occurred during the execution of 'TS.Extensions.average'.");
         }
 
         if (count == 0)
@@ -288,11 +289,9 @@ namespace TS
 
       /**
       * @description Determines whether a sequence contains a specified element by using the default equality comparer.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to determine whether an elements in
-      *  the enumeration matches with the specified search element.
-      *  This function may produce results that differ from the C# counterpart,
-      *  because the comparsion operators have different implementations in C#
-      *  and javascript.
+      *  Uses javascript strict comparison operator 'strict equality (===)' to determine whether an elements in the
+      *  enumeration matches with the specified search element. This function may produce results that differ from the
+      *  C# counterpart, because the comparison operators have different implementations in C# and javascript.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb352880.aspx | MSDN}
@@ -300,14 +299,14 @@ namespace TS
       * @param {Iterable<TSource>} enumerator
       * @param {TSource} element
       *
-      * @returns {boolen}
+      * @returns {boolean}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
       */
       export function contains<TSource>(enumerator: Iterable<TSource>, element: TSource): boolean
       /**
-      * @description Determines whether a sequence contains a specified element by using a specified equality comparer.
+      * @description Determines whether a sequence contains a specified element by using the specified equality comparer.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb339118.aspx | MSDN}
@@ -316,7 +315,7 @@ namespace TS
       * @param {TSource} element
       * @param {(first: TSource, second: TSource) => boolean} equalityComparer
       *
-      * @returns {boolen}
+      * @returns {boolean}
       *
       * @throws {TS.ArgumentNullOrUndefinedException}
       * @throws {TS.InvalidTypeException}
@@ -338,7 +337,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          if (equalityComparer(item, element))
+          if ((equalityComparer as (first: TSource, second: TSource) => boolean)(item, element))
           {
             return true;
           }
@@ -394,7 +393,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             count++;
           }
@@ -405,16 +404,15 @@ namespace TS
 
 
       /**
-      * @description This function retuns an endless number of elements from the underlying sequence by running over the
-      *  that sequence in cycles.
-      *  The function enumerates the elements of the base sequence from the start to then end
-      *  and starts over with the first element as soon as the last element is reached.
-      *  This function will never run out of data. There is one exception of that rule. If the underlying
-      *  sequence is an empty sequence, the cycle function will never give a result.
+      * @description This function returns an endless number of elements from the underlying sequence by running over
+      *  the that sequence in cycles. The function enumerates the elements of the base sequence from the start to then
+      *  end and starts over with the first element. This function will never run out of elements. There is one
+      *  exception of that rule. If the underlying sequence is an empty sequence, the cycle function will never give a
+      *  result.
       *
       *  Attention:
       *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-      *  Otherwise you will run out fo memory.
+      *  Otherwise you will run out of memory.
       *
       *  This function is not a Linq function.
       * @description Deferred execution.
@@ -451,12 +449,13 @@ namespace TS
 
 
       /**
-      * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is empty.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is
+      *  empty. That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue'
+      *  in the signature. That argument is needed because javascript doesn't offer reflection or a type system which
+      *  you can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you
+      *  are dealing with a complex type or which default value to use when you are dealing with a primitive type. The
+      *  only way to make sure that you get the right type at runtime is to place the default constructor or value in
+      *  the parameter list of that function.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.defaultifempty.aspx | MSDN}
@@ -503,9 +502,9 @@ namespace TS
 
       /**
       * @description Returns distinct elements from a sequence by using the default equality comparer to compare values.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-      *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
-      *  different implementations in C# and javascript.
+      *  Uses javascript strict comparison operator 'strict equality (===)' to achieve distinction. This function may
+      *  produce results that differ from the C# counterpart, because the comparison operators have different
+      *  implementations in C# and javascript.
       * @description Deferred execution
       *
       * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.distinct.aspx | MSDN}
@@ -554,7 +553,7 @@ namespace TS
 
           for (let item of enumerator)
           {
-            if (tempArray.find((value, index, arr) => { return equalityComparer(value, item); }) == undefined)
+            if (tempArray.find((value, index, arr) => { return (equalityComparer as (first: TSource, second: TSource) => boolean)(value, item); }) == undefined)
             {
               tempArray.push(item);
               yield item;
@@ -598,13 +597,13 @@ namespace TS
 
 
       /**
-      * @description Returns the element at a specified index in a sequence or a default value
-      *  if the index is out of the range of the sequence.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the element at a specified index in a sequence or a default value if the index is out of
+      *  the range of the sequence. That function differs from the .NET counterpart in that way that is has a
+      *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+      *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+      *  to use for the default when you are dealing with a complex type or which default value to use when you are
+      *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+      *  the default constructor or value in the parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb494386(v=vs.110).aspx | MSDN}
@@ -643,10 +642,9 @@ namespace TS
 
 
       /**
-      * @description Produces the set difference of two sequences.
-      *  Uses javascript strict comparsion operator 'strict equality (===)' to achieve distinction.
-      *  This function may produce results that differ from the C# counterpart, because the comparsion operators have
-      *  different implementations in C# and javascript.
+      * @description Produces the set difference of two sequences. Uses javascript strict comparison operator
+      *  'strict equality (===)' to achieve distinction. This function may produce results that differ from the C#
+      *  counterpart, because the comparison operators have different implementations in C# and javascript.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb300779.aspx | MSDN}
@@ -661,7 +659,8 @@ namespace TS
       */
       export function except<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       /**
-      * @description Produces the set difference of two sequences by using the specified equality comparer to compare values.
+      * @description Produces the set difference of two sequences by using the specified equality comparer to compare
+      *  values.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb336390.aspx | MSDN}
@@ -697,7 +696,7 @@ namespace TS
             let match = false;
             for (let secondItem of secondEnumerator)
             {
-              if (equalityComparer(firstItem, secondItem))
+              if ((equalityComparer as (first: TSource, second: TSource) => boolean)(firstItem, secondItem))
               {
                 match = true;
               }
@@ -759,23 +758,24 @@ namespace TS
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             return item;
           }
         }
 
-        throw new TS.InvalidOperationException("The'enumerator' is either empty or has no matche with the given predicate in function 'TS.Linq.Extensions.first'.");
+        throw new TS.InvalidOperationException("The 'enumerator' is either empty or has no match with the given predicate in function 'TS.Linq.Extensions.first'.");
       }
 
 
       /**
       * @description Returns the first element of a sequence, or a default value if the sequence contains no elements.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+      *  singnature. That argument is needed because javascript doesn't offer reflection or a type system which you
+      *  can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+      *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+      *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+      *  parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.firstordefault.aspx | MSDN}
@@ -790,12 +790,13 @@ namespace TS
       */
       export function firstOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource): TSource
       /**
-      * @description Returns the first element of the sequence that satisfies a condition or a default value if no element satisfied the condition.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the first element of the sequence that satisfies a condition or a default value if no
+      *  element satisfied the condition. That function differs from the .NET counterpart in that way that is has a
+      *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+      *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+      *  to use for the default when you are dealing with a complex type or which default value to use when you are
+      *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+      *  the default constructor or value in the parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.firstordefault.aspx | MSDN}
@@ -826,7 +827,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             return item;
           }
@@ -844,12 +845,10 @@ namespace TS
 
 
       /**
-      * @description Performs the specified action on each element of the underlying sequence.
-      *  I implemented this extension for your convenience. Without that function
-      *  you had to call 'toArray' first before you could use the array method
-      *  for each. Please read the article below from 'Eric Lippert's' blog to
-      *  make sure that you understand all the implications of this extension
-      *  function.
+      * @description Performs the specified action on each element of the underlying sequence. I implemented this
+      *  extension for your convenience. Without that function you had to call 'toArray' first before you could
+      *  use the array method for each. Please read the article below from 'Eric Lippert's' blog to make sure that you
+      *  fully understand all the implications of this extension function.
       *
       *  This function is not a Linq function.
       * @description Immediate execution.
@@ -911,9 +910,9 @@ namespace TS
       */
       export function groupBy<TSource, TKey>(enumerator: Iterable<TSource>, keySelector: (item: TSource) => TKey, equalityComparer: (first: TKey, second: TKey) => boolean): TS.Linq.Enumerator<Grouping<TKey, TSource>>
       /**
-      * @description Groups the elements of a sequence according to a specified key selector function and projects the elements
-      *  for each group by using a specified selector function. The keys are compared by using the specified comparer in argument
-      *  'equalityComparer' if provided.
+      * @description Groups the elements of a sequence according to a specified key selector function and projects the
+      *  elements for each group by using a specified selector function. The keys are compared by using the specified
+      *  comparer in argument 'equalityComparer' if provided.
       * @description Deferred execution.
       *
       * @see {@link http://msdn.microsoft.com/en-us/library/system.linq.enumerable.groupby.aspx | MSDN}
@@ -959,7 +958,7 @@ namespace TS
           let keys: Iterable<TKey> = distinct(select(enumerator, keySelector));
           for (let key of keys)
           {
-            yield new Grouping(key, enumerator, keySelector, equalityComparer, elementSelector);
+            yield new Grouping(key, enumerator, keySelector, equalityComparer as (first: TKey, second: TKey) => boolean, elementSelector);
           }
         }
 
@@ -1035,7 +1034,7 @@ namespace TS
             {
               for (let innerItem of innerEnumerator)
               {
-                if (equalityComparer(outerKey, innerKeySelector(innerItem)))
+                if ((equalityComparer as (first: TKey, second: TKey) => boolean)(outerKey, innerKeySelector(innerItem)))
                 {
                   yield innerItem;
                 }
@@ -1049,7 +1048,8 @@ namespace TS
 
 
       /**
-      * @description Produces the set intersection of two sequences by using the default equality comparer (===) to compare values.
+      * @description Produces the set intersection of two sequences by using the default equality comparer (===) to
+      *  compare values.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb460136.aspx | MSDN}
@@ -1064,7 +1064,8 @@ namespace TS
       */
       export function intersect<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       /**
-      * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare values.
+      * @description Produces the set intersection of two sequences by using the specified equalityComparer to compare
+      *  values.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb355408.aspx | MSDN}
@@ -1099,7 +1100,7 @@ namespace TS
           {
             for (let secondItem of secondEnumerator)
             {
-              if (equalityComparer(firstItem, secondItem))
+              if ((equalityComparer as (first: TSource, second: TSource) => boolean)(firstItem, secondItem))
               {
                 yield firstItem;
               }
@@ -1197,11 +1198,11 @@ namespace TS
           predicate = item => true;
         }//END else
 
-        let resultItem: TSource;
+        let resultItem: TSource | undefined;
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate != null) && predicate(item))
           {
             resultItem = item;
           }
@@ -1209,7 +1210,7 @@ namespace TS
 
         if (resultItem == undefined)
         {
-          throw new TS.InvalidOperationException("The'enumerable' is either empty or has no matche with the given predicate in function 'TS.Linq.Extensions.last'.");
+          throw new TS.InvalidOperationException("The 'enumerable' is either empty or has no match with the given predicate in function 'TS.Linq.Extensions.last'.");
         }
 
         return resultItem;
@@ -1218,11 +1219,12 @@ namespace TS
 
       /**
       * @description Returns the last element of a sequence, or a default value if the sequence contains no elements.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+      *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+      *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+      *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+      *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+      *  parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb301849.aspx | MSDN}
@@ -1237,12 +1239,13 @@ namespace TS
       */
       export function lastOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource): TSource
       /**
-      * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if no such element is found.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflection or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the last element of a sequence that satisfies a specified condition, or a default value if
+      *  no such element is found. That function differs from the .NET counterpart in that way that is has a
+      *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+      *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+      *  to use for the default when you are dealing with a complex type or which default value to use when you are
+      *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+      *  the default constructor or value in the parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb548915.aspx | MSDN}
@@ -1271,11 +1274,11 @@ namespace TS
           predicate = item => true;
         }//END else
 
-        let resultItem: TSource;
+        let resultItem: TSource | undefined;
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate != null) && predicate(item))
           {
             resultItem = item;
           }
@@ -1362,7 +1365,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          let temp = selector(item);
+          let temp = (selector as (item: TSource) => number)(item);
           if (!TS.Utils.Assert.isNumber(temp))
           {
             throw new TS.InvalidTypeException("temp", temp, "The selected value of the current enumerator has the wrong type. All values must be of type 'number' in function 'TS.Linq.Extensions.max'.");
@@ -1441,7 +1444,7 @@ namespace TS
 
         for (let item of enumerator)
         {
-          let temp = selector(item);
+          let temp = (selector as (item: TSource) => number)(item);
           if (!TS.Utils.Assert.isNumber(temp))
           {
             throw new TS.InvalidTypeException("temp", temp, "The selected value of the current enumerator has the wrong type. All values must be of type 'number' in function 'TS.Linq.Extensions.min'.");
@@ -1499,12 +1502,12 @@ namespace TS
         else
         {
           //
-          // Use the  default comparsion operator.
+          // Use the  default comparison operator.
           //
           comparer = (first, second) => { if (first < second) { return -1; }; if (first > second) { return 1 }; return 0; };
         }
 
-        return new OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer);
+        return new OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
@@ -1552,7 +1555,7 @@ namespace TS
         else
         {
           //
-          // Use the  default comparsion operator.
+          // Use the  default comparison operator.
           //
           comparer = (first, second) => { if (first < second) { return -1; }; if (first > second) { return 1 }; return 0; };
         }//END if
@@ -1564,7 +1567,7 @@ namespace TS
 
         function reverseComparer(first: TKey, second: TKey): number
         {
-          return -1 * comparer(first, second);
+          return -1 * (comparer as (first: TKey, second: TKey) => number)(first, second);
         }
 
         return new OrderedEnumerator<TSource, TKey>(enumerator, keySelector, reverseComparer);
@@ -1572,16 +1575,15 @@ namespace TS
 
 
       /**
-      * @description Retuns random elements from the base enumeration. 
-      *  The function uses a generator to select the current random element. For that reason the 
-      *  function will return as much elements as required, regardless how much elements the underlying 
-      *  sequence holds.
+      * @description Returns random elements from the base enumeration. The function uses a generator to select the
+      *  current random element. For that reason the function will return as much elements as required, regardless
+      *  how much elements the underlying sequence holds.
       *
       *  The function throws a 'TS.Linq.EmptyEnumeratorException' If the underlying sequence is empty.
       *
       *  Attention:
       *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-      *  Otherwise you will run out fo memory.
+      *  Otherwise you will run out of memory.
       *
       *
       *  This function is not a Linq function.
@@ -1767,7 +1769,8 @@ namespace TS
 
 
       /**
-      * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences into one sequence
+      * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences
+      *  into one sequence
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.selectmany(v=vs.110).aspx | MSDN}
@@ -1817,7 +1820,8 @@ namespace TS
 
 
       /**
-      * @description Determines whether two sequences are equal by comparing their elements using the default equality comparer (===).
+      * @description Determines whether two sequences are equal by comparing their elements using the default equality
+      *  comparer (===).
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb348567.aspx | MSDN}
@@ -1832,7 +1836,8 @@ namespace TS
       */
       export function sequenceEqual<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): boolean
       /**
-      * @description Determines whether two sequences are equal by comparing their elements using a specified equalityComparer.
+      * @description Determines whether two sequences are equal by comparing their elements using a specified
+      *  equalityComparer.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb342073(v=vs.110).aspx | MSDN}
@@ -1871,7 +1876,7 @@ namespace TS
 
         for (let index = 0; index < firstItemArray.length; index++)
         {
-          if (!equalityComparer(firstItemArray[index], secondItemArray[index]))
+          if (!(equalityComparer as (first: TSource, second: TSource) => boolean)(firstItemArray[index], secondItemArray[index]))
           {
             return false;
           }
@@ -1882,12 +1887,13 @@ namespace TS
 
 
       /**
-      * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator but in randomized order.
+      * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator
+      *  but in randomized order.
       *
       *  This function is not a Linq function.
       * @description Deferred execution.
       *
-      * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle}
+      * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle : fisher-yates-shuffle @ dotnetperls.com}
       *
       * @param {Iterable<TSource>} enumerator
       *
@@ -1899,7 +1905,6 @@ namespace TS
       export function shuffle<TSource>(enumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       {
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.shuffle");
-
 
         let generatorFunction = function* ()
         {
@@ -1919,7 +1924,7 @@ namespace TS
 
           while (targetArray.length > 0)
           {
-            yield targetArray.pop();
+            yield (targetArray.pop() as TSource);
           }
         }
 
@@ -1928,7 +1933,8 @@ namespace TS
 
 
       /**
-      * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element in the sequence.
+      * @description Returns the only element of a sequence, or throws an exception if there is not exactly one element
+      *  in the sequence.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb155325.aspx | MSDN }
@@ -1944,7 +1950,8 @@ namespace TS
       */
       export function single<TSource>(enumerator: Iterable<TSource>): TSource
       /**
-      * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception if more than one such elements exists.
+      * @description Returns the only element of a sequence that satisfies a specified condition or throws an exception
+      *  if more than one such elements exists.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb535118.aspx | MSDN }
@@ -1975,11 +1982,11 @@ namespace TS
 
 
         let gotOne = false;
-        let result: TSource;
+        let result: TSource | null = null;
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             if (!gotOne)
             {
@@ -1988,28 +1995,28 @@ namespace TS
             }
             else
             {
-              throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' hase more than one result element in function 'TS.Linq.Extensions.single'.");
+              throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' has more than one result element in function 'TS.Linq.Extensions.single'.");
             }
           }
         }
 
         if (!gotOne)
         {
-          throw new TS.InvalidOperationException("The'enumerator' is either empty or has no matche using the given predicate in function 'TS.Linq.Extensions.single'.");
+          throw new TS.InvalidOperationException("The 'enumerator' is either empty or has no match using the given predicate in function 'TS.Linq.Extensions.single'.");
         }//END if
 
-        return result;
+        return (result as TSource);
       }
 
 
       /**
-      * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method throws an 
-      *  exception if there is more than one element in the sequence.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the only element of a sequence, or a default value if the sequence is empty. This method
+      *  throws an exception if there is more than one element in the sequence. That function differs from the .NET
+      *  counterpart in that way that is has a 'defaultConstructorOrValue' in the signature. That argument is needed
+      *  because javascript doesn't offer reflection or a type system which you can rely on at runtime. Hence there is
+      *  no way to tell which constructor to use for the default when you are dealing with a complex type or which
+      *  default value to use when you are dealing with a primitive type. The only way to make sure that you get the
+      *  right type at runtime is to place the default constructor or value in the parameter list of that function.
       * @description Immediate execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb342451.aspx | MSDN }
@@ -2025,16 +2032,17 @@ namespace TS
       */
       export function singleOrDefault<TSource>(enumerator: Iterable<TSource>, defaultConstructorOrValue: { new (): TSource; } | TSource): TSource
       /**
-      * @description Returns the only element of a sequence that satisfies a specified condition or a default value 
-      *  if no such element exists, This method throws an exception if more than one element satisfie the condition.
-      *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-      *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-      *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-      *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-      *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+      * @description Returns the only element of a sequence that satisfies a specified condition or a default value if
+      *  no such element exists, This method throws an exception if more than one element satisfies the condition. That
+      *  function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the
+      *  signature. That argument is needed because javascript doesn't offer reflection or a type system which you can
+      *  rely on at runtime. Hence there is no way to tell which constructor to use for the default when you are
+      *  dealing with a complex type or which default value to use when you are dealing with a primitive type. The only
+      *  way to make sure that you get the right type at runtime is to place the default constructor or value in the
+      *  parameter list of that function.
       * @description Immediate execution.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/bb549274.aspx | MSDN }
       *
       * @param {Iterable<TSource>} enumerator
       * @param {{ new (): TSource; } | TSource} defaultConstructorOrValue
@@ -2063,11 +2071,11 @@ namespace TS
 
 
         let gotOne = false;
-        let result: TSource;
+        let result: TSource | null = null;
 
         for (let item of enumerator)
         {
-          if (predicate(item))
+          if ((predicate as (item: TSource) => boolean)(item))
           {
             if (!gotOne)
             {
@@ -2076,7 +2084,7 @@ namespace TS
             }
             else
             {
-              throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' hase more than one result element in function 'TS.Linq.Extensions.singleOrDefault'.");
+              throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' has more than one result element in function 'TS.Linq.Extensions.singleOrDefault'.");
             }
           }
         }
@@ -2093,7 +2101,7 @@ namespace TS
           }
         }//END if
 
-        return result;
+        return result as TSource;
       }
 
 
@@ -2336,7 +2344,7 @@ namespace TS
         if (TS.Utils.Assert.isNullOrUndefined(comparer))
         {
           //
-          // Use the  default comparsion operator.
+          // Use the  default comparison operator.
           //
           comparer = (_first, _second) => { if (_first < _second) { return -1; }; if (_first > _second) { return 1 }; return 0; };
         }//END if
@@ -2345,7 +2353,7 @@ namespace TS
           TS.Utils.checkFunctionParameter("comparer", comparer, "TS.Linq.Extensions.orderBy");
         }//END else
 
-        return new TS.Linq.OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer);
+        return new TS.Linq.OrderedEnumerator<TSource, TKey>(enumerator, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
@@ -2387,8 +2395,6 @@ namespace TS
         TS.Utils.checkIterableParameter("enumerator", enumerator, "TS.Linq.Extensions.thenByDescending");
         TS.Utils.checkFunctionParameter("keySelector", keySelector, "TS.Linq.Extensions.thenByDescending");
 
-
-
         if (TS.Utils.Assert.isNullOrUndefined(enumerator.partitionIterator))
         {
           throw new TS.InvalidTypeException("enumerator", enumerator, "Argument enumerable must be of type 'IOrderedEnumerable' in function 'TS.Linq.Extensions.thenByDescending'.");
@@ -2397,7 +2403,7 @@ namespace TS
         if (TS.Utils.Assert.isNullOrUndefined(comparer))
         {
           //
-          // Use the  default comparsion operator.
+          // Use the  default comparison operator.
           //
           comparer = (_first, _second) => { if (_first < _second) { return -1; }; if (_first > _second) { return 1 }; return 0; };
         }//END if
@@ -2408,7 +2414,7 @@ namespace TS
 
         function reverseComparer(first: TKey, second: TKey): number
         {
-          return -1 * comparer(first, second);
+          return -1 * (comparer as (first: TKey, second: TKey) => number)(first, second);
         }
 
         return new TS.Linq.OrderedEnumerator<TSource, TKey>(enumerator, keySelector, reverseComparer);
@@ -2434,6 +2440,7 @@ namespace TS
 
         return Array.from(enumerator);
       }
+
 
       /**
       * @description Creates a Dictionary<TKey, TSource> from an Iterable<TSource> according to a specified key selector function.
@@ -2490,8 +2497,8 @@ namespace TS
 
 
       /**
-      * @description Produces the set union of two sequences by using the strict comparsion operator (===).
-      *  This function may produce results that differ from the C# counterpart, because the comparsion operators have different
+      * @description Produces the set union of two sequences by using the strict comparison operator (===).
+      *  This function may produce results that differ from the C# counterpart, because the comparison operators have different
       *  implementations in C# and javascript.
       * @description Deferred execution.
       *
@@ -2507,7 +2514,7 @@ namespace TS
       */
       export function union<TSource>(firstEnumerator: Iterable<TSource>, secondEnumerator: Iterable<TSource>): TS.Linq.Enumerator<TSource>
       /**
-      * @description Produces the set union of two sequences by using the comparsion operator provide in argument 'equalityComparer'.
+      * @description Produces the set union of two sequences by using the comparison operator provide in argument 'equalityComparer'.
       * @description Deferred execution.
       *
       * @see {@link https://msdn.microsoft.com/en-us/library/bb358407.aspx | MSDN}
@@ -2538,18 +2545,18 @@ namespace TS
 
         let generatorFunction = function* ()
         {
-          let tempArrayFirst: Array<TSource> = TS.Linq.Extensions.toArray(TS.Linq.Extensions.distinct(firstEnumerator, equalityComparer));
+          let tempArrayFirst: Array<TSource> = TS.Linq.Extensions.toArray(TS.Linq.Extensions.distinct(firstEnumerator, equalityComparer as (first: TSource, second: TSource) => boolean));
 
           for (let item of tempArrayFirst)
           {
             yield item;
           }
 
-          let tempArraySecond: Array<TSource> = TS.Linq.Extensions.toArray(TS.Linq.Extensions.distinct(secondEnumerator, equalityComparer));
+          let tempArraySecond: Array<TSource> = TS.Linq.Extensions.toArray(TS.Linq.Extensions.distinct(secondEnumerator, equalityComparer as (first: TSource, second: TSource) => boolean));
 
           for (let item of tempArraySecond)
           {
-            if (!TS.Linq.Extensions.contains(tempArrayFirst, item, equalityComparer))
+            if (!TS.Linq.Extensions.contains(tempArrayFirst, item, equalityComparer as (first: TSource, second: TSource) => boolean))
             {
               yield item;
             }
@@ -2604,7 +2611,7 @@ namespace TS
       *
       * @param {Iterable<TFirst>} firstEnum
       * @param {Iterable<TSecond>} secondEnum
-      * @param {(firt: TFirst, second: TSecond) => TResult} func
+      * @param {(first: TFirst, second: TSecond) => TResult} func
       *
       * @retuns {TS.Linq.Enumerator<TResult>}
       *

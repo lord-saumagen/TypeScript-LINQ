@@ -1,4 +1,5 @@
 ﻿/// <reference path="../_references.ts" />
+
 namespace TS
 {
   export namespace Linq
@@ -7,8 +8,9 @@ namespace TS
     /**
     * @class TS.Linq.OrderedEnumerator<T, TKey>
     *
-    * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call to a sort function operate on
-    *  the partitions of the enumerator elements without changing the order of previous sortings.
+    * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call
+    *  to a sort function operate on the partitions of the enumerator elements without changing the order of previous
+    *  sorting.
     *
     * @implements {BaseEnumerator<T}
     * @implements {TS.Linq.IOrderedEnumerator<T>}
@@ -121,6 +123,7 @@ namespace TS
         return resultArray;
       }
 
+
       /**
       * @constructor
       *
@@ -194,7 +197,7 @@ namespace TS
       public thenBy<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       public thenBy<TKey>(keySelector: (item: T) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       {
-        return TS.Linq.Extensions.thenBy(this, keySelector, comparer);
+        return TS.Linq.Extensions.thenBy(this, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
@@ -216,7 +219,8 @@ namespace TS
       */
       public thenByDescending<TKey>(keySelector: (item: T) => TKey): TS.Linq.OrderedEnumerator<T, TKey>
       /**
-      * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the specified key and comparer.
+      * @description Performs a subsequent ordering of the elements in a sequence in descending order, according to the
+      *  specified key and comparer.
       * @description Extension function.
       * @description Deferred execution.
       *
@@ -233,7 +237,7 @@ namespace TS
       public thenByDescending<TKey>(keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       public thenByDescending<TKey>(keySelector: (item: T) => TKey, comparer?: (first: TKey, second: TKey) => number): TS.Linq.OrderedEnumerator<T, TKey>
       {
-        return TS.Linq.Extensions.thenByDescending(this, keySelector, comparer);
+        return TS.Linq.Extensions.thenByDescending(this, keySelector, comparer as (first: TKey, second: TKey) => number);
       }
 
 
@@ -311,8 +315,8 @@ namespace TS
       /**
       * @constructor
       *
-      * @param source, the source object or collection used in this iterator.
-      * @param selector, a selector function which determines the result set.
+      * @param source, The source object or collection used in this iterator.
+      * @param selector, A selector function which determines the result set.
       */
       constructor(orderedEnumerator: IOrderedEnumerator<T>, keySelector: (item: T) => TKey, comparer: (first: TKey, second: TKey) => number)
       {
@@ -325,7 +329,7 @@ namespace TS
       /**
       * @private
       */
-      private init()
+      private init() : void
       {
         this.resultArray = this.createPartions(this.orderedEnumerator, this.keySelector, this.comparer);
         this.initalized = true;
@@ -366,7 +370,7 @@ namespace TS
           let sourceArray: Array<T>;
           let partition: Array<T>;
           let resultArray: Array<Array<T>>;
-          let lastElement: T = null;
+          let lastElement: T | null = null;
 
           sourceArray = new Array<T>();
 
@@ -392,7 +396,7 @@ namespace TS
               resultArray.push(partition);
               partition = new Array<T>();
             }
-            lastElement = sourceArray.shift();
+            lastElement = sourceArray.shift() as T;
             partition.push(lastElement);
           }
           resultArray.push(partition);
@@ -415,10 +419,10 @@ namespace TS
 
         while (this.resultArray.length > 0)
         {
-          return { done: false, value: new ArrayIterator<T>(this.resultArray.shift()) };
+          return { done: false, value: new ArrayIterator<T>(this.resultArray.shift() as Array<T>) };
         }
 
-        return { done: true, value: null };
+        return { done: true, value: null as any };
       }
     }//END class
 
@@ -463,10 +467,10 @@ namespace TS
       {
         if (this.innerArray.length > 0)
         {
-          return { done: false, value: this.innerArray.shift() };
+          return { done: false, value: this.innerArray.shift() } as IteratorResult<T>;
         }
 
-        return { done: true, value: null }
+        return { done: true, value: undefined as any } as IteratorResult<T>
       }
     }//END class
 

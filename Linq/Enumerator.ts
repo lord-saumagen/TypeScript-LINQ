@@ -19,7 +19,7 @@ namespace TS
       /**
       * @private
       */
-      private genFunc: () => IterableIterator<T> = null;
+      private genFunc: (() => IterableIterator<T>) | null = null;
 
       /**
       * @description Property which returns an empty 'Enumerator'.
@@ -41,7 +41,7 @@ namespace TS
       */
       public [Symbol.iterator](): Iterator<T> 
       {
-        return new Generator<T>(this.genFunc);
+        return new Generator<T>(this.genFunc as () => IterableIterator<T>);
       }
 
       /**
@@ -49,7 +49,7 @@ namespace TS
       *
       * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes a  generator function as source. The
       *  generator creates the elements which get treated as the underlying collection of this enumerator. The
-      *  constructor throws an expection if the generator is invalid.
+      *  constructor throws an exception if the generator is invalid.
       *
       * @param {() => IterableIterator<T>} generator
       *
@@ -62,7 +62,7 @@ namespace TS
       *
       * @description Creates a new 'TS.Linq.Enumerator<T>' object. Takes any iterable object or an array like
       *  object as source. The predicate function defines which element becomes an element of underlying collection of
-      *  this enumerator. The constructor throws an expection if the source isn't iterable an array like object or if
+      *  this enumerator. The constructor throws an exception if the source isn't iterable an array like object or if
       *  the predicate function is invalid.
       *
       * @param {Iterable<T>} source
@@ -96,7 +96,7 @@ namespace TS
           {
             if (!TS.Utils.Assert.isFunction(predicate))
             {
-              throw new TS.InvalidInvocationException("The constructor of 'TS.Linq.Enumerator' requires a valid selctor argument.");
+              throw new TS.InvalidInvocationException("The constructor of 'TS.Linq.Enumerator' requires a valid selector argument.");
             }
           }
           else
@@ -108,7 +108,7 @@ namespace TS
           {
             for (let item of sourceOrGenerator)
             {
-              if (predicate(item))
+              if ((predicate as (item: T) => boolean)(item))
               {
                 yield item;
               }
@@ -135,8 +135,8 @@ namespace TS
     */
     class Generator<T> implements Iterator<T>
     {
-      private genFunc: () => IterableIterator<T> = null;
-      private innerIterator: Iterator<T> = null;
+      private genFunc: (() => IterableIterator<T>) | null = null;
+      private innerIterator: Iterator<T> | null = null;
       private initalized: boolean = false;
 
       /**
@@ -165,10 +165,10 @@ namespace TS
       {
         if (!this.initalized)
         {
-          this.innerIterator = this.genFunc();
+          this.innerIterator = (this.genFunc as () => IterableIterator<T>)();
           this.initalized = true;
         }
-        return this.innerIterator.next();
+        return (this.innerIterator as Iterator<T>).next();
       }
     }//END class
 

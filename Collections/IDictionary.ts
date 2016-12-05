@@ -19,7 +19,7 @@ namespace TS
       /**
       * @description Adds an item to the ICollection<T>.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/63ywd54z(v=vs.110).aspx | MSDN }
       *
       * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
       *
@@ -33,7 +33,7 @@ namespace TS
       /**
       * @description Adds an element with the provided key and value to the IDictionary<TKey, TValue>.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/cy7xta5e(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/cy7xta5e(v=vs.110).aspx | MSDN }
       *
       * @param {TKey} key
       * @param {TValue} value
@@ -47,7 +47,7 @@ namespace TS
       * @description Determines whether the ICollection<TS.Collections.KeyValuePair<TKey, TValue>> contains a specific
       *  value.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/k5cf1d56(v=vs.110).aspx | MSDN }
       *
       * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
       *
@@ -59,7 +59,7 @@ namespace TS
       /**
       * @description Determines whether the IDictionary<TKey, TValue> contains an element with the specified key.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/htszx2dy(v=vs.110).aspx | MSDN }
       *
       * @param {TKey} key
       *
@@ -95,7 +95,7 @@ namespace TS
       /**
       * @description Copies the elements of the ICollection<T> to an Array, starting at the specified array index.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/0efx51xw(v=vs.110).aspx | MSDN }
       *
       * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
       *
@@ -123,7 +123,7 @@ namespace TS
       *
       * @returns {TS.Collections.KeyValuePair<TKey, TValue> | undefined}
       */
-      getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue>;
+      getItem(key: TKey): TS.Collections.KeyValuePair<TKey, TValue> | undefined;
 
 
       /**
@@ -137,7 +137,7 @@ namespace TS
       *
       * @returns {TValue | undefined}
       */
-      getValue(key: TKey): TValue;
+      getValue(key: TKey): TValue | undefined;
 
       //
       //IsReadOnly - Not Implemented
@@ -150,7 +150,7 @@ namespace TS
       /**
       * @description Returns a TS.Linq.Enumerable<TKey> containing the keys of the IDictionary<TKey, TValue>.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/1ebzfbyx(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/1ebzfbyx(v=vs.110).aspx | MSDN }
       *
       * @get {TS.Linq.Enumerator<TKey>} keys
       */
@@ -161,7 +161,7 @@ namespace TS
       * @description Removes the occurrence of the specific item from the IDictionary<TKey, TValue>. The function fails
       *  silent if the dictionary doesn't contain that item.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/bye7h94w(v=vs.110).aspx | MSDN }
       *
       * @implements {TS.Collections.ICollection<TS.Collections.KeyValuePair<TKey, TValue>>}
       *
@@ -176,7 +176,7 @@ namespace TS
       * @description Removes the element with the specified key from the IDictionary<TKey, TValue>. The function fails
       *  silent if the dictionary doesn't contain an item with specified key.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/k8s489f0(v=vs.110).aspx | MSDN }
       *
       * @param {TKey} key
       *
@@ -190,7 +190,7 @@ namespace TS
       *  function is a substitute for the 'item[key]' property defined in the .NET 'IDictionary<TKey, TValue>
       *  Interface'.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/zyxt2e2h(v=vs.110).aspx | MSDN }
       *
       * @param {TKey} key
       * @param {TValue} newValue
@@ -217,7 +217,7 @@ namespace TS
       /**
       * @description Returns a TS.Linq.Enumerable<TValue> containing the values in the IDictionary<TKey, TValue>.
       *
-      * @see {@link https://msdn.microsoft.com/en-us/library/0yxt5h4s(v=vs.110).aspx : MSDN }
+      * @see {@link https://msdn.microsoft.com/en-us/library/0yxt5h4s(v=vs.110).aspx | MSDN }
       *
       * @get {TS.Linq.Enumerator<TValue>} values
       */

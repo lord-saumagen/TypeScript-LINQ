@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -180,6 +180,13 @@
     -->
     <TypeScriptNoResolve>
     </TypeScriptNoResolve>
+	<!--
+    type: boolean,
+	default: alse,
+	description: In strict null checking mode, the null and undefined values are not in the domain of every type and are only assignable to themselves and any (the one exception
+                 being that undefined is also assignable to void).
+	-->
+	<TypeScriptStrictNullChecks>True</TypeScriptStrictNullChecks>
     <!-- 
     type: string, 
     default: null, 

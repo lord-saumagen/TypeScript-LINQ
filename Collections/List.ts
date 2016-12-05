@@ -12,8 +12,8 @@ namespace TS
     * @see {@link https://msdn.microsoft.com/en-us/library/s6hkc2c4(v=vs.110).aspx | MSDN}
     *
     * @implements {TS.Collections.IList<T>}
-    * @implements {Iterable<T>}
     * @implements {ArrayLike<T>}
+    * @extends {TS.Linq.BaseEnumerator<T>}
     */
     export class List<T> extends TS.Linq.BaseEnumerator<T> implements TS.Collections.IList<T>, ArrayLike<T>
     {
@@ -172,7 +172,7 @@ namespace TS
 
         for (index = 0; index < this.length; index++)
         {
-          targetArray[destIndex] = this[index];
+          targetArray[destIndex as number] = this[index];
           destIndex++;
         }
         return this;
@@ -273,9 +273,9 @@ namespace TS
         }//END else
 
 
-        for (let index = startIndex; index < this.length; index++)
+        for (let index = startIndex as number; index < this.length; index++)
         {
-          if (equalityComparer(this[index], item))
+          if ((equalityComparer as (first: T, second: T) => boolean)(this[index], item))
           {
             return index;
           }
@@ -330,7 +330,7 @@ namespace TS
 
 
       /**
-      * @description Removes the first occurrence of the specific object from the IList<T>.
+      * @description Removes the first occurrence of the specified item from the IList<T>.
       *
       * @implements {TS.Collections.IList<T>}
       *
@@ -343,30 +343,33 @@ namespace TS
       public remove(item: T): this
       {
         let internalArray: Array<T>;
+        let index: number = 0;
+        let found: boolean = false;
 
         TS.Utils.checkNotUndefinedParameter("item", item, "TS.Collections.List.remove");
 
         internalArray = new Array<T>();
-        this.copyTo(internalArray, 0);
-
-        internalArray.some((value, index, array) =>
+        while (index < this.length)
         {
-          if (value == item)
+          if (!found && this[index] == item)
           {
-            internalArray[index] = undefined;
-            return true;
+            found = true;
           }
-        })
+          else
+          {
+            internalArray.push(this[index]);
+          }
+          index++;
+        }
 
-        internalArray = TS.Utils.compactArray(internalArray);
         this.clear();
-        this.add(...internalArray);
+        this.add(...internalArray as Array<T>);
         return this;
       }
 
 
       /**
-      * @description Removes the element at the specified index of the List<T>.
+      * @description Removes the element at the specified index from the IList<T>.
       *
       * @implements {TS.Collections.IList<T>}
       *
@@ -477,7 +480,7 @@ namespace TS
             {
               if (!TS.Utils.Assert.isFunction(predicate))
               {
-                throw new TS.InvalidInvocationException("The constructor of 'TS.Collections.List' requires a valid selctor argument.");
+                throw new TS.InvalidInvocationException("The constructor of 'TS.Collections.List' requires a valid selector argument.");
               }
             }
             else
@@ -486,7 +489,7 @@ namespace TS
             }
             for (let item of sourceOrGenerator)
             {
-              if (predicate(item))
+              if ((predicate as (item: T) => boolean)(item))
               {
                 if ((item == null) && (!this.internalAllowNull))
                 {
@@ -501,6 +504,8 @@ namespace TS
 
 
       /**
+      * @descriptions Adds the element provided in argument 'item' to the end of the list.
+      *
       * @private
       */
       private push(item: T): void
@@ -511,9 +516,13 @@ namespace TS
 
 
       /**
+      * @description Returns the last element in the list or undefined if the list is empty.
+      *
       * @private
+      *
+      * @returns {T | undefined}
       */
-      private pop(): T
+      private pop(): T | undefined
       {
         if (this.length == 0)
         {
@@ -542,7 +551,7 @@ namespace TS
     class Generator<T> implements Iterator<T>
     {
       private innerCollection: ArrayLike<T>;
-      private innerIterator: Iterator<T> = null;
+      private innerIterator: Iterator<T> | null = null;
       private initalized: boolean = false;
       private genFunc = function* ()
       {
@@ -581,7 +590,7 @@ namespace TS
           this.innerIterator = this.genFunc();
           this.initalized = true;
         }
-        return this.innerIterator.next();
+        return (this.innerIterator as Iterator<T>).next();
       }
     }//END class
 

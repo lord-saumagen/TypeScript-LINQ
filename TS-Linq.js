@@ -4,142 +4,6 @@ var TS;
     var Linq;
     (function (Linq) {
         /**
-        * @class TS.Linq.SelectorException
-        *
-        * @description This exceptions signals an error which occured in a selector function for specific value.
-        *
-        * @extends {TS.Exception}
-        */
-        class SelectorException extends TS.Exception {
-            constructor(selector, value, message, innerException) {
-                super(message, innerException);
-                /**
-                * @private
-                */
-                this.internalSelector = null;
-                /**
-                * @private
-                */
-                this.internalValue = null;
-                this.internalSelector = selector;
-                this.internalValue = value;
-            }
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            get type() {
-                return "TS.Linq.SelectorException";
-            }
-            /**
-            * @description The selector which caused the exception.
-            *
-            * @get {(item: any) => Enumerator<any>} selector
-            */
-            get selector() {
-                return this.internalSelector;
-            }
-            /**
-            * @description The value which caused the exception.
-            *
-            * @get {any} value
-            */
-            get value() {
-                return this.internalValue;
-            }
-        }
-        Linq.SelectorException = SelectorException; //END class
-        /**
-        * @class TS.Linq.EmptyEnumeratorException
-        *
-        * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
-        *
-        * @extends {TS.Exception}
-        */
-        class EmptyEnumeratorException extends TS.Exception {
-            /**
-            * @constructor
-            *
-            * @param {Iterable<any>} enumerator
-            * @param {string}  message?
-            */
-            constructor(enumerator, message, innerException) {
-                super(message, innerException);
-                /**
-                * @private
-                */
-                this.internalEnumerator = null;
-                this.internalEnumerator = enumerator;
-            }
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            get type() {
-                return "TS.Linq.EmptyEnumeratorException";
-            }
-            /**
-            * @description The enumerator which caused the exception.
-            *
-            * @get {Iterable<any>} enumerator
-            */
-            get enumerator() {
-                return this.internalEnumerator;
-            }
-        }
-        Linq.EmptyEnumeratorException = EmptyEnumeratorException; //END class
-        /**
-        * @class TS.Linq.MoreThanOneElementException
-        *
-        * @description This exceptions signals an error in a function where only one element is allowed but multiple
-        *  elements are available.
-        *
-        * @extends {TS.Exception}
-        */
-        class MoreThanOneElementException extends TS.Exception {
-            /**
-            * @constructor
-            *
-            * @param {Iterable<any>} enumerator
-            * @param {string} message?
-            * @param {TS.Exception} innerException)
-            */
-            constructor(enumerator, message, innerException) {
-                super(message, innerException);
-                /**
-                * @private
-                */
-                this.internalEnumerator = null;
-                this.internalEnumerator = enumerator;
-            }
-            /**
-            * @override
-            *
-            * @get {string} type
-            */
-            get type() {
-                return "TS.Linq.MoreThanOneElementException";
-            }
-            /**
-            * @description The enumerator which caused the exception.
-            *
-            * @get {Iterable<any>} enumerator
-            */
-            get enumerator() {
-                return this.internalEnumerator;
-            }
-        }
-        Linq.MoreThanOneElementException = MoreThanOneElementException; //END class
-    })(Linq = TS.Linq || (TS.Linq = {})); //END namespace
-})(TS || (TS = {})); //END namespace
-/// <reference path="../_references.ts" />
-var TS;
-(function (TS) {
-    var Linq;
-    (function (Linq) {
-        /**
         * @class TS.Linq.BaseEnumerator<T>
         *
         * @description  The main purpose of this class is to implement the extension functions defined in
@@ -147,7 +11,7 @@ var TS;
         *
         * @abstract
         *
-        * @implements Iterable<T>
+        * @implements {Iterable<T>}
         */
         class BaseEnumerator {
             aggregate(accumulator, seed) {
@@ -219,7 +83,7 @@ var TS;
                 return TS.Linq.Extensions.count(this, predicate);
             }
             /**
-            * @description This function retuns an endless number of elements from the underlying sequence by running over
+            * @description This function returns an endless number of elements from the underlying sequence by running over
             *  that sequence in cycles. The function enumerates the elements of the base sequence from the start to then end
             *  and starts over with the first element as soon as the last element is reached. This function will never run
             *  out of data. There is one exception of that rule. If the underlying sequence is an empty sequence, the cycle
@@ -425,7 +289,7 @@ var TS;
                 return TS.Linq.Extensions.orderByDescending(this, keySelector, comparer);
             }
             /**
-            * @description Retuns random elements from the base enumeration. This function is not a Linq function. The
+            * @description Returns random elements from the base enumeration. This function is not a Linq function. The
             *  function uses a generator to select the current random element. For that reason the function will return as
             *  much elements as required, regardless how much elements the underlying sequence holds.
             *
@@ -433,7 +297,7 @@ var TS;
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator. Otherwise
-            *  you will run out fo memory.
+            *  you will run out of memory.
             * @description Extension function.
             * @description Deferred execution.
             *
@@ -693,7 +557,7 @@ var TS;
             * @see {@link https://msdn.microsoft.com/en-us/library/dd267698(v=vs.110).aspx | MSDN}
             *
             * @param {Iterable<TSecond>} secondEnum
-            * @param {(firt: TFirst, second: TSecond) => TResult} func
+            * @param {(first: TFirst, second: TSecond) => TResult} func
             *
             * @retuns {TS.Linq.Enumerator<TResult>}
             *
@@ -742,7 +606,7 @@ var TS;
                 else if (TS.Utils.Assert.isIterable(sourceOrGenerator) || TS.Utils.Assert.isArrayLike(sourceOrGenerator)) {
                     if (!TS.Utils.Assert.isNullOrUndefined(predicate)) {
                         if (!TS.Utils.Assert.isFunction(predicate)) {
-                            throw new TS.InvalidInvocationException("The constructor of 'TS.Linq.Enumerator' requires a valid selctor argument.");
+                            throw new TS.InvalidInvocationException("The constructor of 'TS.Linq.Enumerator' requires a valid selector argument.");
                         }
                     }
                     else {
@@ -936,7 +800,7 @@ var TS;
                     throw new TS.InvalidTypeException("enumerator", enumerator, "Enumerator is not a valid number enumerator in function 'TS.Linq.Extensions.average'.");
                 }
                 if (TS.Utils.Assert.isInfiniteNumber(sum)) {
-                    throw new TS.OverflowException("An arrithmetic overflow occured during the execution of 'TS.Extensions.average'.");
+                    throw new TS.OverflowException("An arithmetic overflow occurred during the execution of 'TS.Extensions.average'.");
                 }
                 if (count == 0) {
                     throw new TS.Linq.EmptyEnumeratorException(enumerator, "The argument 'enumerator' must not be an empty enumerator in function 'TS.Linq.Extensions.average'.");
@@ -1018,16 +882,15 @@ var TS;
             }
             Extensions.count = count;
             /**
-            * @description This function retuns an endless number of elements from the underlying sequence by running over the
-            *  that sequence in cycles.
-            *  The function enumerates the elements of the base sequence from the start to then end
-            *  and starts over with the first element as soon as the last element is reached.
-            *  This function will never run out of data. There is one exception of that rule. If the underlying
-            *  sequence is an empty sequence, the cycle function will never give a result.
+            * @description This function returns an endless number of elements from the underlying sequence by running over
+            *  the that sequence in cycles. The function enumerates the elements of the base sequence from the start to then
+            *  end and starts over with the first element. This function will never run out of elements. There is one
+            *  exception of that rule. If the underlying sequence is an empty sequence, the cycle function will never give a
+            *  result.
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-            *  Otherwise you will run out fo memory.
+            *  Otherwise you will run out of memory.
             *
             *  This function is not a Linq function.
             * @description Deferred execution.
@@ -1055,12 +918,13 @@ var TS;
             }
             Extensions.cycle = cycle;
             /**
-            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is empty.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the elements of an enumerator, or a default valued singleton collection if the sequence is
+            *  empty. That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue'
+            *  in the signature. That argument is needed because javascript doesn't offer reflection or a type system which
+            *  you can rely on at runtime. Hence there is no way to tell which constructor to use for the default when you
+            *  are dealing with a complex type or which default value to use when you are dealing with a primitive type. The
+            *  only way to make sure that you get the right type at runtime is to place the default constructor or value in
+            *  the parameter list of that function.
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.defaultifempty.aspx | MSDN}
@@ -1140,13 +1004,13 @@ var TS;
             }
             Extensions.elementAt = elementAt;
             /**
-            * @description Returns the element at a specified index in a sequence or a default value
-            *  if the index is out of the range of the sequence.
-            *  That function differs from the .NET counterpart in that way that is has a 'defaultConstructorOrValue' in the singnature.
-            *  That argument is needed because javascript doesn't offer reflections or a type system which you can rely on
-            *  at runtime. Hence there is no way to tell which constructor to use for the default when you are dealing with a complex
-            *  type or which default value to use when you are dealing with a primitive type. The only way to make sure that you
-            *  get the right type at runtime is to place the default constructor or value in the parameter list of that function.
+            * @description Returns the element at a specified index in a sequence or a default value if the index is out of
+            *  the range of the sequence. That function differs from the .NET counterpart in that way that is has a
+            *  'defaultConstructorOrValue' in the signature. That argument is needed because javascript doesn't offer
+            *  reflection or a type system which you can rely on at runtime. Hence there is no way to tell which constructor
+            *  to use for the default when you are dealing with a complex type or which default value to use when you are
+            *  dealing with a primitive type. The only way to make sure that you get the right type at runtime is to place
+            *  the default constructor or value in the parameter list of that function.
             * @description Immediate execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/bb494386(v=vs.110).aspx | MSDN}
@@ -1214,7 +1078,7 @@ var TS;
                         return item;
                     }
                 }
-                throw new TS.InvalidOperationException("The'enumerator' is either empty or has no matche with the given predicate in function 'TS.Linq.Extensions.first'.");
+                throw new TS.InvalidOperationException("The 'enumerator' is either empty or has no match with the given predicate in function 'TS.Linq.Extensions.first'.");
             }
             Extensions.first = first;
             function firstOrDefault(enumerator, defaultConstructorOrValue, predicate) {
@@ -1240,12 +1104,10 @@ var TS;
             }
             Extensions.firstOrDefault = firstOrDefault;
             /**
-            * @description Performs the specified action on each element of the underlying sequence.
-            *  I implemented this extension for your convenience. Without that function
-            *  you had to call 'toArray' first before you could use the array method
-            *  for each. Please read the article below from 'Eric Lippert's' blog to
-            *  make sure that you understand all the implications of this extension
-            *  function.
+            * @description Performs the specified action on each element of the underlying sequence. I implemented this
+            *  extension for your convenience. Without that function you had to call 'toArray' first before you could
+            *  use the array method for each. Please read the article below from 'Eric Lippert's' blog to make sure that you
+            *  fully understand all the implications of this extension function.
             *
             *  This function is not a Linq function.
             * @description Immediate execution.
@@ -1388,12 +1250,12 @@ var TS;
                 } //END else
                 let resultItem;
                 for (let item of enumerator) {
-                    if (predicate(item)) {
+                    if ((predicate != null) && predicate(item)) {
                         resultItem = item;
                     }
                 }
                 if (resultItem == undefined) {
-                    throw new TS.InvalidOperationException("The'enumerable' is either empty or has no matche with the given predicate in function 'TS.Linq.Extensions.last'.");
+                    throw new TS.InvalidOperationException("The 'enumerable' is either empty or has no match with the given predicate in function 'TS.Linq.Extensions.last'.");
                 }
                 return resultItem;
             }
@@ -1409,7 +1271,7 @@ var TS;
                 } //END else
                 let resultItem;
                 for (let item of enumerator) {
-                    if (predicate(item)) {
+                    if ((predicate != null) && predicate(item)) {
                         resultItem = item;
                     }
                 }
@@ -1494,7 +1356,7 @@ var TS;
                 } //END if
                 else {
                     //
-                    // Use the  default comparsion operator.
+                    // Use the  default comparison operator.
                     //
                     comparer = (first, second) => { if (first < second) {
                         return -1;
@@ -1513,7 +1375,7 @@ var TS;
                 }
                 else {
                     //
-                    // Use the  default comparsion operator.
+                    // Use the  default comparison operator.
                     //
                     comparer = (first, second) => { if (first < second) {
                         return -1;
@@ -1531,16 +1393,15 @@ var TS;
             }
             Extensions.orderByDescending = orderByDescending;
             /**
-            * @description Retuns random elements from the base enumeration.
-            *  The function uses a generator to select the current random element. For that reason the
-            *  function will return as much elements as required, regardless how much elements the underlying
-            *  sequence holds.
+            * @description Returns random elements from the base enumeration. The function uses a generator to select the
+            *  current random element. For that reason the function will return as much elements as required, regardless
+            *  how much elements the underlying sequence holds.
             *
             *  The function throws a 'TS.Linq.EmptyEnumeratorException' If the underlying sequence is empty.
             *
             *  Attention:
             *  Limit the number of returned elements by calling a 'take' operator or some other limiting operator.
-            *  Otherwise you will run out fo memory.
+            *  Otherwise you will run out of memory.
             *
             *
             *  This function is not a Linq function.
@@ -1687,7 +1548,8 @@ var TS;
             }
             Extensions.select = select;
             /**
-            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences into one sequence
+            * @description Projects each element of a sequence to an Iterable<TSource> and flattens the resulting sequences
+            *  into one sequence
             * @description Deferred execution.
             *
             * @see {@link https://msdn.microsoft.com/en-us/library/system.linq.enumerable.selectmany(v=vs.110).aspx | MSDN}
@@ -1747,12 +1609,13 @@ var TS;
             }
             Extensions.sequenceEqual = sequenceEqual;
             /**
-            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator but in randomized order.
+            * @description Creates and returns a new enumerator which holds exact the same elements as the input enumerator
+            *  but in randomized order.
             *
             *  This function is not a Linq function.
             * @description Deferred execution.
             *
-            * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle}
+            * @see {@link http://www.dotnetperls.com/fisher-yates-shuffle : fisher-yates-shuffle @ dotnetperls.com}
             *
             * @param {Iterable<TSource>} enumerator
             *
@@ -1789,7 +1652,7 @@ var TS;
                     predicate = (item) => true;
                 } //END else
                 let gotOne = false;
-                let result;
+                let result = null;
                 for (let item of enumerator) {
                     if (predicate(item)) {
                         if (!gotOne) {
@@ -1797,12 +1660,12 @@ var TS;
                             result = item;
                         }
                         else {
-                            throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' hase more than one result element in function 'TS.Linq.Extensions.single'.");
+                            throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' has more than one result element in function 'TS.Linq.Extensions.single'.");
                         }
                     }
                 }
                 if (!gotOne) {
-                    throw new TS.InvalidOperationException("The'enumerator' is either empty or has no matche using the given predicate in function 'TS.Linq.Extensions.single'.");
+                    throw new TS.InvalidOperationException("The 'enumerator' is either empty or has no match using the given predicate in function 'TS.Linq.Extensions.single'.");
                 } //END if
                 return result;
             }
@@ -1817,7 +1680,7 @@ var TS;
                     predicate = (item) => true;
                 } //END else
                 let gotOne = false;
-                let result;
+                let result = null;
                 for (let item of enumerator) {
                     if (predicate(item)) {
                         if (!gotOne) {
@@ -1825,7 +1688,7 @@ var TS;
                             result = item;
                         }
                         else {
-                            throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' hase more than one result element in function 'TS.Linq.Extensions.singleOrDefault'.");
+                            throw new TS.Linq.MoreThanOneElementException(enumerator, "The 'enumerator' has more than one result element in function 'TS.Linq.Extensions.singleOrDefault'.");
                         }
                     }
                 }
@@ -1998,7 +1861,7 @@ var TS;
                 } //END if
                 if (TS.Utils.Assert.isNullOrUndefined(comparer)) {
                     //
-                    // Use the  default comparsion operator.
+                    // Use the  default comparison operator.
                     //
                     comparer = (_first, _second) => { if (_first < _second) {
                         return -1;
@@ -2020,7 +1883,7 @@ var TS;
                 } //END if
                 if (TS.Utils.Assert.isNullOrUndefined(comparer)) {
                     //
-                    // Use the  default comparsion operator.
+                    // Use the  default comparison operator.
                     //
                     comparer = (_first, _second) => { if (_first < _second) {
                         return -1;
@@ -2159,7 +2022,7 @@ var TS;
             *
             * @param {Iterable<TFirst>} firstEnum
             * @param {Iterable<TSecond>} secondEnum
-            * @param {(firt: TFirst, second: TSecond) => TResult} func
+            * @param {(first: TFirst, second: TSecond) => TResult} func
             *
             * @retuns {TS.Linq.Enumerator<TResult>}
             *
@@ -2195,8 +2058,9 @@ var TS;
         /**
         * @class TS.Linq.OrderedEnumerator<T, TKey>
         *
-        * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call to a sort function operate on
-        *  the partitions of the enumerator elements without changing the order of previous sortings.
+        * @description The 'TS.Linq.OrderedEnumerator' class is used by the Linq sort functions where every subsequent call
+        *  to a sort function operate on the partitions of the enumerator elements without changing the order of previous
+        *  sorting.
         *
         * @implements {BaseEnumerator<T}
         * @implements {TS.Linq.IOrderedEnumerator<T>}
@@ -2355,8 +2219,8 @@ var TS;
             /**
             * @constructor
             *
-            * @param source, the source object or collection used in this iterator.
-            * @param selector, a selector function which determines the result set.
+            * @param source, The source object or collection used in this iterator.
+            * @param selector, A selector function which determines the result set.
             */
             constructor(orderedEnumerator, keySelector, comparer) {
                 this.initalized = false;
@@ -2473,7 +2337,7 @@ var TS;
                 if (this.innerArray.length > 0) {
                     return { done: false, value: this.innerArray.shift() };
                 }
-                return { done: true, value: null };
+                return { done: true, value: undefined };
             }
         }
          //END class
@@ -2672,8 +2536,8 @@ var TS;
         * @see {@link https://msdn.microsoft.com/en-us/library/s6hkc2c4(v=vs.110).aspx | MSDN}
         *
         * @implements {TS.Collections.IList<T>}
-        * @implements {Iterable<T>}
         * @implements {ArrayLike<T>}
+        * @extends {TS.Linq.BaseEnumerator<T>}
         */
         class List extends TS.Linq.BaseEnumerator {
             constructor(allowNull, sourceOrGenerator, predicate) {
@@ -2701,7 +2565,7 @@ var TS;
                     else if (TS.Utils.Assert.isIterable(sourceOrGenerator) || TS.Utils.Assert.isArrayLike(sourceOrGenerator)) {
                         if (!TS.Utils.Assert.isNullOrUndefined(predicate)) {
                             if (!TS.Utils.Assert.isFunction(predicate)) {
-                                throw new TS.InvalidInvocationException("The constructor of 'TS.Collections.List' requires a valid selctor argument.");
+                                throw new TS.InvalidInvocationException("The constructor of 'TS.Collections.List' requires a valid selector argument.");
                             }
                         }
                         else {
@@ -2887,7 +2751,7 @@ var TS;
                 return this;
             }
             /**
-            * @description Removes the first occurrence of the specific object from the IList<T>.
+            * @description Removes the first occurrence of the specified item from the IList<T>.
             *
             * @implements {TS.Collections.IList<T>}
             *
@@ -2899,22 +2763,25 @@ var TS;
             */
             remove(item) {
                 let internalArray;
+                let index = 0;
+                let found = false;
                 TS.Utils.checkNotUndefinedParameter("item", item, "TS.Collections.List.remove");
                 internalArray = new Array();
-                this.copyTo(internalArray, 0);
-                internalArray.some((value, index, array) => {
-                    if (value == item) {
-                        internalArray[index] = undefined;
-                        return true;
+                while (index < this.length) {
+                    if (!found && this[index] == item) {
+                        found = true;
                     }
-                });
-                internalArray = TS.Utils.compactArray(internalArray);
+                    else {
+                        internalArray.push(this[index]);
+                    }
+                    index++;
+                }
                 this.clear();
                 this.add(...internalArray);
                 return this;
             }
             /**
-            * @description Removes the element at the specified index of the List<T>.
+            * @description Removes the element at the specified index from the IList<T>.
             *
             * @implements {TS.Collections.IList<T>}
             *
@@ -2935,6 +2802,8 @@ var TS;
                 return this;
             }
             /**
+            * @descriptions Adds the element provided in argument 'item' to the end of the list.
+            *
             * @private
             */
             push(item) {
@@ -2942,7 +2811,11 @@ var TS;
                 this.length++;
             }
             /**
+            * @description Returns the last element in the list or undefined if the list is empty.
+            *
             * @private
+            *
+            * @returns {T | undefined}
             */
             pop() {
                 if (this.length == 0) {
@@ -3083,7 +2956,7 @@ var TS;
                 return this.genFunc();
             }
             add() {
-                let pair;
+                let pair = null;
                 if (arguments.length == 2) {
                     if (TS.Utils.Assert.isNullOrUndefined(arguments[0])) {
                         throw new TS.ArgumentNullOrUndefinedException("key", "The argument key must not be null or undefined in function 'TS.Collections.Dictionary.add'.");
@@ -3375,3 +3248,139 @@ var TS;
 /// <reference path="./Collections/IList.ts" />
 /// <reference path="./Collections/List.ts" />
 /// <reference path="./Collections/Dictionary.ts" />
+/// <reference path="../_references.ts" />
+var TS;
+(function (TS) {
+    var Linq;
+    (function (Linq) {
+        /**
+        * @class TS.Linq.SelectorException
+        *
+        * @description This exceptions signals an error which occurred in a selector function for specific value.
+        *
+        * @extends {TS.Exception}
+        */
+        class SelectorException extends TS.Exception {
+            constructor(selector, value, message, innerException) {
+                super(message, innerException);
+                /**
+                * @private
+                */
+                this.internalSelector = null;
+                /**
+                * @private
+                */
+                this.internalValue = null;
+                this.internalSelector = selector;
+                this.internalValue = value;
+            }
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            get type() {
+                return "TS.Linq.SelectorException";
+            }
+            /**
+            * @description The selector which caused the exception.
+            *
+            * @get {(item: any) => Enumerator<any>} selector
+            */
+            get selector() {
+                return this.internalSelector;
+            }
+            /**
+            * @description The value which caused the exception.
+            *
+            * @get {any} value
+            */
+            get value() {
+                return this.internalValue;
+            }
+        }
+        Linq.SelectorException = SelectorException; //END class
+        /**
+        * @class TS.Linq.EmptyEnumeratorException
+        *
+        * @description This exceptions signals an error in a function which expects a none empty enumerator to operate on.
+        *
+        * @extends {TS.Exception}
+        */
+        class EmptyEnumeratorException extends TS.Exception {
+            /**
+            * @constructor
+            *
+            * @param {Iterable<any>} enumerator
+            * @param {string}  message?
+            */
+            constructor(enumerator, message, innerException) {
+                super(message, innerException);
+                /**
+                * @private
+                */
+                this.internalEnumerator = null;
+                this.internalEnumerator = enumerator;
+            }
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            get type() {
+                return "TS.Linq.EmptyEnumeratorException";
+            }
+            /**
+            * @description The enumerator which caused the exception.
+            *
+            * @get {Iterable<any>} enumerator
+            */
+            get enumerator() {
+                return this.internalEnumerator;
+            }
+        }
+        Linq.EmptyEnumeratorException = EmptyEnumeratorException; //END class
+        /**
+        * @class TS.Linq.MoreThanOneElementException
+        *
+        * @description This exceptions signals an error in a function where only one element is allowed but multiple
+        *  elements are available.
+        *
+        * @extends {TS.Exception}
+        */
+        class MoreThanOneElementException extends TS.Exception {
+            /**
+            * @constructor
+            *
+            * @param {Iterable<any>} enumerator
+            * @param {string} message?
+            * @param {TS.Exception} innerException)
+            */
+            constructor(enumerator, message, innerException) {
+                super(message, innerException);
+                /**
+                * @private
+                */
+                this.internalEnumerator = null;
+                this.internalEnumerator = enumerator;
+            }
+            /**
+            * @override
+            *
+            * @get {string} type
+            */
+            get type() {
+                return "TS.Linq.MoreThanOneElementException";
+            }
+            /**
+            * @description The enumerator which caused the exception.
+            *
+            * @get {Iterable<any>} enumerator
+            */
+            get enumerator() {
+                return this.internalEnumerator;
+            }
+        }
+        Linq.MoreThanOneElementException = MoreThanOneElementException; //END class
+    })(Linq = TS.Linq || (TS.Linq = {})); //END namespace
+})(TS || (TS = {})); //END namespace

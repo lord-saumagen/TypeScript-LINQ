@@ -7,7 +7,7 @@ namespace TS
     /**
     * @class TS.Linq.SelectorException
     *
-    * @description This exceptions signals an error which occured in a selector function for specific value.
+    * @description This exceptions signals an error which occurred in a selector function for specific value.
     *
     * @extends {TS.Exception}
     */
@@ -16,7 +16,7 @@ namespace TS
       /**
       * @private
       */
-      private internalSelector: (item: any) => any = null;
+      private internalSelector: ((item: any) => any) | null = null;
 
       /**
       * @private
@@ -40,7 +40,7 @@ namespace TS
       */
       get selector(): (item: any) => Enumerator<any>
       {
-        return this.internalSelector;
+        return this.internalSelector as (item: any) => any;
       }
 
       /**
@@ -101,7 +101,7 @@ namespace TS
       /**
       * @private
       */
-      private internalEnumerator: Iterable<any> = null;
+      private internalEnumerator: Iterable<any> | null = null;
 
       /**
       * @override
@@ -120,7 +120,7 @@ namespace TS
       */
       get enumerator(): Iterable<any>
       {
-        return this.internalEnumerator;
+        return (this.internalEnumerator as Iterable<any>);
       }
 
       /**
@@ -151,7 +151,7 @@ namespace TS
       /**
       * @private
       */
-      private internalEnumerator: Iterable<any> = null;
+      private internalEnumerator: Iterable<any> | null = null;
 
       /**
       * @override
@@ -170,7 +170,7 @@ namespace TS
       */
       get enumerator(): Iterable<any>
       {
-        return this.internalEnumerator;
+        return (this.internalEnumerator as Iterable<any>);
       }
 
       /**
